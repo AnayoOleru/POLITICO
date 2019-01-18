@@ -57,3 +57,48 @@ body{
     transition: .3s;
     color:rgb(255, 255, 255);
 }
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(10, 65, 86);
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #ffffff;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    border: solid 4px rgb(10, 65, 86);
+    color: rgb(10, 65, 86);
+    background-color: #ffffff;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+.openbutton i{
+    position: absolute;
+    padding-left: 30px;
+    padding-top: 20px;
+    width: 50px;
+}
+.openbutton:hover{
+    color: cadetblue;
+}

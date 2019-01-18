@@ -10,72 +10,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 </head>
 <body>
-        <style>
-                body {
-                    font-family: "Lato", sans-serif;
-                }
-                
-                .sidenav {
-                    height: 100%;
-                    width: 0;
-                    position: fixed;
-                    z-index: 1;
-                    top: 0;
-                    left: 0;
-                    background-color: rgb(10, 65, 86);
-                    overflow-x: hidden;
-                    transition: 0.5s;
-                    padding-top: 60px;
-                }
-                
-                .sidenav a {
-                    padding: 8px 8px 8px 32px;
-                    text-decoration: none;
-                    font-size: 25px;
-                    color: #ffffff;
-                    display: block;
-                    transition: 0.3s;
-                }
-                
-                .sidenav a:hover {
-                    border: solid 4px rgb(10, 65, 86);
-                    color: rgb(10, 65, 86);
-                    background-color: #ffffff;
-                }
-                
-                .sidenav .closebtn {
-                    position: absolute;
-                    top: 0;
-                    right: 25px;
-                    font-size: 36px;
-                    margin-left: 50px;
-                }
-                .openbutton i{
-                    position: absolute;
-                    padding-left: 30px;
-                    padding-top: 20px;
-                    width: 50px;
-                }
-                .openbutton:hover{
-                    color: cadetblue;
-                }
-                
-                </style>
-                <script>
-                    function openNav() {
-                        document.getElementById("mySidenav").style.width = "200px";
-                    }
-                    
-                    function closeNav() {
-                        document.getElementById("mySidenav").style.width = "0";
-                    }
-                    </script>
-                </head>
-                <body>
-
-                        
-
-                <div id="mySidenav" class="sidenav">
+          <div id="mySidenav" class="sidenav">
                     <a href="#" class="closebtn" onclick="closeNav()"><i class="fa fa-chevron-circle-right"></i></a>
                     <img style="width: 80px; padding-left: 30px;" src="images/userimg.png">
                     <h1 style="padding-left: 30px; color: #ffffff;">User</h1>
@@ -95,5 +30,6 @@
                             <li><a href="#" class="active">Username</a></li>
                         </ul>
                 </div> 
+                <script src="scripts/user.js"></script>
 </body>
 </html>
