@@ -3,6 +3,7 @@ body{
     padding:0px;
     font-family: Quicksand;
     background-color:  rgb(211, 211, 211);
+    overflow-x:hidden;
 }
 
 .nav{
