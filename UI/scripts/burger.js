@@ -1,19 +1,19 @@
 (function menu() {
 	
-	var navbar = document.querySelector('nav>ul');
+	let navbar = document.querySelector('nav>ul');
 
-	var submenuButtons = document.getElementsByClassName('submenu-button');
+	let submenuButtons = document.getElementsByClassName('submenu-button');
 
 
-	var toggleButton = document.getElementsByClassName('responsive-menu-button')[0];
+	let toggleButton = document.getElementsByClassName('responsive-menu-button')[0];
 
-	var toggle = function(elem) {
+	let toggle = function(elem) {
 
 		//This function receives an element to show or hide according to it's state.
 
- 		var element = elem;
+ 		let element = elem;
 
- 		var display = window.getComputedStyle(navbar).display; 		
+ 		let display = window.getComputedStyle(navbar).display; 		
 
  		if ( display === 'none') {
 

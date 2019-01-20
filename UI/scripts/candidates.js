@@ -5,3 +5,9 @@ function openNav() {
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
 }
+
+let voted = document.getElementById("voted");
+function voteColor(){
+    voted.style.backgroundColor = "green";
+    voted.style.color = "#ffffff";
+}

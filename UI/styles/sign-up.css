@@ -143,9 +143,19 @@ button:hover{
     border: solid rgb(10, 65, 86) 2px;
 }
 
+.header{
+    text-align: center;
+    padding-right: 175px;
+}
+
+.form{
+    text-align: center;
+
+}
+
 /*footer*/
-footer{
-	padding: 20px;
+.navfoot{
+	padding: 15px;
 	margin-top: 135px;
 	color: white;
 	background-color: #1f5582;

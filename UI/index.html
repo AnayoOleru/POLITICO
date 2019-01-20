@@ -5,18 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>POLITICO</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/ico" href="images/pogo.png"/>
     <link rel="stylesheet" type="text/css" media="screen" href="styles/index.css" />
-    <script src="scripts/burger.js"></script>
+    <meta name="Description" content="Politico - Builds trust through transparency">
 </head>
 <body>
         <div class="wrapper"> 
-                <nav> 
+                <nav class="nav"> 
                     <img src="images/pogo.png">
                     <div class="logo">POLITICO</div>
-                    <ul> 
-                        <!-- <li><a href="#">Home</a></li> -->
-                        <li><a href="#">Sign up</a></li>
-                        <li><a href="#" class="active">Sign in</a></li>
+                    <ul>
+                        <li><a href="sign-up.html">Sign up</a></li>
+                        <li><a href="sign-in.html" class="active">Sign in</a></li>
                     </ul>
                 </nav>
                 <section class="back_ground">
@@ -30,19 +30,8 @@
                     <p>Building trust through transparency</p>
                 </section>
         </div>
-                <!-- <section class="content">
-                  <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus beatae porro nihil dolores inventore eos natus adipisci, dolorum ipsa architecto atque, alias aliquid et qui quibusdam cumque, dolor incidunt molestias.</P>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, quos nisi. Repellat repellendus labore fugit, illo voluptas distinctio laboriosam laudantium corrupti optio molestiae ab nulla, asperiores veniam aperiam mollitia corporis?</p>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, quos nisi. Repellat repellendus labore fugit, illo voluptas distinctio laboriosam laudantium corrupti optio molestiae ab nulla, asperiores veniam aperiam mollitia corporis?</p>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, quos nisi. Repellat repellendus labore fugit, illo voluptas distinctio laboriosam laudantium corrupti optio molestiae ab nulla, asperiores veniam aperiam mollitia corporis?</p>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, quos nisi. Repellat repellendus labore fugit, illo voluptas distinctio laboriosam laudantium corrupti optio molestiae ab nulla, asperiores veniam aperiam mollitia corporis?</p>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, quos nisi. Repellat repellendus labore fugit, illo voluptas distinctio laboriosam laudantium corrupti optio molestiae ab nulla, asperiores veniam aperiam mollitia corporis?</p>
-        
-        
-                  
-                </section> -->
 
-                <section id="details">
+                <section class="details">
                         <div class="container">
                             <h1 class="detailTxt">Get Started</h1>
                             <div class="square">
@@ -51,23 +40,30 @@
                             
                                 <p><span class="bold">Your choice, Your vote</span>
                                     <br>Sign up or sign in. 
-                                    <br> Vote for the candidate of <br>your choice online!</p>
+                                    <br> Vote for the candidate of <br>your choice now!</p>
                         </div>
                 </section>
+                
 
-                <section id="details">
+                <section class="details">
+                        <hr class="bar">
                         <div class="container2">
                             <div class="square2">
                                 <img src="images/politician.jpg" alt="order-parcel" alt="create-account">   
                             </div>
                                 <p class="twoText"><span class="bold">Politicians</span>
                                     <br>Sign up or sign in. 
-                                    <br> Show interest <br>in any political office.</p>
+                                    <br> Express interest <br>in any political office.</p>
                         </div>
                 </section>
                             
-    <footer>
-        <p>POLITICO, copyright ©2019</p>
+    <footer class="navfoot">
+        <p>POLITICO, copyright ©
+            <script>
+                document.write(new Date().getFullYear())
+            </script></p>
     </footer>
+
+    <script src="scripts/burger.js"></script>
 </body>
 </html>

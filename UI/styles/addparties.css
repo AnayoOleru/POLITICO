@@ -25,11 +25,7 @@ body{
     padding: 0;
     display:flex;
 }
-/* .nav img{
-    padding: 10px 170px;
-    height: 70px;
-    float: left;
-} */
+
 .nav ul li{
     list-style: none;
 }
@@ -70,6 +66,11 @@ body{
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
+}
+
+.sidenav .active{
+    background-color: rgb(255, 255, 255);
+    color: rgb(10, 65, 86);
 }
 
 .sidenav a {
@@ -118,13 +119,13 @@ body{
     height: 150px;
     margin: 18px;
     text-align: center;
-   /* line-height: 75px;*/
     font-size: 30px;
   }
-      .box1{background-color: blue;}
       .logos{
           height:150px;
           width: 100%;
+          box-shadow: 0 4px 8px 0 rgb(0, 0, 0, 0.2);
+          transition: 0.3s;
       }
 
       .add{
@@ -141,21 +142,11 @@ body{
             text-decoration: none;
             border-radius: 50%;
       }
+
       .add:hover{
         background-color: rgb(4, 26, 34); 
       }
 
-      /* add button modal */
-      /* input{
-        width: 30%;
-        box-sizing: border-box;
-        border: 2px solid #ccc;
-        border-radius: 4px;
-        font-size: 16px;
-        background-color: white; 
-        background-repeat: no-repeat;
-        padding: 11px 20px 11px 40px;
-    } */
     .partyForm{
         display:;
         padding-bottom: 30px;
@@ -170,6 +161,9 @@ body{
         background-repeat: no-repeat;
         padding: 11px 20px 11px 40px;
     }
+
+
+    
     h1{
         font-family: 'Montserrat', sans-serif;
         padding-top: 44px;
@@ -214,4 +208,154 @@ body{
         font-weight: bold;
         list-style: none;
 
+    }
+
+    /* ////////////////////////////////////// */
+
+    .modal{
+        position: relative;
+        margin: 0 auto;
+        background-color:rgb(10, 65, 86);
+        border: solid #ffffff 2px;
+        box-shadow: rgb(10, 65, 86);
+        opacity: 0.9;
+        bottom: 400px;
+        width: 500px;
+        height: 300px;
+        display: none;
+    }
+
+    .modal input[type="text"]{
+        text-align:center;
+        font-size: 30px;
+        background-color: rgb(253, 253, 253);
+        color: #000000;
+        border: solid rgb(10, 65, 86) 2px;
+        height: 40px;
+        width: 400px;
+        border-radius: 10px;
+}
+
+    .modal form{
+        position: absolute;
+        top: 20%;
+        left: 2%;
+        text-align: center;
+    }
+    .modal form h1{
+        margin:0;
+        padding: 0;
+        color: #ffffff;
+    }
+    .modal form input[type="file"] {
+        text-align: center;
+        font-size: 25px;
+        background-color: rgb(253, 253, 253);
+        color: #000000;
+        border: solid rgb(10, 65, 86) 2px;
+        height: 60px;
+        width: 400px;
+        border-radius: 10px;
+    }
+    .modal form input[type="submit"]{
+        font-size: 25px;
+        padding-top:3px;
+        height: 40px;
+        width: 150px;
+    }
+    .modal form input[type="submit"]:hover{
+        background-color: rgb(6, 38, 51);
+        color:#ffffff;
+        border: none;
+    }
+
+    /* /////// */
+    .modal1{
+        position: relative;
+        margin: 0 auto;
+        background-color:rgb(10, 65, 86);
+        border: solid #ffffff 2px;
+        box-shadow: rgb(10, 65, 86);
+        opacity: 0.9;
+        bottom: 400px;
+        width: 500px;
+        height: 300px;
+        display: none;
+    }
+    .modal1 input[type="text"]{
+        text-align:center;
+        font-size: 30px;
+        background-color: rgb(253, 253, 253);
+        color: #000000;
+        border: solid rgb(10, 65, 86) 2px;
+        height: 40px;
+        width: 400px;
+        border-radius: 10px;
+}
+
+    .modal1 form{
+        position: absolute;
+        top: 20%;
+        left: 2%;
+        text-align: center;
+    }
+    .modal1 form h1{
+        margin:0;
+        padding: 0;
+        color: #ffffff;
+    }
+    .modal1 form input[type="file"] {
+        text-align: center;
+        font-size: 25px;
+        background-color: rgb(253, 253, 253);
+        color: #000000;
+        border: solid rgb(10, 65, 86) 2px;
+        height: 60px;
+        width: 400px;
+        border-radius: 10px;
+    }
+    .modal1 form input[type="submit"]{
+        font-size: 25px;
+        padding-top:3px;
+        height: 40px;
+        width: 150px;
+    }
+    .modal1 form input[type="submit"]:hover{
+        background-color: rgb(6, 38, 51);
+        color:#ffffff;
+        border: none;
+    }
+
+    /* /////////// delete */
+    .modal2{
+        position: relative;
+        margin: 0 auto;
+        background-color:rgb(10, 65, 86);
+        border: solid #ffffff 2px;
+        box-shadow: rgb(10, 65, 86);
+        opacity: 0.9;
+        bottom: 400px;
+        width: 500px;
+        height: 200px;
+        display: none;
+    }
+    .modal2 button{
+        position: relative;
+        bottom: 50px;
+        left: 60px;
+        text-align: center;
+        font-size: 25px;
+        height: 40px;
+        width: 150px;
+        margin:20px;
+        padding:0px;
+    }
+    .modal2 button:hover{
+        background-color:rgb(5, 34, 46);
+        color:#ffffff;
+        border:none;
+    }
+    .modal2 h1{
+        text-align: center;
+        color: #ffffff;
     }

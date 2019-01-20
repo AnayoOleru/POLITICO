@@ -25,11 +25,7 @@ body{
     padding: 0;
     display:flex;
 }
-/* .nav img{
-    padding: 10px 170px;
-    height: 70px;
-    float: left;
-} */
+
 .nav ul li{
     list-style: none;
 }
@@ -72,6 +68,11 @@ body{
     padding-top: 60px;
 }
 
+.sidenav .active{
+    background-color: rgb(255, 255, 255);
+    color: rgb(10, 65, 86);
+}
+
 .sidenav a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
@@ -110,24 +111,18 @@ body{
     margin-top: 25px;
     text-align: center;
     justify-content: center;
-    /* background-color: rgb(250, 250, 250); */
-    /*height: 500px;*/
   }
   
   .box {
     background-color: rgb(10, 65, 86);
+    box-shadow: 0 4px 8px 0 rgb(0, 0, 0, 0.2);
+    transition: 0.3s;
     width: 300px;
     height: 150px;
     margin: 10px;
     text-align: center;
-   /* line-height: 75px;*/
     font-size: 30px;
   }
-      /* .box1{background-color: blue;} */
-      /* .logos{
-          height:150px;
-          width: 100%;
-      } */
 
       .title{
           color:rgb(10, 65, 86);
