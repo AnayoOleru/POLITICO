@@ -24,11 +24,7 @@ body{
     padding: 0;
     display:flex;
 }
-/* .nav img{
-    padding: 10px 170px;
-    height: 70px;
-    float: left;
-} */
+
 .nav ul li{
     list-style: none;
 }

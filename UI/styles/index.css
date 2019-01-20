@@ -2,13 +2,10 @@ body{
     margin:0;
     padding:0px;
     font-family: Quicksand;
-    background-color:  rgb(140, 217, 248);
+    background-color:  rgb(211, 211, 211);
 }
-/* ###################################################
-###################################################
-################################################### */
 
-nav{
+.nav{
     position: fixed;
     top:0px;
     left :0px;
@@ -17,6 +14,7 @@ nav{
     padding: 0 100px;
     background-color: rgb(10, 65, 86);
     box-sizing:border-box;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.30);
     transition: .3s;
 }
 .logo{
@@ -28,22 +26,22 @@ nav{
     transition: .3s;
     color:rgb(255, 255, 255);
 }
-nav ul{
+.nav ul{
     list-style: none;
     float: right;
     margin: 0;
     padding: 0;
     display:flex;
 }
-nav img{
+.nav img{
     padding: 10px 18px;
     height: 50px;
     float: left;
 }
-nav ul li{
+.nav ul li{
     list-style: none;
 }
-nav ul li a {
+.nav ul li a {
     line-height: 80px;
     color:rgb(245, 242, 240);
     padding: 12px 30px;
@@ -51,7 +49,7 @@ nav ul li a {
     text-transform: uppercase;
     transition:.3s;
 }
-nav ul li a:hover {
+.nav ul li a:hover {
     
     color:rgb(10, 65, 86);
     font-weight: bold;
@@ -87,26 +85,18 @@ nav ul li a:hover {
     padding-bottom: 6px;
     font-size: 25px;
 }
-/* .content{
-    text-align: justify;
-    font-size: 20px;
-    line-height: 25px;
-    width: 900px;
-    margin:30px auto;
-} */
 
-
-/*get started or the information boxes*/
-#details{
+/*get started on the information boxes*/
+.details{
     margin-top: 0;
 }
-#details .detailTxt{
+.details .detailTxt{
 	text-align: center;
-	color: hsl(0, 0%, 0%);
+	color: rgb(10, 65, 86);
 	font-size: 40px;
 }
 
-#details .square{
+.details .square{
     float: right;
 	text-align: right;
 	color: black;
@@ -116,12 +106,13 @@ nav ul li a:hover {
     height: 50px;
 }
 
-#details .square img{
+.details .square img{
     width: 40%;
     height: 350px;
 }
 
-#details p{
+.details p{
+    color: rgb(10, 65, 86);
     text-align: center;
     font-size:3em;
     margin-right: 500px;
@@ -129,12 +120,12 @@ nav ul li a:hover {
 
 /* second story */
 /*get started or the information boxes*/
-#details{
-    padding-top: 50px;
+.details{
+    padding-top: 40px;
 }
 
 
-#details .square2{
+.details .square2{
     float: left;
 	color: black;
     padding-top: 10px;
@@ -143,13 +134,13 @@ nav ul li a:hover {
     height: 50px;
 }
 
-#details .square2 img{
+.details .square2 img{
     width: 40%;
     height: 350px;
     padding-top: 150px;
 }
 
-#details .twoText {
+.details .twoText {
     position: absolute;
     width: 100%;
     text-align:center;
@@ -163,28 +154,26 @@ nav ul li a:hover {
     font-weight: bold;
 }
 
+.bar{
+    background: rgb(10, 65, 86);
+}
+
 /* second story */
 /*get started or the information boxes*/
 
-
-
-
-/* ##############################################################
-###############################################################
- */
  .black{
     background-color: #2D6962;
     background: rgba(0,0,0,0.6);
  }
 
- footer{
+ .navfoot{
      background-color: rgb(10, 65, 86);
      width: 100%;
      height: 60px;
      margin-top:700px;
  }
 
- footer p{
+ .navfoot p{
     color: antiquewhite;
     text-align: center;
     padding-top: 20px;

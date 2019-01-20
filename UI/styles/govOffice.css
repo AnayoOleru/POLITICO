@@ -25,11 +25,7 @@ body{
     padding: 0;
     display:flex;
 }
-/* .nav img{
-    padding: 10px 170px;
-    height: 70px;
-    float: left;
-} */
+
 .nav ul li{
     list-style: none;
 }
@@ -72,6 +68,11 @@ body{
     padding-top: 60px;
 }
 
+.sidenav .active{
+    background-color: rgb(255, 255, 255);
+    color: rgb(10, 65, 86);
+}
+
 .sidenav a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
@@ -111,9 +112,20 @@ body{
     text-align: center;
     justify-content: center;
   }
-      .title{
+  .office{
+      margin: 0;
+      padding: 0;
+  }
+
+  .type{
+      padding-top: 70px;
+      color: rgb(10, 65, 86);
+      text-align:center ;
+      font-weight: bold;
+      font-size: 20px;
+  }
+      .name{
           color:rgb(10, 65, 86);
-          padding-top: 70px;
           text-align: center;
       }
 
@@ -139,6 +151,52 @@ body{
       .vote:hover{
         background-color: rgb(7, 145, 199);
         color: rgb(251, 254, 255);
+    }
+
+    .modal{
+        position: relative;
+        margin: 0 auto;
+        background-color:rgb(10, 65, 86);
+        border: solid #ffffff 2px;
+        box-shadow: rgb(10, 65, 86);
+        opacity: 0.9;
+        bottom: 150px;
+        width: 500px;
+        height: 200px;
+        display: none;
+    }
+
+    .modal form{
+        position: absolute;
+        top: 8%;
+        left: 2%;
+        text-align: center;
+    }
+    .modal form h1{
+        margin:0;
+        padding: 0;
+        color: #ffffff;
+    }
+    .modal form input[type="text"] {
+        text-align: center;
+        font-size: 30px;
+        background-color: rgb(253, 253, 253);
+        color: #000000;
+        border: solid rgb(10, 65, 86) 2px;
+        height: 50px;
+        width: 400px;
+        border-radius: 10px;
+    }
+    .modal form input[type="submit"]{
+        font-size: 25px;
+        padding-top:3px;
+        height: 40px;
+        width: 100px;
+    }
+    .modal form input[type="submit"]:hover{
+        background-color: rgb(6, 41, 54);
+        color: #ffffff;
+        border: none;
     }
 
     .add{
