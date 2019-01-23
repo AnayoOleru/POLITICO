@@ -328,7 +328,7 @@ body{
     /* /////////// delete */
     .modal2{
         position: absolute;
-        margin-top: 5%;
+        margin-top: 20%;
         margin-left: 25%;
         background-color:rgb(10, 65, 86);
         border: solid #ffffff 2px;
