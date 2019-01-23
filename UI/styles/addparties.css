@@ -250,7 +250,7 @@ body{
         color: #000000;
         border: solid rgb(10, 65, 86) 2px;
         height: 50px;
-        width: 60%;
+        width: 80%;
         border-radius: 10px;
     }
     .modal form input[type="submit"]{
@@ -310,14 +310,14 @@ body{
         color: #000000;
         border: solid rgb(10, 65, 86) 2px;
         height: 50px;
-        width: 60%;
+        width: 80%;
         border-radius: 10px;
     }
     .modal1 form input[type="submit"]{
         font-size: 25px;
         padding-top:3px;
         height: 40px;
-        width: 100px;
+        width: 40%;
     }
     .modal1 form input[type="submit"]:hover{
         background-color: rgb(6, 38, 51);
