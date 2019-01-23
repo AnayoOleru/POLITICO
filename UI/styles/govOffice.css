@@ -4,7 +4,7 @@
 body{
     margin:0;
     padding: 0;
-    background-color: rgb(196, 197, 197);
+    background-color: rgb(255, 255, 255);
 }
 
 .nav{
@@ -37,13 +37,6 @@ body{
     text-decoration:none;
     text-transform: uppercase;
     transition:.3s;
-}
-.nav ul li a:hover {
-    
-    color:rgb(10, 65, 86);
-    font-weight: bold;
-    border: 2px solid  ;
-    background-color:rgb(245, 242, 240);
 }
 .logo{
     padding: 22px 0px;
@@ -154,20 +147,23 @@ body{
     }
 
     .modal{
-        position: relative;
-        margin: 0 auto;
+        position: absolute;
+        margin-top:25%;
+        margin-left: 25%;
         background-color:rgb(10, 65, 86);
         border: solid #ffffff 2px;
         box-shadow: rgb(10, 65, 86);
         opacity: 0.9;
-        bottom: 150px;
-        width: 500px;
-        height: 200px;
+        bottom: 0;
+        top:0;
+        z-index:1;
+        width: 50%;
+        height: 250px;
         display: none;
     }
 
     .modal form{
-        position: absolute;
+        position: relative;
         top: 8%;
         left: 2%;
         text-align: center;
@@ -179,19 +175,19 @@ body{
     }
     .modal form input[type="text"] {
         text-align: center;
-        font-size: 30px;
+        font-size: 23px;
         background-color: rgb(253, 253, 253);
         color: #000000;
         border: solid rgb(10, 65, 86) 2px;
         height: 50px;
-        width: 400px;
+        width: 80%;
         border-radius: 10px;
     }
     .modal form input[type="submit"]{
         font-size: 25px;
         padding-top:3px;
         height: 40px;
-        width: 100px;
+        width: 20%;
     }
     .modal form input[type="submit"]:hover{
         background-color: rgb(6, 41, 54);
@@ -216,3 +212,34 @@ body{
   .add:hover{
     background-color: rgb(4, 26, 34); 
   }
+
+  .username{
+      
+  }
+
+  @media screen and (max-width: 768px){
+    .nav ul li a {
+        display: none;
+    }
+    .modal{
+        position: absolute;
+        margin-top:25%;
+        margin-left: 5%;
+        background-color:rgb(10, 65, 86);
+        border: solid #ffffff 2px;
+        box-shadow: rgb(10, 65, 86);
+        opacity: 0.9;
+        bottom: 0;
+        top:0;
+        z-index:1;
+        width: 90%;
+        height: 250px;
+        display: none;
+    }
+    .modal form input[type="submit"]{
+        font-size: 4vh;
+        padding-top:3px;
+        height: 40px;
+        width: 30%;;
+    }
+}
