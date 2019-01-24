@@ -38,13 +38,7 @@ body{
     text-transform: uppercase;
     transition:.3s;
 }
-.nav ul li a:hover {
-    
-    color:rgb(10, 65, 86);
-    font-weight: bold;
-    border: 2px solid  ;
-    background-color:rgb(245, 242, 240);
-}
+
 .logo{
     padding: 22px 0px;
     height: 80px;
@@ -55,11 +49,32 @@ body{
     color:rgb(255, 255, 255);
 }
 
+.list{
+    list-style-type: none;
+    height: 60px;
+  margin: 60px 0 0 0;
+  padding:0;
+  overflow: hidden;
+  background-color: black;
+}
+
+.list li{
+    float: left;
+}
+.list li a{
+    display: block;
+    margin: 0 auto;
+    
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
 .sidenav {
     height: 100%;
     width: 0;
     position: fixed;
-    z-index: 1;
+    z-index:1;
     top: 0;
     left: 0;
     background-color: rgb(10, 65, 86);
@@ -78,7 +93,7 @@ body{
     font-size: 25px;
     color: #ffffff;
     display: block;
-    transition: 0.3s;
+    transition: 0.6s;
 }
 
 .sidenav a:hover {
@@ -90,7 +105,7 @@ body{
 .sidenav .closebtn {
     position: absolute;
     top: 0;
-    right: 25px;
+    right: 35px;
     font-size: 36px;
     margin-left: 50px;
 }
@@ -128,3 +143,9 @@ body{
           box-shadow: 0 4px 8px 0 rgb(0, 0, 0, 0.2);
           transition: 0.3s;
       }
+
+      @media screen and (max-width: 768px){
+        .nav ul li a {
+            display: none;
+        }
+    }

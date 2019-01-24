@@ -4,7 +4,7 @@
 body{
     margin:0;
     padding: 0;
-    background-color: rgb(196, 197, 197);
+    background-color: rgb(255, 255, 255);
 }
 
 .nav{
@@ -185,3 +185,105 @@ body{
         text-align: center;
 
     }
+
+
+    /*header*/
+header{
+	background:#1f5582;
+	color:#ffffff;
+	padding-top: 30px;
+	min-height: 70px;
+	border-bottom: #c16f03 3px solid;
+}
+
+header a{
+	color: white; /*change */
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: 16px;
+}
+
+header li{
+	float: left;
+	display: inline;
+	padding: 0 20px 0 20px;
+}
+
+header #logo{
+	float: left;
+}
+
+header #logo h1{
+	margin: 0;
+}
+
+header nav{
+	float: right;
+	margin-top: 10px;
+}
+
+header .logoColor, header .home a{
+	color: #c16f03;
+	font-weight: bold;
+}
+
+header a:hover{
+	color: #cccccc;
+}
+
+input{
+    width: 30%;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white; 
+    background-repeat: no-repeat;
+    padding: 11px 20px 11px 40px;
+}
+h1{
+    font-family: 'Montserrat', sans-serif;
+    padding-top: 44px;
+    padding-bottom: 40px;
+}
+
+p{
+    font-family: 'Montserrat', sans-serif;
+}
+
+button{
+    background-color: rgb(10, 65, 86); /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: rgb(255, 255, 255); 
+    color: rgb(10, 65, 86);
+    border: solid rgb(10, 65, 86) 2px;
+}
+
+.header, .form{
+    text-align: center;
+}
+
+
+@media screen and (max-width: 768px){
+    .container li a{
+        display: none;
+    }
+    nav img{
+    padding: 10px 20px;
+    margin-left: 20%;
+    height: 60px;
+    float: left;
+    }
+}

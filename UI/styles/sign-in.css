@@ -146,13 +146,14 @@ button:hover{
 .header, .form{
     text-align: center;
 }
-
-
-/*footer*/
-.navfoot{
-	padding: 20px;
-	margin-top: 162px;
-	color: white;
-	background-color: rgb(10, 65, 86);
-	text-align: center;
+@media screen and (max-width: 768px){
+    .container li a{
+        display: none;
+    }
+    nav img{
+    padding: 10px 20px;
+    margin-left: 20%;
+    height: 60px;
+    float: left;
+    }
 }

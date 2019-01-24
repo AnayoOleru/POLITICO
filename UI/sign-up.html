@@ -24,33 +24,26 @@
         <h1 class="header">Sign up with POLITICO</h1>
     <form class="form" action="#">
         <p class="input1"><b style="padding-right: 30px;">Your Image</b>
-            <input type="file">
+            <input type="file" required>
             </p>
         <p class="input1"><b style="padding-right: 30px;">First Name</b>
-            <input type="text" name="FirstName" placeholder="e.g John">
+            <input type="text" name="FirstName" placeholder="e.g John" required>
         </p>
         <p class="input1"><b style="padding-right: 30px;">Last Name</b>
-            <input type="text" name="SecondName" placeholder="e.g Fever">
+            <input type="text" name="SecondName" placeholder="e.g Fever" required>
         </p>
         <p class="input2"><b style="padding-right: 9px;">Email Address</b>
-        <input type="email" name="Email" placeholder="e.g johnfever@politico.com">
+        <input type="email" name="Email" placeholder="e.g johnfever@politico.com" required>
         </p>
         <p class="input2"><b style="padding-right: 9px;">Phone Number</b>
-            <input type="text" name="phone number" placeholder="e.g 080...">
+            <input type="text" name="phone number" pattern="\d+" placeholder="e.g 080..." required>
             </p>
         <p class="input3"><b style="padding-right: 42px;">Password</b>
-        <input type="password" name="Password" placeholder="***">
+        <input type="password" name="Password" placeholder="***" required>
         </p>
         <p><button>Create an account</button></p>
     </form>
     <p align="center" style="padding-left: 38px;">Already have an account? <a href="sign-in.html" style="color: rgb(10, 65, 86); text-decoration: none;">sign in</a></p>
-        
-        
-            <footer class="navfoot">
-                <p>POLITICO, copyright ©
-                                    <script>
-                                        document.write(new Date().getFullYear())
-                                    </script></p>
-            </footer>
+
 </body>
 </html>

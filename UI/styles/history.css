@@ -38,13 +38,6 @@ body{
     text-transform: uppercase;
     transition:.3s;
 }
-.nav ul li a:hover {
-    
-    color:rgb(10, 65, 86);
-    font-weight: bold;
-    border: 2px solid  ;
-    background-color:rgb(245, 242, 240);
-}
 .logo{
     padding: 22px 0px;
     height: 80px;
@@ -150,3 +143,8 @@ body{
           height:30px;
           font-size: 20px;
       }
+      @media screen and (max-width: 768px){
+        .nav ul li a {
+            display: none;
+        }
+    }
