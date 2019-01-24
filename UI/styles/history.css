@@ -150,3 +150,8 @@ body{
           height:30px;
           font-size: 20px;
       }
+      @media screen and (max-width: 768px){
+        .nav ul li a {
+            display: none;
+        }
+    }

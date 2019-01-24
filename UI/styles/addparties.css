@@ -38,13 +38,6 @@ body{
     text-transform: uppercase;
     transition:.3s;
 }
-.nav ul li a:hover {
-    
-    color:rgb(10, 65, 86);
-    font-weight: bold;
-    border: 2px solid  ;
-    background-color:rgb(245, 242, 240);
-}
 .logo{
     padding: 22px 0px;
     height: 80px;
@@ -151,16 +144,16 @@ body{
         display:;
         padding-bottom: 30px;
     }
-    input{
+    /* input{
         width: 30%;
         box-sizing: border-box;
-        border: 2px solid #ccc;
+        border: 2px solid #ccc; */
         border-radius: 4px;
         font-size: 16px;
         background-color: white; 
-        background-repeat: no-repeat;
-        padding: 11px 20px 11px 40px;
-    }
+        background-repeat: no-repeat; 
+        padding: 11px 20px 11px 40px; 
+    } */
 
 
     
@@ -213,32 +206,35 @@ body{
     /* ////////////////////////////////////// */
 
     .modal{
-        position: relative;
-        margin: 0 auto;
+        position: absolute;
+        margin-top:15%;
+        margin-left: 25%;
         background-color:rgb(10, 65, 86);
         border: solid #ffffff 2px;
         box-shadow: rgb(10, 65, 86);
         opacity: 0.9;
-        bottom: 400px;
-        width: 500px;
-        height: 300px;
+        bottom: 0;
+        top:0;
+        z-index:1;
+        width: 50%;
+        height: 290px;
         display: none;
     }
 
     .modal input[type="text"]{
-        text-align:center;
-        font-size: 30px;
+        text-align: center;
+        font-size: 23px;
         background-color: rgb(253, 253, 253);
         color: #000000;
         border: solid rgb(10, 65, 86) 2px;
-        height: 40px;
-        width: 400px;
+        height: 50px;
+        width: 80%;
         border-radius: 10px;
 }
 
     .modal form{
-        position: absolute;
-        top: 20%;
+        position: relative;
+        top: 8%;
         left: 2%;
         text-align: center;
     }
@@ -249,19 +245,19 @@ body{
     }
     .modal form input[type="file"] {
         text-align: center;
-        font-size: 25px;
+        font-size: 18px;
         background-color: rgb(253, 253, 253);
         color: #000000;
         border: solid rgb(10, 65, 86) 2px;
-        height: 60px;
-        width: 400px;
+        height: 50px;
+        width: 80%;
         border-radius: 10px;
     }
     .modal form input[type="submit"]{
-        font-size: 25px;
+        font-size: 20px;
         padding-top:3px;
         height: 40px;
-        width: 150px;
+        width: 40%;;
     }
     .modal form input[type="submit"]:hover{
         background-color: rgb(6, 38, 51);
@@ -271,31 +267,34 @@ body{
 
     /* /////// */
     .modal1{
-        position: relative;
-        margin: 0 auto;
+        position: absolute;
+        margin-top:15%;
+        margin-left: 25%;
         background-color:rgb(10, 65, 86);
         border: solid #ffffff 2px;
         box-shadow: rgb(10, 65, 86);
         opacity: 0.9;
-        bottom: 400px;
-        width: 500px;
-        height: 300px;
+        bottom: 0;
+        top:0;
+        z-index:1;
+        width: 50%;
+        height: 290px;
         display: none;
     }
     .modal1 input[type="text"]{
-        text-align:center;
-        font-size: 30px;
+        text-align: center;
+        font-size: 23px;
         background-color: rgb(253, 253, 253);
         color: #000000;
         border: solid rgb(10, 65, 86) 2px;
-        height: 40px;
-        width: 400px;
-        border-radius: 10px;
+        height: 50px;
+        width: 80%;
+        border-radius: 10px;  
 }
 
     .modal1 form{
-        position: absolute;
-        top: 20%;
+        position: relative;
+        top: 8%;
         left: 2%;
         text-align: center;
     }
@@ -306,19 +305,19 @@ body{
     }
     .modal1 form input[type="file"] {
         text-align: center;
-        font-size: 25px;
+        font-size: 18px;
         background-color: rgb(253, 253, 253);
         color: #000000;
         border: solid rgb(10, 65, 86) 2px;
-        height: 60px;
-        width: 400px;
+        height: 50px;
+        width: 80%;
         border-radius: 10px;
     }
     .modal1 form input[type="submit"]{
         font-size: 25px;
         padding-top:3px;
         height: 40px;
-        width: 150px;
+        width: 40%;
     }
     .modal1 form input[type="submit"]:hover{
         background-color: rgb(6, 38, 51);
@@ -328,21 +327,24 @@ body{
 
     /* /////////// delete */
     .modal2{
-        position: relative;
-        margin: 0 auto;
+        position: absolute;
+        margin-top: 20%;
+        margin-left: 25%;
         background-color:rgb(10, 65, 86);
         border: solid #ffffff 2px;
         box-shadow: rgb(10, 65, 86);
         opacity: 0.9;
-        bottom: 400px;
-        width: 500px;
-        height: 200px;
+        bottom: 0;
+        top:0;
+        z-index:1;
+        width: 50%;
+        height: 250px;
         display: none;
     }
     .modal2 button{
         position: relative;
-        bottom: 50px;
-        left: 60px;
+        bottom: 20px;
+        left: 20%;
         text-align: center;
         font-size: 25px;
         height: 40px;
@@ -358,4 +360,81 @@ body{
     .modal2 h1{
         text-align: center;
         color: #ffffff;
+    }
+
+    @media screen and (max-width: 768px){
+        .nav ul li a {
+            display: none;
+        }
+        .modal{
+            position: absolute;
+            margin-top:25%;
+            margin-left: 5%;
+            background-color:rgb(10, 65, 86);
+            border: solid #ffffff 2px;
+            box-shadow: rgb(10, 65, 86);
+            opacity: 0.9;
+            bottom: 0;
+            top:0;
+            z-index:1;
+            width: 90%;
+            height: 250px;
+            display: none;
+        }
+        .modal form input[type="submit"]{
+            font-size: 4vh;
+            padding-top:3px;
+            height: 40px;
+            width: 30%;;
+        }
+        .modal1{
+            position: absolute;
+            margin-top:25%;
+            margin-left: 5%;
+            background-color:rgb(10, 65, 86);
+            border: solid #ffffff 2px;
+            box-shadow: rgb(10, 65, 86);
+            opacity: 0.9;
+            bottom: 0;
+            top:0;
+            z-index:1;
+            width: 90%;
+            height: 250px;
+            display: none;
+        }
+        .modal1 form input[type="submit"]{
+            font-size: 4vh;
+            padding-top:3px;
+            height: 40px;
+            width: 30%;;
+        }
+        .modal2{
+            position: absolute;
+            margin-top:25%;
+            margin-left: 5%;
+            background-color:rgb(10, 65, 86);
+            border: solid #ffffff 2px;
+            box-shadow: rgb(10, 65, 86);
+            opacity: 0.9;
+            bottom: 0;
+            top:0;
+            z-index:1;
+            width: 90%;
+            height: 250px;
+            display: none;
+        }
+        input{
+            border-radius: 4px;
+        }
+        .modal2 button{
+            position: relative;
+            bottom: 20px;
+            left: 60px;
+            text-align: center;
+            font-size: 25px;
+            height: 40px;
+            width: 150px;
+            margin:20px;
+            padding:0px;
+        }
     }
