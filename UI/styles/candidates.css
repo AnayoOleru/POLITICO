@@ -4,7 +4,13 @@
 body{
     margin:0;
     padding: 0;
-    background-color: rgb(196, 197, 197);
+    font-family: "Tahoma", sans-serif;
+    background-color: #ffffff;
+    color: #245a70;
+}
+
+.text{
+    margin-top:70px;
 }
 
 .nav{
@@ -152,4 +158,91 @@ body{
       .vote:hover{
         background-color: rgb(7, 145, 199);
         color: rgb(251, 254, 255);
+    }
+
+
+
+    //////
+    
+    
+
+    .party{
+        font-size: 150%;
+    }
+    .img{
+        width:30%;
+        height: 80px;
+    }
+    .office{
+        font-size: 30px;
+    }
+    .applicant{
+        font-size: 40px;
+    }
+    
+    .col {
+        float: left;
+        width: 33.3%;
+        padding: 8px;
+        box-sizing: border-box;
+    }
+    
+    .price-box {
+        background: white;
+        color: #555;
+        list-style-type: none;
+        border: 1px solid #555;
+        margin: 0;
+        padding: 0;
+        transition: 0.3s;
+    }
+    
+    .price-box:hover, .price-box.best {
+        box-shadow: 0 10px 15px 0 #000;
+    }
+    
+    .price-box .header {
+        background-color:rgb(10, 65, 86);
+        color: white;
+        font-size: 25px;
+    }
+    
+    .price-box .headergreen{
+        background-color: #4caf50;
+    }
+    
+    .price-box li {
+        padding: 20px;
+        border-bottom: 1px solid #eee;
+        text-align: center;
+    }
+    
+    .price-box .emph {
+        background-color: #f4f4f4;
+        font-style: 20px;
+    }
+    
+    .button {
+        background-color: rgb(10, 65, 86);
+        border: none;
+        color: #fff;
+        padding: 10px 25px;
+        text-align: center;
+        text-decoration: none;
+        font-style: 18px;
+    }
+    .button:hover{
+        background-color: rgb(17, 106, 141);
+    }
+    
+    @media(max-width: 700px){
+        .col{
+            width:100%;
+        }
+    }
+
+    @media screen and (max-width: 768px){
+        .nav ul li a {
+            display: none;
+        }
     }
