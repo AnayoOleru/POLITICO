@@ -257,7 +257,8 @@ body{
         font-size: 20px;
         padding-top:3px;
         height: 40px;
-        width: 40%;;
+        width: 30%;
+        border-radius: 10px;
     }
     .modal form input[type="submit"]:hover{
         background-color: rgb(6, 38, 51);
@@ -317,7 +318,8 @@ body{
         font-size: 25px;
         padding-top:3px;
         height: 40px;
-        width: 40%;
+        width: 30%;
+        border-radius: 10px;
     }
     .modal1 form input[type="submit"]:hover{
         background-color: rgb(6, 38, 51);
@@ -351,6 +353,7 @@ body{
         width: 150px;
         margin:20px;
         padding:0px;
+        border-radius: 10px;
     }
     .modal2 button:hover{
         background-color:rgb(5, 34, 46);
@@ -436,5 +439,6 @@ body{
             width: 150px;
             margin:20px;
             padding:0px;
+
         }
     }
