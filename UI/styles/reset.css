@@ -158,4 +158,20 @@ button:hover{
     height: 60px;
     float: left;
     }
+    .header{
+        /* margin-left: 20px; */
+        font-size: 20px;
+        width: 100%;
+        text-align:center;
+        
+    }
+    input{
+        width:90%;
+        padding: 20px 20px 15px 40px;
+        font-size: 22px;
+        margin: 10px;
+    }
+    .button{
+        ;
+    }
 }

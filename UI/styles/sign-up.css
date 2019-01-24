@@ -144,7 +144,7 @@ button:hover{
     border: solid rgb(10, 65, 86) 2px;
 }
 
-.header{
+/* .header{
     text-align: center;
     padding-right: 175px;
 }
@@ -152,6 +152,10 @@ button:hover{
 .form{
     text-align: center;
 
+} */
+
+header, .form{
+    text-align: center;
 }
 @media screen and (max-width: 768px){
     .container li a{
@@ -164,8 +168,16 @@ button:hover{
     float: left;
     }
     .header{
-        margin-left:20%;
+        /* margin-left: 20px; */
+        font-size: 20px;
         width: 100%;
+        text-align:center;
         
+    }
+    input{
+        width:90%;
+        padding: 20px 20px 15px 40px;
+        font-size: 22px;
+        margin: 10px;
     }
 }
