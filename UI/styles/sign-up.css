@@ -113,6 +113,7 @@ input{
     background-color: white; 
     background-repeat: no-repeat;
     padding: 11px 20px 11px 40px;
+    margin: 12px;
 }
 h1{
     font-family: 'Montserrat', sans-serif;
