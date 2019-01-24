@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>POLITICO | Politician</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="../styles/politician.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../styles/petition.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link rel="icon" type="image/ico" href="../images/pogo.png"/>
     <meta name="Description" content="Politico - Builds trust through transparency">
@@ -17,32 +17,35 @@
                 <h1 style="padding-left: 30px; color: #ffffff;">Politician</h1>
                 <h3 style="padding-left: 30px; color: #ffffff;">political party</h3>
                 <a href="../index.html"><span>Home</span></a>
-                <a class="active" href="politician.html"><i class="fas fa-map-marked"></i><span>Run</span></a>
-                <a href="petition.html"><i class="fas fa-pen"></i><span>Petition</span></a>
+                <a href="politician.html"><i class="fas fa-map-marked"></i><span>Run</span></a>
+                <a class="active" href="petition.html"><i class="fas fa-pen"></i><span>Petition</span></a>
                 <a href="#"><i class="fas fa-sign-out-alt"></i><span>Sign out</span></a>
             </div>
             <div class="nav">
             <span style="font-size:30px;cursor:pointer;height: 30px;" class="openbutton" onclick="openNav()"><i class="fas fa-align-justify"></i></span>
-    
-                    <!-- <img src="images/pogo.png"> -->
-                    <div class="logo">POLITICO</div>
+                
+            <div class="logo">POLITICO</div>
                     <ul> 
                         <li><a href="#" class="active">Username</a></li>
                     </ul>
             </div> 
-            <h1 class="title">Available Offices</h1>
-            <div class="container">
-                <div class="box box1">
-                        <img class="img" src="../images/president.png">
-                        <p class="people">Head of<br> state</p>
-                        <button class="vote">Run</button>
-                </div>
-                <div class="box box2">
-                                <img class="img" src="../images/governor.png">
-                                <p class="people">Governor of<br> Lagos</p>
-                                <button class="vote">Run</button>
-                </div>
-        </div>
-            <script src="../scripts/politician.js"></script>
-</body>
+            <h1 class="header">Petition</h1>
+            <p style="text-align:center">Each petition should provide a description of relevant circumstances <br>and links to documentation or facts that support that description</p>
+        <form class="form" action="#">
+            <p><b style="padding-right: 9px;">Full name</b>
+            <input type="Text" name="Full name" placeholder="your full name" required>
+            </p>
+            <!-- <p><b style="padding-right: 25px;">Petition  </b> -->
+                <!-- <input type="Text" name="Petition" placeholder="petition body"> -->
+                <textarea style="margin-left:90px; width:30%;" rows="4" cols="50" name="comment" placeholder="petition body"></textarea>
+                </p>
+            <p><b style="padding-right: 9px;">Evidence</b>
+                <input type="file" name="Evidence" required>
+                </p>
+            <p style="padding-right:65px;"><button>Send</button></p>
+        </form>
+
+            </div>
+            <script src="../scripts/petition.js"></script>
+    </body>
 </html>
