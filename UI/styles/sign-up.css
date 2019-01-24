@@ -144,15 +144,15 @@ button:hover{
     border: solid rgb(10, 65, 86) 2px;
 }
 
-/* .header{
+ .header{
     text-align: center;
     padding-right: 175px;
-}
+} 
 
-.form{
+/* .form{
     text-align: center;
 
-} */
+} */ 
 
 header, .form{
     text-align: center;
