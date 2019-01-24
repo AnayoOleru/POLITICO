@@ -214,9 +214,6 @@ body{
     background-color: rgb(4, 26, 34); 
   }
 
-  .username{
-      
-  }
 
   @media screen and (max-width: 768px){
     .nav ul li a {
@@ -244,3 +241,97 @@ body{
         width: 30%;;
     }
 }
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 25px;
+    text-align: center;
+    justify-content: center;
+  }
+      .title{
+          color:rgb(10, 65, 86);
+          padding-top: 70px;
+          text-align: center;
+      }
+
+      .type{
+          margin-top:14px;
+          padding: 0;
+          color: #ffffff;
+      }
+
+      .people{    
+          text-align: center;
+          color: #ffffff;
+          margin-top: 20px;
+          padding: 0;;
+      }
+
+      .img{
+          width: 40px;
+          height: 35px;
+          padding-top:10px;
+      }
+      .vote{
+          background-color: rgb(255, 255, 255);
+          color: rgb(10, 65, 86);
+          width:100px;
+          height:30px;
+          font-size: 20px;
+      }
+      .vote:hover{
+        background-color: rgb(7, 145, 199);
+        color: rgb(251, 254, 255);
+    }
+
+    .add{
+        position: fixed;
+        font-size: 30px;
+        margin: 30px 15px;
+        color: #ffffff;
+        bottom:0%;
+        right: 0%;
+        background-color: rgb(10, 65, 86);
+        border: none;
+        padding: 40px;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 50%;
+  }
+  .add:hover{
+    background-color: rgb(4, 26, 34); 
+  }
+
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 25px;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 60px;
+    text-align: center;
+    justify-content: center;
+  }
+  
+  .box {
+    background-color: rgb(10, 65, 86);
+    box-shadow: 0 4px 8px 0 rgb(0, 0, 0, 0.2);
+    transition: 0.3s;
+    width: 300px;
+    height: 150px;
+    margin: 10px;
+    text-align: center;
+    font-size: 30px;
+  }
+      .title{
+        color:rgb(10, 65, 86);
+        padding-top: 65px;
+        text-align: center;
+
+    }
