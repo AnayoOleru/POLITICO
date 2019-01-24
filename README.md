@@ -7,6 +7,6 @@ https://anayooleru.github.io/POLITICO/
  ## Pages
  User profile: `/POLITICO/UI/parties.html`
 
- Politician profile: `/POLITICO/UI/politician.html`
+ Politician profile: `/POLITICO/UI/politician/politician.html`
 
- Admin: `/POLITICO/UI/govOffice.html` 
+ Admin: `/POLITICO/UI/admin/govOffice.html` 
