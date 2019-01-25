@@ -1,62 +1,97 @@
-/* Breakpoints */
-
-/* Big tablet to 1200px (widths smaller taht the 1140px row) */
-@media only screen and (max-width: 1200px) {
-    .wsskyline-text-box {
-        width: 100%;
-        padding: 0 2%;
-    }
+/*Media Query*/
+@media only screen and (max-width: 75em) {
     
-    .row { padding: 0 2%; }
-}
-
-
-/* Small tablet to big tablet: from 768px to 1023px */
-@media only screen and (max-width: 1023px) {
-    body { font-size: 18px; }
-    section { padding: 60px 0; }
-    
-    .long-copy {
-        width: 80%;
-        margin-left: 10%;
+    html {
+        font-size: 56.25%;
     }
 }
 
 
+@media only screen and (max-width: 56.25em),
+   only screen and (hover: none) {
 
-/* Small phones to small tablets: from 481px to 767px */
-@media only screen and (max-width: 767px) {
-    body { font-size: 16px; }
-    section { padding: 30px 0; }
-    
-    .row,
-    .wsskyline-text-box { padding: 0 4%; }
-    .col { 
-        width: 100%;
-        margin: 0 0 4% 0;
-    }
-    
-    
-    .main-nav { display: none; }
-    
-    h1 { font-size: 180%; }
-    h2 { font-size: 150%; }
-    
-    .long-copy {
-        width: 100%;
-        margin-left: 0%;
-        color:black;
-    }
-    #small-screen{
-        display: inline-block;
-    }
-    
+html {
+    font-size: 50%;
+}
+
+body {
+    padding: 0;
+}
+
+.row {
+    max-width: 50rem;
+    padding: 0 3rem;
+}
+
+.row:not(:last-child) {
+    margin-bottom: 6rem; 
+}
+
+.row [class^="col-"] {
+    width: 100%;
+}
+
+.row [class^="col-"]:not(:last-child) {
+    margin-right: 0;
+    margin-bottom: 6rem;
+}
+
+.section__cards {
+    padding: 20rem 0 10rem 0;
+}
+
+.text-cards {
+    margin-bottom: 5rem;
+}
+
+.heading-primary {
+    font-size: 3rem;
+}
+
+.card {
+height: auto;
+border-radius: 3px; 
+background-color: #fff;
+box-shadow:0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+}   
+
+.card__side {
+height: auto;
+position: relative;
+box-shadow: none;
+}
+
+.card__side--back {
+transform: rotateY(0);
+clip-path: polygon(0 15%, 102% 0, 100% 100%, 0 100%);
 }
 
 
+.card:hover .card__side--front {                   
+transform: rotateY(0);
+}
 
-/* Small phones: from 0 to 480px */
-@media only screen and (max-width: 480px) {
-    section { padding: 25px 0; }
+.card__details {
+padding: 1rem 3rem;
+}
+
+/*BACK SIDE STYLING*/
+.card__cta {
+position: relative;
+top: 0;
+left: 0;
+transform: translate(0);
+width: auto;
+padding: 7rem 4rem 4rem 4rem;
+}
+
+.card__price-box {
+margin-bottom: 3rem;
+}
+
+.card__price-value {
+font-size: 4rem;
+}
+
 }
 
