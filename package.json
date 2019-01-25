@@ -1,0 +1,39 @@
+{
+  "name": "politico",
+  "version": "1.0.0",
+  "description": "> :ng: Politico is a web-app that enables both citizens give their mandate to politicians running for different government offices. POLITICO also enables politicians to express interest to run for an office, while building trust in the process through transparency. :slot_machine:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel index.js --out-dir build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnayoOleru/POLITICO.git"
+  },
+  "keywords": [
+    "Politics"
+  ],
+  "author": "Anayo Oleru",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AnayoOleru/POLITICO/issues"
+  },
+  "homepage": "https://github.com/AnayoOleru/POLITICO#readme",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.15.0",
+    "express": "^4.16.4",
+    "mocha": "^5.2.0",
+    "moment": "^2.24.0",
+    "save": "^2.3.3",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-watch": "^2.0.8"
+  }
+}
