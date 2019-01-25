@@ -114,7 +114,7 @@ body {
 }
 
 .card__picture--1 {
-    background-image: linear-gradient(to right bottom, #ffb900, #ff7730),
+    background-image: linear-gradient(to right bottom, #0a4156, #245a70),
                      url(../images/buhariImg.jpg);
                      position: relative;
                      /* right:60px;
@@ -123,13 +123,13 @@ body {
 
 .card__picture--2 {
     background-image: linear-gradient(to right bottom, rgb(156, 154, 154), 
-                    rgba(48, 62, 255)),
+    rgb(29, 117, 151)),
                      url(../images/atikuimag.jpg);
 }
 
 .card__picture--3 {
     background-image: linear-gradient(to right bottom, rgb(156, 154, 154), 
-                    rgba(20, 145, 68)),
+    rgb(29, 117, 151)),
                      url(../images/jimiimg.jpg);
 }
 
@@ -154,17 +154,17 @@ body {
 
 .card__heading-span--1 {
     background-image: linear-gradient(to right bottom, rgb(156, 154, 154), 
-    rgba(255, 119, 48, 0.6));
+    rgb(29, 117, 151));                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                );
 }
 
 .card__heading-span--2  {
     background-image: linear-gradient(to right bottom, rgb(156, 154, 154), 
-    rgba(48, 62, 255, 0.6));
+    rgb(26, 111, 145));
 }
 
 .card__heading-span--3  {
     background-image: linear-gradient(to right bottom, rgb(156, 154, 154), 
-    rgba(20, 145, 68, 0.6));
+    rgb(10, 65, 86));
 }
 
 .card__heading-span {
@@ -194,17 +194,17 @@ body {
 
 .card__side--back-1 {
     background-image: linear-gradient(to right bottom, rgb(156, 154, 154), 
-    rgba(255, 119, 48 ));
+    rgb(29, 117, 151));
 }
 
 .card__side--back-2 {
     background-image: linear-gradient(to right bottom, rgb(156, 154, 154), 
-    rgba(48, 62, 255, 0.85));
+    rgb(29, 117, 151));
 }
 
 .card__side--back-3 {
     background-image: linear-gradient(to right bottom, rgb(156, 154, 154), 
-    rgba(20, 145, 68, 0.85));
+    rgb(29, 117, 151));
 }
 
 .card__side--back {
