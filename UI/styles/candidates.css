@@ -230,7 +230,7 @@ body{
     }
     
     .button {
-        background-color: rgb(10, 65, 86);
+        background-color: rgb(14, 130, 175);
         border: none;
         color: #fff;
         padding: 10px 25px;
@@ -239,7 +239,7 @@ body{
         font-style: 18px;
     }
     .button:hover{
-        background-color: rgb(17, 106, 141);
+        background-color: rgb(2, 35, 48);
     }
     
     @media(max-width: 700px){
