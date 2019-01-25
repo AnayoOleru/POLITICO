@@ -57,7 +57,7 @@ body{
     left: 0;
     background-color: rgb(10, 65, 86);
     overflow-x: hidden;
-    transition: 0.5s;
+    /* transition: 0.5s; */
     padding-top: 60px;
 }
 
@@ -231,15 +231,16 @@ header a:hover{
 	color: #cccccc;
 }
 
-input{
+.pett{
     width: 30%;
     box-sizing: border-box;
-    border: 2px solid #ccc;
     border-radius: 4px;
+    border:solid 1px rgb(10, 65, 86);
     font-size: 16px;
     background-color: white; 
     background-repeat: no-repeat;
     padding: 11px 20px 11px 40px;
+    margin: 12px;
 }
 h1{
     font-family: 'Montserrat', sans-serif;
@@ -275,6 +276,13 @@ button:hover{
     text-align: center;
 }
 
+.pettion{
+    margin-left:90px; 
+    width:30%;
+    border:solid 1px rgb(10, 65, 86);
+    border-radius: 4px;
+}
+
 
 @media screen and (max-width: 768px){
     .container li a{
@@ -286,4 +294,24 @@ button:hover{
     height: 60px;
     float: left;
     }
-}
+        .nav ul li a {
+            display:none;
+        }
+
+        .pett{
+            width:90%;
+            padding: 20px 20px 15px 40px;
+            font-size: 22px;
+            margin: 10px;
+            border:solid 1px rgb(10, 65, 86); 
+            border-radius: 4px;
+        }
+
+        .pettion{
+            margin-left:5%; 
+            width:90%;
+            border:solid 1px rgb(10, 65, 86);
+            border-radius: 4px; 
+        }
+        
+    }

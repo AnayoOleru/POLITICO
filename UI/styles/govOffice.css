@@ -58,7 +58,6 @@ body{
     left: 0;
     background-color: rgb(10, 65, 86);
     overflow-x: hidden;
-    transition: 0.5s;
     padding-top: 60px;
 }
 
@@ -221,7 +220,7 @@ body{
     }
     .modal{
         position: absolute;
-        margin-top:25%;
+        margin-top:70%;
         margin-left: 5%;
         background-color:rgb(10, 65, 86);
         border: solid #ffffff 2px;
@@ -235,10 +234,13 @@ body{
         display: none;
     }
     .modal form input[type="submit"]{
-        font-size: 4vh;
+        font-size: 3vh;
         padding-top:3px;
         height: 40px;
-        width: 30%;;
+        width: 30%;
+    }
+    .modal form input[type="text"]{
+        border: solid rgb(2, 37, 51) 2px;
     }
 }
 
