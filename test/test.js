@@ -8,3 +8,18 @@ describe('Array', function() {
     });
   });
 });
+
+/**
+ * test/test.js
+ * Basic tests for Auth system API
+ */
+const chai = require('chai');
+const expect = chai.expect;
+
+//start app
+const app = require('../index');
+
+describe('App', () => {
+  it('Should exists', () => {
+    expect(app).to.be.a('function');})
+})
