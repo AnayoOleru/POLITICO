@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --exit",
-    "build": "babel index.js --out-dir build"
+    "build": "babel index.js --out-dir build",
+    "dev-start": "babel-watch index.js"
   },
   "repository": {
     "type": "git",
