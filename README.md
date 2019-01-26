@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/AnayoOleru/POLITICO.svg?branch=develop)](https://travis-ci.org/AnayoOleru/POLITICO)
+
 # POLITICO
  > :ng: Politico is a web-app that enables both citizens give their mandate to politicians running for different government offices. POLITICO also enables politicians to express interest to run for an office, while building trust in the process through transparency. :slot_machine:
 
