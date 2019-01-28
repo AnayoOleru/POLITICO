@@ -6,7 +6,7 @@ app.use(express.json())
 
 app.get('/', (req, res) => {
   return res.status(200).send({
-      'message': 'YAY! Congratulations! Your first endpoint is working'
+      'data': 'Welcome to POLITICO. Building trust through transparency'
     });
 })
 
