@@ -25,7 +25,7 @@ class Party{
   }
   /**
    * 
-   * @param {Values} req - request values into keys 
+   * @param {uuid} id
    * @param {Object} res - request object
    * @returns {array} - returns all key value pairs as object in array
    */
