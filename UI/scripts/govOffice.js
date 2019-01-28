@@ -5,6 +5,7 @@ function openAdd() {
 }
 
 function closeAdd() {
+    
     openModal.style.display = "none";
 }
 
@@ -16,3 +17,4 @@ function openNav() {
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
 }
+
