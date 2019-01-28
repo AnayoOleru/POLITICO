@@ -227,7 +227,7 @@ body{
     height: 100%;
     width: 100%;
     overflow: auto;
-    background-color: rgba(0, 0.10, 0.4, 0.4);
+    background-color: rgba(0, 0.10, 0.4, 0.9);
 }
 
 .content
@@ -243,6 +243,7 @@ body{
 .content p{
  font-weight: bold;
  font-size: 5vh;
+ color:rgb(10, 65, 86);
 }
 .content button{
     
