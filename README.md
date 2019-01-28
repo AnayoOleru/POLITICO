@@ -17,8 +17,8 @@ https://anayooleru.github.io/POLITICO/
 
  Admin: `../POLITICO/UI/admin/govOffice.html` 
 
- ## UI Implemented Features
+ <!-- ## UI Implemented Features
 * Users can create a parcel delivery order
 * Users can fetch all parcel delivery orders they have made
 * Users can fetch a specific order to view details
-* Users can cancel an order
+* Users can cancel an order -->
