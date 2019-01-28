@@ -27,7 +27,7 @@ class Party{
    * 
    * @param {uuid} id
    * @param {Object} res - request object
-   * @returns {array} - returns all key value pairs as object in array
+   * @returns {array} - returns specific party
    */
   static getPartyById(req, res) {
     const { partyId } = req.params;
@@ -39,6 +39,15 @@ class Party{
       }
     });
     return res.status(200).json(partyObject);
+  }
+  /**
+   * 
+   * @param {uuid} id
+   * @param {Object} res - request object
+   * @returns {array} - returns all key value pairs as object in array
+   */
+  static getParties(req, res)  {
+    return res.status(200).json(partyDb);
   }
 
 } 
