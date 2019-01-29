@@ -38,6 +38,8 @@ https://trustpolitico.herokuapp.com/api/v1/
 
 * [NodeJS](https://nodejs.org/en/) - A Javascript runtime built on chrome V8 engine that uses an event-driven non-blocking I/O model that makes it lightweight and efficient.
 * [ExpressJs](https://expressjs.com/) - A minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
+* [EsLint](https://eslint.org/) - An open source project to provide a pluggable linting utility for javascript
+* [Mocha](https://mochajs.org/) - A feature-rich javascript test framework running Node.js and in the browser, making asynchronous testing simple and fun, flexible and accurate reporting. 
 
 ## Installation
 
