@@ -39,12 +39,14 @@ class Office{
   static getOfficeById(req, res) {
     const { officeId } = req.params;
     let officeObject;
-    officeDb.forEach((office) => {
-      if(office.id === officeId) {
-        officeObject = office;
-      }
-    });
+    for (const office of officeDb) {
+        // console.log(typeof officeId, typeof office.id)
+        if (office.id === Number(officeId)) {
+            officeObject = office
+        }
+    }
     return res.status(200).json(officeObject);
+    
   }
 }
 export default Office;
