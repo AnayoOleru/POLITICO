@@ -11,6 +11,7 @@ app.use(urlencoded({
 }));
 
 app.use(express.json())
+const port = process.env.PORT || 3000;
 
 
 app.get('/api/v1', (req, res) => res.status(200).send({
@@ -25,7 +26,10 @@ app.post('/api/v1/office', Office.createOffice);
 app.get('/api/v1/office', Office.getOffice);
 app.get('/api/v1/office/:officeId', Office.getOfficeById);
 
-app.listen(3000)
-console.log('app running on port ', 3000);
+// app.listen(3000)
+// console.log('app running on port ', 3000);
+app.listen(port, () => {
+  console.log(`app is running on port ${port}`);
+});
 
 export default app;
