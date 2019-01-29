@@ -17,8 +17,80 @@ https://anayooleru.github.io/POLITICO/
 
  Admin: `../POLITICO/UI/admin/govOffice.html` 
 
- <!-- ## UI Implemented Features
-* Users can create a parcel delivery order
-* Users can fetch all parcel delivery orders they have made
-* Users can fetch a specific order to view details
-* Users can cancel an order -->
+ ## UI Implemented features
+* Users can sign up or sign in
+* Registered users can reset password
+* Registered users can view political parties
+* Registered users can view all politicians running for a specific government
+* Registered users can vote politician
+* Registered user can view history containing a list of political offices   and candidates the user has voted for
+* Politician can express interest to run for a specific government office
+* Politician can create a petition against a concluded election
+* Admin can view and create a political party
+* Admin can view and edit a political party
+* Admin can delete a political party
+* Admin can view and create a government office, which politicians can express interest to run for.   
+
+## App on Heroku
+https://trustpolitico.herokuapp.com/api/v1/
+
+## Technologies Used
+
+* [NodeJS](https://nodejs.org/en/) - A Javascript runtime built on chrome V8 engine that uses an event-driven non-blocking I/O model that makes it lightweight and efficient.
+* [ExpressJs](https://expressjs.com/) - A minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
+
+## Installation
+
+1. Install [`node`](https://nodejs.org/en/download/)
+
+2. Clone the repository
+
+    ```
+    git clone https://github.com/AnayoOleru/POLITICO.git
+    ```
+
+3. Navigate to the project directory
+
+    ```
+    cd ~/path/to/POLITICO
+    ```
+
+4. Install all dependencies
+
+    ```
+    npm install
+    ```
+
+5. Start the app
+
+    ```
+    npm start dev-start
+    ```
+
+6. Run the application on browser
+
+    ```
+    http://localhost:3000/
+    ```
+
+#### Server-side tests
+
+- Uses `Chai` and `Chai-Http`
+
+```
+    npm run test
+```
+
+### Application Endpoints
+
+| HTTP Request | End Point | Functionality |
+| -------------| -----------| ----------- |
+| **POST** | /parties | Create a political party |
+| **GET** | /parties/<party-id>| fetch a specific party |
+| **GET** | /parties| fetch all political parties records |
+| **PATCH** | /parties/<party-id>/name |  edit the name of a specific political party |
+| **DELETE** | /parties/<party-id> | Delete a specific political party |
+| **POST** | /offices/ | create a political office |
+| **GET** | /offices/ | fetch all political offices records |
+| **GET** | /offices/<office-id> | fetch all political records |
+| - | -|  -|
