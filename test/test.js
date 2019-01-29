@@ -19,26 +19,39 @@ const expect = chai.expect;
 //start app
 const app = require('../index');
 
-describe('App', () => {
-  it('Should exists', () => {
-    expect(app).to.be.a('function');})
-})
+// describe('App', () => {
+//   it('Should exists', () => {
+//     expect(app).to.be.a('function');})
+// })
 
 /**
- * Test for the general route
+ * Test for create party endpoint
  */
-// describe('GET \'/api/v1\'', () => {
-//   it('It should return  welcome message', (done) => {
-//     chai.request(app)
-//       .get('/api/v1')
+// describe('#POST /api/v1/parties "create new political party."', () => {
+//   it('should create a new party', (done) => {
+//     request(app).post('/api/v1/parties')
+//       .send(partyDb)
 //       .end((err, res) => {
-//         expect(err).to.be.null;
-//         expect(res).to.have.headers;
-//         expect(res).to.have.status(200);
-//         expect(res).to.not.redirect;
-//         expect(res.body).to.be.an('object'); 
+//         expect(res.status).to.equal(201);
 //         done();
 //       });
 //   });
+//   it('should throw an error: "party already exist"', (done) => {
+//     request(app).post('/api/v1/parties')
+//       .send(partyDb)
+//       .end((err, res) => {
+//         expect(res.status).to.equal(400);
+//         expect(res.body.error).equals('party not found');
+//         done();
+//       });
+//   });
+  // it('should throw an error: "please check input"', (done) => {
+  //   request(app).post('/api/v1/parties')
+  //     .send(invalidParty)
+  //     .end((err, res) => {
+  //       expect(res.status).to.equal(400);
+  //       expect(res.body.error).equals('please check input');
+  //       done();
+  //     });
+  // });
 // });
-
