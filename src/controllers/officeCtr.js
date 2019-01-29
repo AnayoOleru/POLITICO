@@ -30,5 +30,21 @@ class Office{
   static getOffice(req, res)  {
     return res.status(200).json(officeDb);
   }
+  /**
+   * 
+   * @param {uuid} id
+   * @param {Object} res - request object
+   * @returns {array} - returns specific party
+   */
+  static getOfficeById(req, res) {
+    const { officeId } = req.params;
+    let officeObject;
+    officeDb.forEach((office) => {
+      if(office.id === officeId) {
+        officeObject = office;
+      }
+    });
+    return res.status(200).json(officeObject);
+  }
 }
 export default Office;
