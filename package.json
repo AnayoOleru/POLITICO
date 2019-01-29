@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/AnayoOleru/POLITICO#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "chai": "^4.2.0",
     "chai-http": "^4.2.1",
     "eslint-config-airbnb-base": "^13.1.0",
