@@ -8,7 +8,7 @@ class Party{
    * @returns {object} reflection object
    */
   findOne(id) {
-    return partyDb.find(party => party.id === id);
+    return partyDb.find(party => party.id === Number(id));
   }
   /**
    * 
@@ -29,9 +29,9 @@ class Party{
    */
   delete(id) {
     const party = this.findOne(id);
-    const index = this.partyDb.indexOf(party);
-    this.partyDb.splice(index, 1);
-    return {};
+    const index = partyDb.indexOf(party);
+    partyDb.splice(index, 1);
+    return partyDb;
   }
 }
 

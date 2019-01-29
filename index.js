@@ -19,7 +19,7 @@ app.get('/api/v1', (req, res) => res.status(200).send({
 app.post('/api/v1/parties', Party.createParty);
 app.get('/api/v1/parties/:partyId', Party.getPartyById);
 app.get('/api/v1/parties', Party.getParties);
-app.put('/api/v1/party/:partyId/name', Party.update);
+app.put('/api/v1/party/:id/name', Party.update);
 app.delete('/api/v1/party/:id', Party.delete);
 app.post('/api/v1/office', Office.createOffice);
 
