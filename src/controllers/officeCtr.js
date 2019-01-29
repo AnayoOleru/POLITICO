@@ -14,12 +14,27 @@ class Office{
       type,
       name
     } = req.body;
+    if (!req.body.type) {
+        return res.status(400).send({
+            "status": 404,
+            "error": "The type and name field are required"
+    })
+      }
+      if(!req.body.name){
+        return res.status(400).send({
+            "status": 400,
+            "error": "The name and type field are required"
+    })
+      }
     officeDb.push({
       id: uuid.v4(),
       type,
       name
     });
-    return res.status(201).json(officeDb);
+    return res.status(201).json({
+        "status": 201,
+        "data": officeDb
+    });
   }
   /**
    * 
@@ -28,7 +43,10 @@ class Office{
    * @returns {array} - returns all key value pairs as object in array
    */
   static getOffice(req, res)  {
-    return res.status(200).json(officeDb);
+    return res.status(200).json({
+        "status": 200,
+        "data": officeDb
+    });
   }
   /**
    * 
@@ -45,7 +63,10 @@ class Office{
             officeObject = office
         }
     }
-    return res.status(200).json(officeObject);
+    return res.status(200).json({
+        "status": 200,
+        "data": officeObject
+    });
     
   }
 }
