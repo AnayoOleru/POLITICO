@@ -23,6 +23,7 @@ app.put('/api/v1/party/:id/name', Party.update);
 app.delete('/api/v1/party/:id', Party.delete);
 app.post('/api/v1/office', Office.createOffice);
 app.get('/api/v1/office', Office.getOffice);
+app.get('/api/v1/office/:officeId', Office.getOfficeById);
 
 app.listen(3000)
 console.log('app running on port ', 3000);
