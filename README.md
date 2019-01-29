@@ -86,11 +86,11 @@ https://trustpolitico.herokuapp.com/api/v1/
 | HTTP Request | End Point | Functionality |
 | -------------| -----------| ----------- |
 | **POST** | /parties | Create a political party |
-| **GET** | /parties/<party-id>| fetch a specific party |
+| **GET** | /parties/:party-id | fetch a specific party |
 | **GET** | /parties| fetch all political parties records |
-| **PATCH** | /parties/<party-id>/name |  edit the name of a specific political party |
-| **DELETE** | /parties/<party-id> | Delete a specific political party |
+| **PATCH** | /parties/:party-id/name |  edit the name of a specific political party |
+| **DELETE** | /parties/:party-id | Delete a specific political party |
 | **POST** | /offices/ | create a political office |
 | **GET** | /offices/ | fetch all political offices records |
-| **GET** | /offices/<office-id> | fetch all political records |
+| **GET** | /offices/:office-id | fetch all political records |
 | - | -|  -|
