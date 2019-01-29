@@ -17,6 +17,7 @@ app.get('/api/v1', (req, res) => res.status(200).send({
 }));
 app.post('/api/v1/parties', Party.createParty);
 app.get('/api/v1/parties/:partyId', Party.getPartyById);
+app.get('/api/v1/parties', Party.getParties);
 
 app.listen(3000)
 console.log('app running on port ', 3000);
