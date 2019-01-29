@@ -21,5 +21,14 @@ class Office{
     });
     return res.status(201).json(officeDb);
   }
+  /**
+   * 
+   * @param {uuid} id
+   * @param {Object} res - request object
+   * @returns {array} - returns all key value pairs as object in array
+   */
+  static getOffice(req, res)  {
+    return res.status(200).json(officeDb);
+  }
 }
 export default Office;
