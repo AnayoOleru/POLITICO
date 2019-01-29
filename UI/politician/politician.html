@@ -37,33 +37,55 @@
                         <img class="img" src="../images/presidentimg.png">
                         <p class="people">President</p>
                         <br>
-                        <button class="vote">Run</button>
+                        <!-- <button  href="#modalwindow" class="open-modal">Run</button> -->
+                        <button id="modalbtn" class="button">Run</button>
                 </div>
                 <div class="box box2">
                                 <img class="img" src="../images/governor.png">
                                 <p class="people">Governor of<br> Lagos</p>
-                                <button class="vote">Run</button>
+                                <button id="modalbtn" class="button">Run</button>
                 </div>
                 <div class="box box2">
                     <img class="img" src="../images/governor.png">
                     <p class="people">Governor of<br> Port-Harcourt</p>
-                    <button class="vote">Run</button>
+                    <button id="modalbtn" class="button">Run</button>
     </div>
     <div class="box box2">
         <img class="img" src="../images/senateimg.png">
         <p class="people">Senate<br> President</p>
-        <button class="vote">Run</button>
+        <button id="modalbtn" class="button">Run</button>
 </div>
 <div class="box box2">
     <img class="img" src="../images/governor.png">
     <p class="people">Governor of<br> Anambra</p>
-    <button class="vote">Run</button>
+    <button id="modalbtn" class="button">Run</button>
 </div>
 <div class="box box2">
     <img class="img" src="../images/governor.png">
     <p class="people">Governor of<br> Imo</p>
-    <button class="vote">Run</button>
+    <button id="modalbtn" class="button">Run</button>
 </div>
+
+
+
+
+<div id="simplemodal" class="modal">
+    <div class="content">
+        <!--  When a text is hooked in a <span> element, you can style it with CSS, or manipulate it with JavaScript. -->
+        <!-- &times means a multiplication sign -->
+        <span class="closebtn" id="cancelIcon">&times;</span>  
+
+        <p>Are you sure?</p>
+        <button class="button" id="cancelbtn">Cancel</button>
+        <button class="button">Yes</button>
+    </div>
+
+    </div>
+</div>
+
+
+
+
         </div>
             <script src="../scripts/politician.js"></script>
 </body>

@@ -186,8 +186,100 @@ body{
 
     }
 
-    @media screen and (max-width: 768px){
-        .nav ul li a {
-            display:none;
-        }
+   
+
+
+/* 
+    .text-center{
+        text-align: center;
     }
+    .custom-modal{
+        z-index: 3;
+        display
+    } */
+
+
+
+
+
+    /* old */
+    .button{
+    background-color:#ffffff;
+    color:rgb(10, 65, 86);
+    padding: 6px 32px;
+    border: 0;
+    font-weight:bold;
+}
+
+.button:hover
+{
+    background-color: rgb(10, 65, 86);
+    color: #ffffff;
+}
+
+.modal
+{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0.10, 0.4, 0.9);
+}
+
+.content
+{
+    background-color: #ffffff;
+    margin: 20% auto;
+    width: 40%;
+    height: 150px;
+    padding: 12px;
+    animation-name: modalopen;
+    animation-duration: 1s;
+}
+.content p{
+ font-weight: bold;
+ font-size: 5vh;
+ color:rgb(10, 65, 86);
+}
+.content button{
+    
+    font-weight: bold;
+    font-size: 2vh;
+   }
+
+.closebtn
+{
+    color: gray;
+    float: right;
+    font-size: 30px;
+}
+
+.closebtn:hover , .closebtn:focus
+{
+    color: red;
+    cursor: pointer;
+}
+
+@keyframes modalopen
+{
+    from { opacity: 0 }
+    to { opacity: 1 }
+}
+
+@media screen and (max-width: 768px){
+    .nav ul li a {
+        display:none;
+    }
+    
+    .content{
+background-color: #ffffff;
+margin: 60% auto;
+width: 90%;
+height: 190px;
+}
+
+}
