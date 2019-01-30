@@ -67,27 +67,40 @@ class Party{
   }
 
   /**
-   * 
+   * Get a specific party(users)
    * @param {uuid} id
    * @param {Object} res - request object
    * @returns {array} - returns specific party
    */
-  static getPartyById(req, res) {
-    const { partyId } = req.params;
-    let partyObject;
-    partyDb.forEach((party) => {
+  // static getPartyById(req, res) {
+  //   const { partyId } = req.params;
+  //   let partyObject;
+  //   partyDb.forEach((party) => {
       
-      if(party.id === Number(partyId)) {
-        partyObject = party;
+  //     if(party.id === Number(partyId)) {
+  //       partyObject = party;
+  //     }
+  //   });
+  //   return res.status(200).json({
+  //     "status": 200,
+  //     "data": partyObject
+  //   });
+  // }
+
+  static async getAParty(req, res) {
+    const text = 'SELECT * FROM party WHERE id = $1';
+    try {
+      const { rows } = await db.query(text, [req.params.id, req.user.id]);
+      if(!rows[0]) {
+        return res.status(404).send({"error": "Party not found"});
       }
-    });
-    return res.status(200).json({
-      "status": 200,
-      "data": partyObject
-    });
+      return res.status(200).send(rows[0]);
+    } catch(error) {
+      return res.status(400).send(error);
+    }
   }
   /**
-   * Get All perties
+   * Get All perties(users)
    * @param {uuid} id
    * @param {Object} res - request object
    * @returns {array} - returns all key value pairs as object in array
@@ -108,7 +121,7 @@ class Party{
     }
   }
 /**
-   * 
+   * Edit a specific party(admin)
    * @param {object} req 
    * @param {object} res 
    * @returns {object} updated party
@@ -152,7 +165,7 @@ class Party{
     }
   }
   /**
-   * 
+   * Delete party(admin)
    * @param {object} req 
    * @param {object} res 
    * @returns {void} return code 204 
