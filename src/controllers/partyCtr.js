@@ -2,6 +2,7 @@
 import uuid from 'uuid';
 import partyDb from '../db/partydb';
 import PartyModel from '../models/party';
+import db from '../../databaseTables/dbconnect';
 
 const partyModel = new PartyModel()
 
@@ -104,21 +105,46 @@ class Party{
    * @param {object} res 
    * @returns {object} updated party
    */
-  static update(req, res) {
-    let partyObject;
+  // static update(req, res) {
+  //   let partyObject;
 
-    const party = partyModel.findOne(req.params.id);
-    console.log(party);
-    if (!party) {
-      return res.status(404).send({
-        "status": 404,
-        "error": "party not found"
-      });
+  //   const party = partyModel.findOne(req.params.id);
+  //   console.log(party);
+  //   if (!party) {
+  //     return res.status(404).send({
+  //       "status": 404,
+  //       "error": "party not found"
+  //     });
+  //   }
+  //   party.name = req.body.name
+  //   // const updatedParty = PartyModel.update(req.params.id, req.body)
+  //   return res.status(200).send(party);
+  // }
+
+  async update(req, res) {
+    const findOneQuery = 'SELECT * FROM party WHERE id=$1';
+    const updateOneQuery =`UPDATE party
+      SET name=$1,type=$2, modified_date=$3
+      WHERE id=$4 returning *`;
+    try {
+      const { rows } = await db.query(findOneQuery, [req.params.id, req.user.id]);
+      if(!rows[0]) {
+        return res.status(404).send({'message': 'Party not found'});
+      }
+      const values = [
+        req.body.name || rows[0].name,
+        req.body.type || rows[0].type,
+        moment(new Date()),
+        req.params.id,
+      ];
+      const response = await db.query(updateOneQuery, values);
+      return res.status(200).send(response.rows[0]);
+    } catch(err) {
+      return res.status(400).send(err);
     }
-    party.name = req.body.name
-    // const updatedParty = PartyModel.update(req.params.id, req.body)
-    return res.status(200).send(party);
-  }
+  },
+
+
   /**
    * 
    * @param {object} req 
