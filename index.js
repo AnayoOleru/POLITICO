@@ -1,7 +1,9 @@
-import { json,urlencoded } from 'body-parser';
+import { json, urlencoded } from 'body-parser';
 import express from 'express';
 import Party from './src/controllers/partyCtr';
 import Office from './src/controllers/officeCtr';
+import TokenAuth from './helper/tokenAuth';
+import userCtr from './src/controllers/userCtr';
 
 
 const app = express();
@@ -26,6 +28,7 @@ app.delete('/api/v1/party/:id', Party.delete);
 app.post('/api/v1/office', Office.createOffice);
 app.get('/api/v1/office', Office.getOffice);
 app.get('/api/v1/office/:officeId', Office.getOfficeById);
+app.post('/api/v1/auth/signup', userCtr.createUser);
 app.get('/', (req, res) => res.status(404).send({
   "status": 404,
   "message": "Page not found, your URL is incorrect"
