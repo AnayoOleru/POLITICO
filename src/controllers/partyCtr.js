@@ -121,7 +121,7 @@ class Party{
   //   return res.status(200).send(party);
   // }
 
-  async update(req, res) {
+  static async update(req, res) {
     const findOneQuery = 'SELECT * FROM party WHERE id=$1';
     const updateOneQuery =`UPDATE party
       SET name=$1,type=$2, modified_date=$3
@@ -142,29 +142,42 @@ class Party{
     } catch(err) {
       return res.status(400).send(err);
     }
-  },
-
-
+  }
   /**
    * 
    * @param {object} req 
    * @param {object} res 
    * @returns {void} return code 204 
    */
-  static delete(req, res) {
-    const party = partyModel.findOne(req.params.id);
-    if (!party) {
-      return res.status(404).send({
-        "status": 404,
-        "error": "party not found"
-      });
+  // static delete(req, res) {
+  //   const party = partyModel.findOne(req.params.id);
+  //   if (!party) {
+  //     return res.status(404).send({
+  //       "status": 404,
+  //       "error": "party not found"
+  //     });
+  //   }
+  //   const ref = partyModel.delete(req.params.id);
+  //   return res.status(200).send({
+  //     "status": 200,
+  //     "message": "Party had been deleted",
+  //     "data": party
+  //   });
+  // }
+
+
+  static async delete(req, res) {
+    const deleteQuery = 'DELETE FROM party WHERE id=$1 returning *';
+    try {
+      const { rows } = await db.query(deleteQuery, req.params.id);
+      if(!rows[0]) {
+        return res.status(404).send({'message': 'party not found'});
+      }
+      return res.status(204).send({ 'message': 'deleted' });
+    } catch(error) {
+      return res.status(400).send(error);
     }
-    const ref = partyModel.delete(req.params.id);
-    return res.status(200).send({
-      "status": 200,
-      "message": "Party had been deleted",
-      "data": party
-    });
   }
+
 } 
 export default Party;
