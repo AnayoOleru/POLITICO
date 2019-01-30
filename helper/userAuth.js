@@ -52,9 +52,10 @@ const userAuthHelper = {
    * @param {string} id
    * @returns {string} token
    */
-  generateToken(id) {
+  generateToken(id, isAdmin) {
     const token = jwt.sign({
-      userId: id
+      userId: id,
+      isAdmin
     },
       process.env.SECRET, { expiresIn: '7d' }
     );

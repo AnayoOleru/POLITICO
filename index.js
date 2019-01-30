@@ -4,6 +4,9 @@ import Party from './src/controllers/partyCtr';
 import Office from './src/controllers/officeCtr';
 import TokenAuth from './helper/tokenAuth';
 import userCtr from './src/controllers/userCtr';
+import partyCtr from './src/controllers/partyCtr';
+import officeCtr from './src/controllers/officeCtr';
+import token from './helper/tokenAuth';
 
 
 const app = express();
@@ -20,17 +23,18 @@ app.get('/api/v1', (req, res) => res.status(200).send({
   "status": 200,
   "message": 'Welcome to POLITICO'
 }));
-app.post('/api/v1/parties', Party.createParty);
-app.get('/api/v1/parties/:partyId', Party.getPartyById);
-app.get('/api/v1/parties', Party.getParties);
-app.put('/api/v1/party/:id/name', Party.update);
-app.delete('/api/v1/party/:id', Party.delete);
-app.post('/api/v1/office', Office.createOffice);
+app.post('/api/v1/parties', token.verifyToken, partyCtr.create);
+// app.get('/api/v1/parties/:partyId', Party.getPartyById);
+// app.get('/api/v1/parties', Party.getParties);
+// app.put('/api/v1/party/:id/name', Party.update);
+// app.delete('/api/v1/party/:id', Party.delete);
+// app.post('/api/v1/office', Office.createOffice);
 app.get('/api/v1/office', Office.getOffice);
 app.get('/api/v1/office/:officeId', Office.getOfficeById);
 
 app.post('/api/v1/auth/signup', userCtr.createUser);
 app.post('/api/v1/auth/login', userCtr.login);
+
 app.get('*', (req, res) => res.status(404).send({
   "status": 404,
   "message": "Page not found, your URL is incorrect"

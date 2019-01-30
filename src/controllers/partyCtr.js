@@ -1,10 +1,9 @@
-
 import uuid from 'uuid';
 import partyDb from '../db/partydb';
-import PartyModel from '../models/party';
+// import PartyModel from '../models/party';
 import db from '../../databaseTables/dbconnect';
 
-const partyModel = new PartyModel()
+// const partyModel = new PartyModel()
 
 class Party{
   /**
