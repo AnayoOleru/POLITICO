@@ -14,14 +14,13 @@ pool.on('connect', () => {
 /**
  * Create user Tables
  */
-const createPartyTables = () => {
+const createOfficeTables = () => {
   const queryText =
     `CREATE TABLE IF NOT EXISTS
-      party(
+      office(
         id UUID PRIMARY KEY NOT NULL,
         name VARCHAR(128) NOT NULL,
-        hqaddress VARCHAR(128) NOT NULL,
-        logoUrl VARCHAR(128) NOT NULL,
+        type VARCHAR(128) NOT NULL,
         created_date TIMESTAMP
       )`;
 
@@ -39,8 +38,8 @@ const createPartyTables = () => {
 /**
  * Drop Tables
  */
-const dropPartyTables = () => {
-  const queryText = 'DROP TABLE IF EXISTS party';
+const dropOfficeTables = () => {
+  const queryText = 'DROP TABLE IF EXISTS office';
   pool.query(queryText)
     .then((res) => {
       console.log(res);
@@ -58,8 +57,8 @@ pool.on('remove', () => {
 });
 
 module.exports = {
-  createPartyTables,
-  dropPartyTables
+  createOfficeTables,
+  dropOfficeTables
 };
 
 require('make-runnable');

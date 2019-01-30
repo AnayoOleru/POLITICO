@@ -15,8 +15,11 @@
     "db-userdrop": "node ./databaseTables/userTables dropUserTables",
     "db-refresh": "npm run db-userdrop && npm run db-usercreate",
     "db-partycreate": "node ./databaseTables/partyTables createPartyTables",
-    "db-partydrop": "node ./databaseTables/userTables dropPartyTables",
-    "db-partyrefresh": "npm run db-partydrop && npm run db-partycreate"
+    "db-partydrop": "node ./databaseTables/partyTables dropPartyTables",
+    "db-partyrefresh": "npm run db-partydrop && npm run db-partycreate",
+    "db-officecreate": "node ./databaseTables/officeTables createOfficeTables",
+    "db-officedrop": "node ./databaseTables/officeTables dropPartyTables",
+    "db-officerefresh": "npm run db-officedrop && npm run db-officecreate"
   },
   "repository": {
     "type": "git",

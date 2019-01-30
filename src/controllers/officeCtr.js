@@ -1,5 +1,6 @@
 import uuid from 'uuid';
 import officeDb from '../db/officedb';
+import db from '../../databaseTables/dbconnect';
 // import PartyModel from '../models/party';
 
 
@@ -10,33 +11,71 @@ class Office{
    * @param {Object} res - request object
    * @returns {array} - returns all key value pairs as object in array
    */
-  static createOffice(req, res) {
-    const {
-      type,
-      name
-    } = req.body;
-    if (!req.body.type) {
-        return res.status(400).send({
-            "status": 404,
-            "error": "The type and name field are required"
-    })
-      }
-      if(!req.body.name){
-        return res.status(400).send({
-            "status": 400,
-            "error": "The name and type field are required"
-    })
-      }
-    officeDb.push({
-      id: uuid.v4(),
-      type,
-      name
-    });
-    return res.status(201).json({
+  // static createOffice(req, res) {
+  //   const {
+  //     type,
+  //     name
+  //   } = req.body;
+  //   if (!req.body.type) {
+  //       return res.status(400).send({
+  //           "status": 404,
+  //           "error": "The type and name field are required"
+  //   })
+  //     }
+  //     if(!req.body.name){
+  //       return res.status(400).send({
+  //           "status": 400,
+  //           "error": "The name and type field are required"
+  //   })
+  //     }
+  //   officeDb.push({
+  //     id: uuid.v4(),
+  //     type,
+  //     name
+  //   });
+  //   return res.status(201).json({
+  //       "status": 201,
+  //       "data": officeDb
+  //   });
+  // }
+
+  static async create(req, res) {
+    const { isAdmin } = req.user;
+        if (isAdmin) {
+          return res.status(403).json({
+            status: 403,
+            message: "Access denied, you don't have the required credentials to access this route",
+          });
+        }
+    const createQuery = `INSERT INTO
+      party(id, name, type, created_date)
+      VALUES($1, $2, $3, $4)
+      returning *`;
+    const values = [
+      uuidv4(),
+      req.body.name,
+      req.body.type,
+      moment(new Date())
+    ];
+
+    try {
+      const { rows } = await db.query(createQuery, values);
+      return res.status(201).send({
         "status": 201,
-        "data": officeDb
-    });
+        "data": [{
+          "message": "office created",
+          "order": rows[0],
+        }],
+      });
+    } catch(error) {
+      return res.status(400).send({
+        "status": 400,
+        "data": error
+      });
+    }
   }
+
+
   /**
    * 
    * @param {uuid} id
