@@ -12,23 +12,60 @@ class Party{
    * @param {Object} res - request object
    * @returns {array} - returns all key value pairs as object in array
    */
-  static createParty(req, res) {
-    const {
-      name,
-      hqaddress,
-      logoURL
-    } = req.body;
-    partyDb.push({
-      id: uuid.v4(),
-      name,
-      hqaddress,
-      logoURL
-    });
-    return res.status(201).json({
-      "status": 201,
-      "data": partyDb
-    });
+  // static createParty(req, res) {
+  //   const {
+  //     name,
+  //     hqaddress,
+  //     logoURL
+  //   } = req.body;
+  //   partyDb.push({
+  //     id: uuid.v4(),
+  //     name,
+  //     hqaddress,
+  //     logoURL
+  //   });
+  //   return res.status(201).json({
+  //     "status": 201,
+  //     "data": partyDb
+  //   });
+  // }
+
+  static async create(req, res) {
+    const { isAdmin } = req.user;
+        if (isAdmin) {
+          return res.status(403).json({
+            status: 403,
+            message: "Access denied, you don't have the required credentials to access this route",
+          });
+        }
+    const createQuery = `INSERT INTO
+      party(id, name, type, created_date)
+      VALUES($1, $2, $3, $4)
+      returning *`;
+    const values = [
+      uuidv4(),
+      req.body.name,
+      req.body.type,
+      moment(new Date())
+    ];
+
+    try {
+      const { rows } = await db.query(createQuery, values);
+      return res.status(201).send({
+        "status": 201,
+        "data": [{
+          "message": "party created",
+          "order": rows[0],
+        }],
+      });
+    } catch(error) {
+      return res.status(400).send({
+        "status": 400,
+        "data": error
+      });
+    }
   }
+
   /**
    * 
    * @param {uuid} id

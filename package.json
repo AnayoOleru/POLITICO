@@ -13,7 +13,10 @@
     "coverage": "nyc report ---reporter=text-lcov | coveralls",
     "db-usercreate": "node ./databaseTables/userTables createUserTables",
     "db-userdrop": "node ./databaseTables/userTables dropUserTables",
-    "db-refresh": "npm run db-userdrop && npm run db-usercreate"
+    "db-refresh": "npm run db-userdrop && npm run db-usercreate",
+    "db-partycreate": "node ./databaseTables/partyTables createPartyTables",
+    "db-partydrop": "node ./databaseTables/userTables dropPartyTables",
+    "db-partyrefresh": "npm run db-partydrop && npm run db-partycreate"
   },
   "repository": {
     "type": "git",
