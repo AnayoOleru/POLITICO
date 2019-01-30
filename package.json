@@ -19,7 +19,11 @@
     "db-partyrefresh": "npm run db-partydrop && npm run db-partycreate",
     "db-officecreate": "node ./databaseTables/officeTables createOfficeTables",
     "db-officedrop": "node ./databaseTables/officeTables dropPartyTables",
-    "db-officerefresh": "npm run db-officedrop && npm run db-officecreate"
+    "db-officerefresh": "npm run db-officedrop && npm run db-officecreate",
+    "db-cancreate": "node ./databaseTables/candidatesTables createCanTables",
+    "db-candrop": "node ./databaseTables/candidatesTables dropCanTables",
+    "db-canrefresh": "npm run db-candrop && npm run db-cancreate"
+
   },
   "repository": {
     "type": "git",
