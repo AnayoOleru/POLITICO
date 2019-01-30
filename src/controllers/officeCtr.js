@@ -6,7 +6,7 @@ import db from '../../databaseTables/dbconnect';
 
 class Office{
   /**
-   * 
+   * Create office(admin)
    * @param {Values} req - request values into keys 
    * @param {Object} res - request object
    * @returns {array} - returns all key value pairs as object in array
@@ -77,17 +77,27 @@ class Office{
 
 
   /**
-   * 
+   * get all political offices(users)
    * @param {uuid} id
    * @param {Object} res - request object
    * @returns {array} - returns all key value pairs as object in array
    */
-  static getOffice(req, res)  {
-    return res.status(200).json({
-        "status": 200,
-        "data": officeDb
-    });
+  // static getOffice(req, res)  {
+  //   return res.status(200).json({
+  //       "status": 200,
+  //       "data": officeDb
+  //   });
+  // }
+static async getAllOffices(req, res){
+  const findAllQuery = 'SELECT * FROM party';
+  try {
+    const { rows, rowCount } = await db.query(findAllQuery);
+    return res.status(200).send({ rows, rowCount });
+  } catch(error) {
+    return res.status(400).send(error);
   }
+}
+
   /**
    * 
    * @param {uuid} id

@@ -29,7 +29,7 @@ app.get('/api/v1/parties', token.verifyToken, partyCtr.getParties);
 // app.put('/api/v1/party/:id/name', Party.update);
 // app.delete('/api/v1/party/:id', Party.delete);
 // app.post('/api/v1/office', Office.createOffice);
-app.get('/api/v1/office', Office.getOffice);
+app.get('/api/v1/office', Office.getAllOffices);
 app.get('/api/v1/office/:officeId', Office.getOfficeById);
 
 app.post('/api/v1/auth/signup', userCtr.createUser);
