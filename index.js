@@ -26,11 +26,11 @@ app.get('/api/v1', (req, res) => res.status(200).send({
 app.post('/api/v1/parties', token.verifyToken, partyCtr.create);
 app.get('/api/v1/parties/:partyId', token.verifyToken, partyCtr.getAParty);
 app.get('/api/v1/parties', token.verifyToken, partyCtr.getParties);
-// app.put('/api/v1/party/:id/name', Party.update);
-// app.delete('/api/v1/party/:id', Party.delete);
-// app.post('/api/v1/office', Office.createOffice);
-app.get('/api/v1/office', Office.getAllOffices);
-app.get('/api/v1/office/:officeId', Office.getOfficeById);
+app.put('/api/v1/party/:id/name', partyCtr.update);
+app.delete('/api/v1/party/:id', partyCtr.delete);
+app.post('/api/v1/office', token.verifyToken, Office.createOffice);
+app.get('/api/v1/office', token.verifyToken, Office.getAllOffices);
+app.get('/api/v1/office/:officeId', token.verifyToken, Office.getOneOffice);
 
 app.post('/api/v1/auth/signup', userCtr.createUser);
 app.post('/api/v1/auth/login', userCtr.login);
