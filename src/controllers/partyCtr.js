@@ -87,16 +87,25 @@ class Party{
     });
   }
   /**
-   * 
+   * Get All perties
    * @param {uuid} id
    * @param {Object} res - request object
    * @returns {array} - returns all key value pairs as object in array
    */
-  static getParties(req, res)  {
-    return res.status(200).json({
-      "status": 200,
-      "data": partyDb
-    });
+  // static getParties(req, res)  {
+  //   return res.status(200).json({
+  //     "status": 200,
+  //     "data": partyDb
+  //   });
+  // }
+  static async getParties(req, res) {
+    const findAllQuery = 'SELECT * FROM party';
+    try{
+      const { rows, rowCount } = await db.query(findAllQuery, [req.user.id]);
+      return res.status(200).send({ rows, rowCount });
+    } catch(error) {
+      return res.status(400).send(error);
+    }
   }
 /**
    * 
