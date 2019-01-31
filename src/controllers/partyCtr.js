@@ -105,9 +105,13 @@ class Party{
   static async getParties(req, res) {
     const findAllQuery = 'SELECT * FROM party';
     try{
-      const { rows, rowCount } = await db.query(findAllQuery, [req.user.id]);
-      return res.status(200).send({ rows, rowCount });
+      const { rows, rowCount } = await db.query(findAllQuery);
+      return res.status(200).send({
+        "status": 200,
+       "data": rows, rowCount 
+      });
     } catch(error) {
+      console.log(error)
       return res.status(400).send(error);
     }
   }
