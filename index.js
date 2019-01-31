@@ -32,12 +32,13 @@ app.post('/api/v1/office', token.verifyToken, Office.create);
 // user
 app.get('/api/v1/parties', token.verifyToken, partyCtr.getParties);
 app.get('/api/v1/parties/:id', token.verifyToken, partyCtr.getAParty);
+app.get('/api/v1/office', token.verifyToken, Office.getAllOffices);
 // 
 
 
 
 
-app.get('/api/v1/office', token.verifyToken, Office.getAllOffices);
+
 app.get('/api/v1/office/:officeId', token.verifyToken, Office.getOneOffice);
 
 // user login

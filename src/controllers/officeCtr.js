@@ -58,14 +58,8 @@ console.log(values)
    * @param {Object} res - request object
    * @returns {array} - returns all key value pairs as object in array
    */
-  // static getOffice(req, res)  {
-  //   return res.status(200).json({
-  //       "status": 200,
-  //       "data": officeDb
-  //   });
-  // }
 static async getAllOffices(req, res){
-  const findAllQuery = 'SELECT * FROM party';
+  const findAllQuery = 'SELECT * FROM office';
   try {
     const { rows, rowCount } = await db.query(findAllQuery);
     return res.status(200).send({ rows, rowCount });
