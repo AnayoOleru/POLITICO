@@ -63,30 +63,20 @@ class Party{
    * @param {Object} res - request object
    * @returns {array} - returns specific party
    */
-  // static getPartyById(req, res) {
-  //   const { partyId } = req.params;
-  //   let partyObject;
-  //   partyDb.forEach((party) => {
-      
-  //     if(party.id === Number(partyId)) {
-  //       partyObject = party;
-  //     }
-  //   });
-  //   return res.status(200).json({
-  //     "status": 200,
-  //     "data": partyObject
-  //   });
-  // }
-
   static async getAParty(req, res) {
+    const { id } = req.params;
+    console.log(req.params)
     const text = 'SELECT * FROM party WHERE id = $1';
     try {
-      const { rows } = await db.query(text, [req.params.id, req.user.id]);
+      const { rows } = await db.query(text, [id]);
+      // console.log(party_id);
       if(!rows[0]) {
         return res.status(404).send({"error": "Party not found"});
       }
+      console.log(rows[0])
       return res.status(200).send(rows[0]);
     } catch(error) {
+      console.log(error)
       return res.status(400).send(error);
     }
   }
