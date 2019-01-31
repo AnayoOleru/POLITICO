@@ -28,7 +28,10 @@ app.delete('/api/v1/party/:id', Party.delete);
 app.post('/api/v1/office', Office.createOffice);
 app.get('/api/v1/office', Office.getOffice);
 app.get('/api/v1/office/:officeId', Office.getOfficeById);
+
+// challenge 3
 app.post('/api/v1/auth/signup', userCtr.createUser);
+
 app.get('/', (req, res) => res.status(404).send({
   "status": 404,
   "message": "Page not found, your URL is incorrect"
