@@ -32,6 +32,7 @@ app.post('/api/v1/office', token.verifyToken, Office.create);
 app.get('/api/v1/office', token.verifyToken, Office.getAllOffices);
 app.get('/api/v1/office/:officeId', token.verifyToken, Office.getOneOffice);
 
+// user login
 app.post('/api/v1/auth/signup', userCtr.createUser);
 app.post('/api/v1/auth/login', userCtr.login);
 
