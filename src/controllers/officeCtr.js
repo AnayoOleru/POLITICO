@@ -74,25 +74,10 @@ static async getAllOffices(req, res){
    * @param {Object} res - request object
    * @returns {array} - returns specific party
    */
-  // static getOfficeById(req, res) {
-  //   const { officeId } = req.params;
-  //   let officeObject;
-  //   for (const office of officeDb) {
-  //       // console.log(typeof officeId, typeof office.id)
-  //       if (office.id === Number(officeId)) {
-  //           officeObject = office
-  //       }
-  //   }
-  //   return res.status(200).json({
-  //       "status": 200,
-  //       "data": officeObject
-  //   });
-    
-  // }
   static async getOneOffice(req, res) {
-    const text = 'SELECT * FROM party WHERE id = $1';
+    const text = 'SELECT * FROM office WHERE id = $1';
     try {
-      const { rows } = await db.query(text, [req.params.id, req.user.id]);
+      const { rows } = await db.query(text, [req.params.id]);
       if(!rows[0]) {
         return res.status(404).send({'error': 'Office not found'});
       }
