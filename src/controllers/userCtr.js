@@ -119,7 +119,8 @@ const User = {
           "error": "The credentials you provided is incorrect" 
         });
       }
-      const token = userAuthHelper.generateToken(rows[0].id, rows[0].isAdmin);
+      const token = userAuthHelper.generateToken(rows[0].id);
+      console.log(token);
       return res.status(200).send({
         "status": 201,
         "data": [{
