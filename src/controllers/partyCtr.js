@@ -121,22 +121,6 @@ class Party{
    * @param {object} res 
    * @returns {object} updated party
    */
-  // static update(req, res) {
-  //   let partyObject;
-
-  //   const party = partyModel.findOne(req.params.id);
-  //   console.log(party);
-  //   if (!party) {
-  //     return res.status(404).send({
-  //       "status": 404,
-  //       "error": "party not found"
-  //     });
-  //   }
-  //   party.name = req.body.name
-  //   // const updatedParty = PartyModel.update(req.params.id, req.body)
-  //   return res.status(200).send(party);
-  // }
-
   static async update(req, res) {
     const findOneQuery = 'SELECT * FROM party WHERE id=$1';
     const updateOneQuery =`UPDATE party
@@ -165,23 +149,6 @@ class Party{
    * @param {object} res 
    * @returns {void} return code 204 
    */
-  // static delete(req, res) {
-  //   const party = partyModel.findOne(req.params.id);
-  //   if (!party) {
-  //     return res.status(404).send({
-  //       "status": 404,
-  //       "error": "party not found"
-  //     });
-  //   }
-  //   const ref = partyModel.delete(req.params.id);
-  //   return res.status(200).send({
-  //     "status": 200,
-  //     "message": "Party had been deleted",
-  //     "data": party
-  //   });
-  // }
-
-
   static async delete(req, res) {
     const deleteQuery = 'DELETE FROM party WHERE id=$1 returning *';
     try {
