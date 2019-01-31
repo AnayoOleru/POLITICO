@@ -28,7 +28,7 @@ app.get('/api/v1/parties/:partyId', token.verifyToken, partyCtr.getAParty);
 app.get('/api/v1/parties', token.verifyToken, partyCtr.getParties);
 app.put('/api/v1/party/:id/name', partyCtr.update);
 app.delete('/api/v1/party/:id', partyCtr.delete);
-app.post('/api/v1/office', token.verifyToken, Office.createOffice);
+app.post('/api/v1/office', token.verifyToken, Office.create);
 app.get('/api/v1/office', token.verifyToken, Office.getAllOffices);
 app.get('/api/v1/office/:officeId', token.verifyToken, Office.getOneOffice);
 
