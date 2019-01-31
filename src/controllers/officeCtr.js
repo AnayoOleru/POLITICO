@@ -18,8 +18,8 @@ class Office{
     const { isAdmin } = req.user;
         if (isAdmin) {
           return res.status(403).json({
-            status: 403,
-            message: "Access denied, you don't have the required credentials to access this route",
+            "status": 403,
+            "message": "Access denied, you don't have the required credentials to access this route",
           });
         }
     const createQuery = `INSERT INTO
