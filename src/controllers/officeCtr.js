@@ -1,4 +1,5 @@
-import uuid from 'uuid';
+import moment from 'moment';
+import uuidv4 from 'uuid/v4';
 import officeDb from '../db/officedb';
 import db from '../../databaseTables/dbconnect';
 // import PartyModel from '../models/party';
@@ -11,33 +12,7 @@ class Office{
    * @param {Object} res - request object
    * @returns {array} - returns all key value pairs as object in array
    */
-  // static createOffice(req, res) {
-  //   const {
-  //     type,
-  //     name
-  //   } = req.body;
-  //   if (!req.body.type) {
-  //       return res.status(400).send({
-  //           "status": 404,
-  //           "error": "The type and name field are required"
-  //   })
-  //     }
-  //     if(!req.body.name){
-  //       return res.status(400).send({
-  //           "status": 400,
-  //           "error": "The name and type field are required"
-  //   })
-  //     }
-  //   officeDb.push({
-  //     id: uuid.v4(),
-  //     type,
-  //     name
-  //   });
-  //   return res.status(201).json({
-  //       "status": 201,
-  //       "data": officeDb
-  //   });
-  // }
+  
 
   static async create(req, res) {
     const { isAdmin } = req.user;
@@ -48,7 +23,7 @@ class Office{
           });
         }
     const createQuery = `INSERT INTO
-      party(id, name, type, created_date)
+      office(id, name, type, created_date)
       VALUES($1, $2, $3, $4)
       returning *`;
     const values = [
@@ -57,7 +32,7 @@ class Office{
       req.body.type,
       moment(new Date())
     ];
-
+console.log(values)
     try {
       const { rows } = await db.query(createQuery, values);
       return res.status(201).send({
@@ -67,6 +42,7 @@ class Office{
           "order": rows[0],
         }],
       });
+      console.log(error)
     } catch(error) {
       return res.status(400).send({
         "status": 400,
