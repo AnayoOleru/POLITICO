@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>POLITICO | ADMIN</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="../styles/addparties.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="icon" type="image/ico" href="../images/pogo.png"/>
+    <meta name="Description" content="Politico - Builds trust through transparency">
+</head>
+<body>
+        <div id="mySidenav" class="sidenav">
+                <a href="#" class="closebtn" onclick="closeNav()"><i class="fa fa-chevron-circle-right"></i></a>
+                <img style="width: 80px; padding-left: 30px;" src="../images/userimg.png">
+                <h1 style="padding-left: 30px; color: #ffffff;">Admin</h1>
+                <a href="../index.html"><span>Home</span></a>
+                <a class="active" href="addparties.html"><i class="far fa-handshake"></i><span>Parties</span></a>
+                <a href="govOffice.html"><i class="fas fa-building"></i><span>Office</span></a>
+                <a href="#"><i class="fas fa-sign-out-alt"></i><span>Sign out</span></a>
+            </div>
+            <div class="nav">
+            <span style="font-size:30px;cursor:pointer;height: 30px;" class="openbutton" onclick="openNav()"><i class="fas fa-align-justify"></i></span>
+    
+                    <div class="logo">POLITICO</div>
+                    <ul> 
+                        <li><a href="#" class="active">Username</a></li>
+                    </ul>
+            </div> 
+
+        <div class="container">
+                <div class="box box1">
+                    <img class="logos" src="../images/Accord.jpg">
+                        <ul>
+                                <li><button id="edit">Edit</button></li>
+                                <li><button id="delete">Delete</button></li>
+                        </ul>
+                </div>
+                <div class="box box2">
+                        <img class="logos" src="../images/APC.png">
+                        <ul>
+                                <li><button id="edit">Edit</button></li>
+                                <li><button id="delete">Delete</button></li>
+                                </ul>
+                </div>
+                <div class="box box3">
+                        <img class="logos" src="../images/APGA.jpg">
+                        <ul>
+                                <li><button id="edit">Edit</button></li>
+                                <li><button id="delete">Delete</button></li>
+                                </ul>
+                </div>
+                <div class="box box4">
+                        <img class="logos" src="../images/GPN.jpg">
+                        <ul>
+                                <li><button id="edit">Edit</button></li>
+                                <li><button id="delete">Delete</button></li>
+                                </ul>
+                </div>
+                <div class="box box5">
+                        <img class="logos" src="../images/PDP.png">
+                        <ul>
+                                <li><button id="edit">Edit</button></li>
+                                <li><button id="delete">Delete</button></li>
+                                </ul>
+                </div>
+                <div class="box box6">
+                        <img class="logos" src="../images/PDM.jpg">
+                        <ul>
+                                <li><button id="edit">Edit</button></li>
+                                <li><button id="delete">Delete</button></li>
+                                </ul>
+                </div>
+                <div class="box box7">
+                        <img class="logos" src="../images/YDP.jpg">
+                        <ul>
+                                <li><button id="edit">Edit</button></li>
+                                <li><button id="delete">Delete</button></li>
+                                </ul>
+            </div>
+            <div class="box box8">
+                    <img class="logos" src="../images/COPE.png">
+                    <ul>
+                        <li><button id="edit">Edit</button></li>
+                        <li><button id="delete">Delete</button></li>
+                        </ul>
+        </div>
+        <div class="box box9">
+                <img class="logos" src="../images/ADC.jpg">
+                <ul>
+                        <li><button id="edit">Edit</button></li>
+                        <li><button id="delete">Delete</button></li>
+                        </ul>
+    </div>
+    <div class="box box10">
+            <img class="logos" src="../images/UPN.png">
+            <ul>
+                <li><button id="edit">Edit</button></li>
+                <li><button id="delete">Delete</button></li>
+                </ul>
+</div>
+<div class="box box11">
+        <img class="logos" src="../images/ZLP.jpg">
+        <ul>
+                <li><button id="edit">Edit</button></li>
+                <li><button id="delete">Delete</button></li>
+                </ul>
+</div>
+                
+            </div>
+
+            <!-- modals -->
+
+        <!-- add party -->
+            <div class="modal" id="openmodal">
+                        <form class="partylog">
+                                <h1>Add Party</h1>
+                                <input type="text" placeholder="party name">
+                                <input type="text" placeholder="HQ address">
+                            <input type="file">
+                            <!-- <input type="text" placholder="party name"> -->
+                            <br>
+                            <input type="submit" onclick="closeLog()">
+                        </form>
+                    </div>
+
+                    <!-- edit party -->
+                    <div class="modal1" id="openparty">
+                                <form>
+                                        <h1>Edit Party</h1>
+                                        <input type="text" placeholder="party name">
+                                <input type="text" placeholder="HQ address">
+                                    <input type="file">
+                                    <br>
+                                    <input type="submit" onclick="closeEdit()">
+                                </form>
+                            </div>
+
+                            <!-- delete party -->
+                            <div class="modal2" id="deleteparty">
+                                                <h1>This party will be deleted</h1>
+                                            <button onclick="closeDelete()">Cancel</button>
+                                            <button>Go on</button>
+                                    </div>
+
+        <button class="add" id="addbtn" onclick="openLog()">Add</button>
+
+            <script src="../scripts/addparties.js"></script>
+</body>
+</html>

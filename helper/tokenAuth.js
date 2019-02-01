@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken';
 import db from '../databaseTables/dbconnect';
 
 const TokenAuth = {
+
   /**
    * Verify Token
    * @param {object} req 
@@ -36,6 +37,6 @@ const TokenAuth = {
     });
     }
   }
-}
+};
 
 export default TokenAuth;
