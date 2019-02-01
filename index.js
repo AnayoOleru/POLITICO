@@ -29,10 +29,12 @@ app.post('/api/v1/parties', token.verifyToken, partyCtr.create);
 app.put('/api/v1/party/:id/name', token.verifyToken, partyCtr.update);
 app.delete('/api/v1/party/:id', token.verifyToken, partyCtr.delete);
 app.post('/api/v1/office', token.verifyToken, Office.create);
-// user
 
-app.get('/api/v1/parties/:partyId', token.verifyToken, partyCtr.getAParty);
+// user
 app.get('/api/v1/parties', token.verifyToken, partyCtr.getParties);
+app.get('/api/v1/parties/:partyId', token.verifyToken, partyCtr.getAParty);
+// 
+
 
 
 
