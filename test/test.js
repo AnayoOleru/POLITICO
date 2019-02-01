@@ -17,7 +17,6 @@ describe('Array', function() {
 // const expect = chai.expect;
 
 //start app
-const app = require('../index');
 
 const assert = require('assert');
 const chai = require('chai');
