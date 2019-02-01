@@ -1,4 +1,6 @@
-import uuid from 'uuid';
+
+import uuidv4 from 'uuid/v4';
+import moment from 'moment';
 import partyDb from '../db/partydb';
 // import PartyModel from '../models/party';
 import db from '../../databaseTables/dbconnect';
@@ -12,25 +14,13 @@ class Party{
    * @param {Object} res - request object
    * @returns {array} - returns all key value pairs as object in array
    */
-  // static createParty(req, res) {
-  //   const {
-  //     name,
-  //     hqaddress,
-  //     logoURL
-  //   } = req.body;
-  //   partyDb.push({
-  //     id: uuid.v4(),
-  //     name,
-  //     hqaddress,
-  //     logoURL
-  //   });
-  //   return res.status(201).json({
-  //     "status": 201,
-  //     "data": partyDb
-  //   });
-  // }
-
   static async create(req, res) {
+    if(!req.body.name || !req.body.hqaddress || !req.body.logoUrl){
+      return res.status(400).send({ 
+        "status": 400, 
+        "error": "Some values are missing" 
+    });
+    }
     const { isAdmin } = req.user;
         if (isAdmin) {
           return res.status(403).json({
@@ -39,13 +29,14 @@ class Party{
           });
         }
     const createQuery = `INSERT INTO
-      party(id, name, type, created_date)
-      VALUES($1, $2, $3, $4)
+      party(id, name, hqaddress, logoUrl, created_date)
+      VALUES($1, $2, $3, $4, $5)
       returning *`;
     const values = [
       uuidv4(),
       req.body.name,
-      req.body.type,
+      req.body.hqaddress,
+      req.body.logoUrl,
       moment(new Date())
     ];
 
