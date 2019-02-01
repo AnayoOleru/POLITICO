@@ -13,7 +13,17 @@
     "coverage": "nyc report ---reporter=text-lcov | coveralls",
     "db-usercreate": "node ./databaseTables/userTables createUserTables",
     "db-userdrop": "node ./databaseTables/userTables dropUserTables",
-    "db-refresh": "npm run db-userdrop && npm run db-usercreate"
+    "db-refresh": "npm run db-userdrop && npm run db-usercreate",
+    "db-partycreate": "node ./databaseTables/partyTables createPartyTables",
+    "db-partydrop": "node ./databaseTables/partyTables dropPartyTables",
+    "db-partyrefresh": "npm run db-partydrop && npm run db-partycreate",
+    "db-officecreate": "node ./databaseTables/officeTables createOfficeTables",
+    "db-officedrop": "node ./databaseTables/officeTables dropPartyTables",
+    "db-officerefresh": "npm run db-officedrop && npm run db-officecreate",
+    "db-cancreate": "node ./databaseTables/candidatesTables createCanTables",
+    "db-candrop": "node ./databaseTables/candidatesTables dropCanTables",
+    "db-canrefresh": "npm run db-candrop && npm run db-cancreate"
+
   },
   "repository": {
     "type": "git",
@@ -30,6 +40,7 @@
   "homepage": "https://github.com/AnayoOleru/POLITICO#readme",
   "dependencies": {
     "babel-cli": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.7.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",

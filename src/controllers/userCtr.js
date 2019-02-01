@@ -11,7 +11,7 @@ const User = {
    * @returns {object} User Object
    */
   async createUser(req, res) {
-    if (!req.body.email || !req.body.password || !req.body.fullname || !req.body.lastname || !req.body.passportUrl) {
+    if (!req.body.email || !req.body.password || !req.body.firstname || !req.body.lastname || !req.body.passportUrl) {
         return res.status(400).send({ 
             "status": 400, 
             "error": "Some values are missing" 
@@ -24,7 +24,7 @@ const User = {
         });
       }
 
-    if (!Helper.isValidEmail(req.body.email)) {
+    if (!userAuthHelper.isValidEmail(req.body.email)) {
       return res.status(400).send({
         "status": 400,  
         "error": "Please enter a valid email"
@@ -38,7 +38,7 @@ const User = {
         });
       }
 
-    const hashPassword = Helper.hashPassword(req.body.password);
+    const hashPassword = userAuthHelper.hashPassword(req.body.password);
 
     const createQuery = `INSERT INTO
       users(id, firstname, lastname, 
@@ -58,6 +58,7 @@ const User = {
       hashPassword,
       moment(new Date())
     ];
+    console.log(values);
 
     try {
       const { rows } = await db.query(createQuery, values);
@@ -70,7 +71,9 @@ const User = {
         }],
       });
     } catch(error) {
+      console.log(error);
       if (error.routine === '_bt_check_unique') {
+        
         return res.status(400).send({ 
             "data": 400,
             "message": "User with that EMAIL already exist" 
@@ -95,7 +98,7 @@ const User = {
         "error": "Some values are missing"
       });
     }
-    if (!Helper.isValidEmail(req.body.email)) {
+    if (!userAuthHelper.isValidEmail(req.body.email)) {
       return res.status(400).send({ 
         "status": 400,
         "error": "Please enter a valid email address" 
@@ -110,13 +113,14 @@ const User = {
           "error": "The credentials you provided is incorrect"
         });
       }
-      if(!Helper.comparePassword(rows[0].password, req.body.password)) {
+      if(!userAuthHelper.comparePassword(rows[0].password, req.body.password)) {
         return res.status(400).send({
           "status": 400, 
           "error": "The credentials you provided is incorrect" 
         });
       }
-      const token = Helper.generateToken(rows[0].id);
+      const token = userAuthHelper.generateToken(rows[0].id);
+      console.log(token);
       return res.status(200).send({
         "status": 201,
         "data": [{
@@ -131,5 +135,9 @@ const User = {
       })
     }
   }
+
+  /**
+   * Get all
+   */
   }
 export default User;

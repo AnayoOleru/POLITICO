@@ -1,4 +1,4 @@
-let assert = require('assert');
+// let assert = require('assert');
 
 // test if mocha exist
 describe('Array', function() {
@@ -13,45 +13,117 @@ describe('Array', function() {
  * test/test.js
  * Basic tests to check if server exist
  */
-const chai = require('chai');
-const expect = chai.expect;
+// const chai = require('chai');
+// const expect = chai.expect;
 
 //start app
 const app = require('../index');
 
-// describe('App', () => {
-//   it('Should exists', () => {
-//     expect(app).to.be.a('function');})
-// })
+const assert = require('assert');
+const chai = require('chai');
+const expect = chai.expect;
+const http = require('chai-http');
+chai.use(http);
+const app = require('../index');
 
-/**
- * Test for create party endpoint
- */
-// describe('#POST /api/v1/parties "create new political party."', () => {
-//   it('should create a new party', (done) => {
-//     request(app).post('/api/v1/parties')
-//       .send(partyDb)
-//       .end((err, res) => {
-//         expect(res.status).to.equal(201);
-//         done();
-//       });
-//   });
-//   it('should throw an error: "party already exist"', (done) => {
-//     request(app).post('/api/v1/parties')
-//       .send(partyDb)
-//       .end((err, res) => {
-//         expect(res.status).to.equal(400);
-//         expect(res.body.error).equals('party not found');
-//         done();
-//       });
-//   });
-  // it('should throw an error: "please check input"', (done) => {
-  //   request(app).post('/api/v1/parties')
-  //     .send(invalidParty)
-  //     .end((err, res) => {
-  //       expect(res.status).to.equal(400);
-  //       expect(res.body.error).equals('please check input');
-  //       done();
-  //     });
-  // });
-// });
+
+describe('GET \'/api/v1\'', () => {
+  it('It should return  welcome message', (done) => {
+    chai.request(app)
+      .get('/api/v1')
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res).to.have.headers;
+        expect(res).to.have.status(200);
+        expect(res).to.not.redirect;
+        expect(res.body).to.be.an('object'); 
+        done();
+      });
+  });
+});
+
+
+describe('App basics', () => {
+    it('Should exists', () => {
+      expect(app).to.be.a('function');
+    })
+  })
+
+
+//   test for users to signup
+describe('Post \'/api/v1\'', () => {
+    it('POST create a new user', (done) => { // WHEN EVERY FIELD IS INPUTED
+      chai.request(app)
+        .post('/api/v1/users')
+        .send({
+          password: 'helllo',
+          email: '',
+          fullname: 'mohammed',
+        })
+        .end((err, res) => {
+          expect(err).to.be.null;
+          expect(res).to.have.headers;
+          expect(res).to.have.status(400);
+          expect(res).to.not.redirect;
+          expect(res.body).to.be.an('object');
+          done();
+        });
+    });
+  });
+  describe('Post \'/api/v1\'', () => {
+    it('POST create a new user', (done) => { // WHEN EVERY FIELD IS INPUTED
+      chai.request(app)
+        .post('/api/v1/users')
+        .send({
+          password: 'helllo',
+          email: 'biolaaa@gmail.com',
+          fullname: 'mohammed',
+        })
+        .end((err, res) => {
+          expect(err).to.be.null;
+          expect(res).to.have.headers;
+          expect(res).to.have.status(400);
+          expect(res).to.not.redirect;
+          expect(res.body).to.be.an('object');
+          done();
+        });
+    });
+  });
+  describe('Post \'/api/v1\'', () => {
+    it('POST create a new user', (done) => { // WHEN EVERY FIELD IS INPUTED
+      chai.request(app)
+        .post('/api/v1/users')
+        .send({
+          password: 'helllo',
+          email: 'biolaaa@gmail.com',
+          fullname: 'mohammed',
+        })
+        .end((err, res) => {
+          expect(err).to.be.null;
+          expect(res).to.have.headers;
+          expect(res).to.have.status(400);
+          expect(res).to.not.redirect;
+          expect(res.body).to.be.an('object');
+          done();
+        });
+    });
+  });
+  describe('Post \'/api/v1\'', () => {
+    it('POST create a new user', (done) => { // WHEN EVERY FIELD IS INPUTED
+      chai.request(app)
+        .post('/api/v1/users')
+        .send({
+          password: 'helllo',
+          email: 'biolaaa@gmail.com',
+          fullname: '',
+        })
+        .end((err, res) => {
+          expect(err).to.be.null;
+          expect(res).to.have.headers;
+          expect(res).to.have.status(400);
+          expect(res).to.not.redirect;
+          expect(res.body).to.be.an('object');
+          done();
+        });
+    });
+  });
