@@ -38,9 +38,9 @@ app.get('/api/v1/office/:id', token.verifyToken, Office.getOneOffice);
 app.post('/api/v1/auth/signup', userCtr.createUser);
 app.post('/api/v1/auth/login', userCtr.login);
 
-app.get('/', (req, res) => res.status(404).send({
-  "status": 404,
-  "message": "Page not found, your URL is incorrect"
+app.get('/', (req, res) => res.status(200).send({
+  "status": 200,
+  "message": 'Welcome to POLITICO'
 }));
 
 // app.listen(3000)
