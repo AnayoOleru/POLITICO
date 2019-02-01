@@ -33,8 +33,51 @@ const userAuthHelper = {
    * @returns {Boolean} True or False
    */
   ispasswordValid(password) {
-      if(password.length > 4) return true;
+      if(password.length > 6) return true;
       return false;
+  },
+  /**
+	 * validate address:
+	 * @description the isAddress methods will pass only
+	 * if the string contains alphabets, numbers, spaces, period, comma, and dash
+	 * @param {string} address
+	 * @returns boolean
+	 */
+  isAddress(address) {
+    return (/^[a-zAZ0-9,.-\s]+$/i.test(address));
+  },
+  /**
+	 * @description allow only alphabets and spaces
+	 * @param {string} name
+	 * @returns boolean
+	 */
+  isName(name) {
+    return (/^[A-Za-z\s]+$/.test(name));
+  },
+  /**
+	 * @description check if string is digit
+	 * @param {string} string
+	 * @returns boolean
+	 */
+  isInt(string) {
+    return (/^[0-9]+$/i.test(string));
+  },
+  /**
+   * @description check if string is url
+   * @originalAauthor Diogo Cardoso
+   *https://stackoverflow.com/questions/5717093/check-if-a-javascript-string-is-a-url
+   * @edited Emmanuel Daniel <@emmsdan>, Made it es6 compactable.
+   * @param {string} str
+   * @returns boolean
+   */
+  isURL(str) {
+    const pattern = new RegExp('^(https?:\\/\\/)?'
+  + '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'
+  + '((\\d{1,3}\\.){3}\\d{1,3}))'
+  + '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'
+  + '(\\?[;&a-z\\d%_.~+=-]*)?'
+  + '(\\#[-a-z\\d_]*)?$', 'i');
+    return pattern.test(str);
   },
   /**
    * iswhitespace helper method

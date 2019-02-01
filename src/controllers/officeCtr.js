@@ -18,8 +18,8 @@ class Office{
     const { isAdmin } = req.user;
         if (isAdmin) {
           return res.status(403).json({
-            status: 403,
-            message: "Access denied, you don't have the required credentials to access this route",
+            "status": 403,
+            "message": "Access denied, you don't have the required credentials to access this route",
           });
         }
     const createQuery = `INSERT INTO
@@ -58,19 +58,21 @@ console.log(values)
    * @param {Object} res - request object
    * @returns {array} - returns all key value pairs as object in array
    */
-  // static getOffice(req, res)  {
-  //   return res.status(200).json({
-  //       "status": 200,
-  //       "data": officeDb
-  //   });
-  // }
 static async getAllOffices(req, res){
-  const findAllQuery = 'SELECT * FROM party';
+  const findAllQuery = 'SELECT * FROM office';
   try {
     const { rows, rowCount } = await db.query(findAllQuery);
-    return res.status(200).send({ rows, rowCount });
+    console.log(rows);
+    return res.status(200).send({ 
+      "status": 200,
+      "data": rows, rowCount
+       });
   } catch(error) {
-    return res.status(400).send(error);
+    console.log(error);
+    return res.status(400).send({
+      "status": 400,
+      "error":error
+    });
   }
 }
 
@@ -96,13 +98,18 @@ static async getAllOffices(req, res){
     
   // }
   static async getOneOffice(req, res) {
-    const text = 'SELECT * FROM party WHERE id = $1';
+    const text = 'SELECT * FROM office WHERE id = $1';
     try {
-      const { rows } = await db.query(text, [req.params.id, req.user.id]);
+      const { rows } = await db.query(text, [req.params.id]);
       if(!rows[0]) {
-        return res.status(404).send({'error': 'Office not found'});
+        return res.status(404).send({
+          "status": 404,
+          "error": "Office not found"
+        });
       }
-      return res.status(200).send(rows[0]);
+      return res.status(200).send({
+        "status": 200,
+        "data": rows[0]});
     } catch(error) {
       return res.status(400).send(error)
     }
