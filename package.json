@@ -12,6 +12,7 @@
     "dev-start": "babel-watch index.js",
     "coverage": "nyc report ---reporter=text-lcov | coveralls",
     "db-usercreate": "node ./databaseTables/userTables createUserTables",
+    "db-createadmin": "node ./databaseTables/userTables createAdmin",
     "db-userdrop": "node ./databaseTables/userTables dropUserTables",
     "db-refresh": "npm run db-userdrop && npm run db-usercreate",
     "db-partycreate": "node ./databaseTables/partyTables createPartyTables",

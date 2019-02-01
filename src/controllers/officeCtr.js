@@ -18,8 +18,8 @@ class Office{
     const { isAdmin } = req.user;
         if (isAdmin) {
           return res.status(403).json({
-            status: 403,
-            message: "Access denied, you don't have the required credentials to access this route",
+            "status": 403,
+            "message": "Access denied, you don't have the required credentials to access this route",
           });
         }
     const createQuery = `INSERT INTO
@@ -62,9 +62,17 @@ static async getAllOffices(req, res){
   const findAllQuery = 'SELECT * FROM office';
   try {
     const { rows, rowCount } = await db.query(findAllQuery);
-    return res.status(200).send({ rows, rowCount });
+    console.log(rows);
+    return res.status(200).send({ 
+      "status": 200,
+      "data": rows, rowCount
+       });
   } catch(error) {
-    return res.status(400).send(error);
+    console.log(error);
+    return res.status(400).send({
+      "status": 400,
+      "error":error
+    });
   }
 }
 
@@ -79,9 +87,14 @@ static async getAllOffices(req, res){
     try {
       const { rows } = await db.query(text, [req.params.id]);
       if(!rows[0]) {
-        return res.status(404).send({'error': 'Office not found'});
+        return res.status(404).send({
+          "status": 404,
+          "error": "Office not found"
+        });
       }
-      return res.status(200).send(rows[0]);
+      return res.status(200).send({
+        "status": 200,
+        "data": rows[0]});
     } catch(error) {
       return res.status(400).send(error)
     }
