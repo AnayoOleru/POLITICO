@@ -82,21 +82,6 @@ static async getAllOffices(req, res){
    * @param {Object} res - request object
    * @returns {array} - returns specific party
    */
-  // static getOfficeById(req, res) {
-  //   const { officeId } = req.params;
-  //   let officeObject;
-  //   for (const office of officeDb) {
-  //       // console.log(typeof officeId, typeof office.id)
-  //       if (office.id === Number(officeId)) {
-  //           officeObject = office
-  //       }
-  //   }
-  //   return res.status(200).json({
-  //       "status": 200,
-  //       "data": officeObject
-  //   });
-    
-  // }
   static async getOneOffice(req, res) {
     const text = 'SELECT * FROM office WHERE id = $1';
     try {
