@@ -5,7 +5,7 @@ class Party{
     /**
    * 
    * @param {uuid} id
-   * @returns {object} reflection object
+   * @returns {object} Party object
    */
   findOne(id) {
     return partyDb.find(party => party.id === Number(id));

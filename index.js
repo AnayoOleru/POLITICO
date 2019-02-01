@@ -5,6 +5,8 @@ import verifyAdmin from './helper/verifyAdmin';
 import userCtr from './src/controllers/userCtr';
 import partyCtr from './src/controllers/partyCtr';
 import token from './helper/tokenAuth';
+import verifyAdmin from './helper/verifyAdmin';
+
 
 
 const app = express();
