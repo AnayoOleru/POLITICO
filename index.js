@@ -2,11 +2,12 @@ import { json, urlencoded } from 'body-parser';
 import express from 'express';
 import Party from './src/controllers/partyCtr';
 import Office from './src/controllers/officeCtr';
-import TokenAuth from './helper/tokenAuth';
 import userCtr from './src/controllers/userCtr';
 import partyCtr from './src/controllers/partyCtr';
 import officeCtr from './src/controllers/officeCtr';
 import token from './helper/tokenAuth';
+import verifyAdmin from './helper/verifyAdmin';
+
 
 
 const app = express();
@@ -24,11 +25,9 @@ app.get('/api/v1', (req, res) => res.status(200).send({
   "message": 'Welcome to POLITICO'
 }));
 
-// admin
-app.post('/api/v1/parties', token.verifyToken, partyCtr.create);
-// user
+
+app.post('/api/v1/parties', token.verifyToken, verifyAdmin.verifyIsAdmin, partyCtr.create);
 app.get('/api/v1/parties/:partyId', token.verifyToken, partyCtr.getAParty);
-// 
 app.get('/api/v1/parties', token.verifyToken, partyCtr.getParties);
 app.put('/api/v1/party/:id/name', partyCtr.update);
 app.delete('/api/v1/party/:id', partyCtr.delete);
