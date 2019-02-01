@@ -23,6 +23,7 @@ app.get('/api/v1', (req, res) => res.status(200).send({
   "status": 200,
   "message": 'Welcome to POLITICO'
 }));
+
 // admin
 app.post('/api/v1/parties', token.verifyToken, partyCtr.create);
 // user
