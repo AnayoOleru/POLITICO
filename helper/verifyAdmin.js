@@ -4,7 +4,7 @@ export default class verifyIsAdminClass {
       if (!isAdmin) {
         return res.status(403).json({
           "status": 403,
-          "message": "Access denied, you don't have the required credentials to access this route",
+          "message": "Access denied, You do not have the admin privileges to access this route",
         });
       }
       next();

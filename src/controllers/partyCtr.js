@@ -1,3 +1,4 @@
+
 import uuidv4 from 'uuid/v4';
 import moment from 'moment';
 import partyDb from '../db/partydb';
@@ -49,7 +50,6 @@ class Party{
         }],
       });
     } catch(error) {
-      console.log(error);
       return res.status(400).send({
         "status": 400,
         "data": error

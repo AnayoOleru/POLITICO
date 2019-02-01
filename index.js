@@ -2,11 +2,12 @@ import { json, urlencoded } from 'body-parser';
 import express from 'express';
 import Party from './src/controllers/partyCtr';
 import Office from './src/controllers/officeCtr';
-import TokenAuth from './helper/tokenAuth';
 import userCtr from './src/controllers/userCtr';
 import partyCtr from './src/controllers/partyCtr';
 import officeCtr from './src/controllers/officeCtr';
 import token from './helper/tokenAuth';
+import verifyAdmin from './helper/verifyAdmin';
+
 
 
 const app = express();
