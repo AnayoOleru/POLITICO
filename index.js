@@ -1,11 +1,9 @@
 import { json, urlencoded } from 'body-parser';
 import express from 'express';
-import Party from './src/controllers/partyCtr';
 import Office from './src/controllers/officeCtr';
-import TokenAuth from './helper/tokenAuth';
+import verifyAdmin from './helper/verifyAdmin';
 import userCtr from './src/controllers/userCtr';
 import partyCtr from './src/controllers/partyCtr';
-import officeCtr from './src/controllers/officeCtr';
 import token from './helper/tokenAuth';
 
 
@@ -24,10 +22,10 @@ app.get('/api/v1', (req, res) => res.status(200).send({
   "message": 'Welcome to POLITICO'
 }));
 // admin: create, edit
-app.post('/api/v1/parties', token.verifyToken, partyCtr.create);
-app.put('/api/v1/party/:id/name', token.verifyToken, partyCtr.update);
-app.delete('/api/v1/party/:id', token.verifyToken, partyCtr.delete);
-app.post('/api/v1/office', token.verifyToken, Office.create);
+app.post('/api/v1/parties', token.verifyToken, verifyAdmin.verifyIsAdmin, partyCtr.create);
+app.put('/api/v1/party/:id/name', token.verifyToken, verifyAdmin.verifyIsAdmin, partyCtr.update);
+app.delete('/api/v1/party/:id', token.verifyToken, verifyAdmin.verifyIsAdmin, partyCtr.delete);
+app.post('/api/v1/office', token.verifyToken, verifyAdmin.verifyIsAdmin, Office.create);
 
 // user
 app.get('/api/v1/parties', token.verifyToken, partyCtr.getParties);
@@ -39,7 +37,7 @@ app.get('/api/v1/office', token.verifyToken, Office.getAllOffices);
 
 
 
-app.get('/api/v1/office/:officeId', token.verifyToken, Office.getOneOffice);
+app.get('/api/v1/office/:id', token.verifyToken, Office.getOneOffice);
 
 // user login
 app.post('/api/v1/auth/signup', userCtr.createUser);

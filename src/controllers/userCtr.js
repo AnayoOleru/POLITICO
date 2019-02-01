@@ -34,7 +34,28 @@ const User = {
     if (!userAuthHelper.ispasswordValid(req.body.password)) {
         return res.status(400).send({ 
             "status": 400, 
-            "error": "Password Must Be at least Five Characters And Must Be A string" 
+            "error": "Password Must Be at least Six Characters And Must Be A string" 
+        });
+      }
+
+      if (!userAuthHelper.isName(req.body.firstname, req.body.lastname, req.body.othername)) {
+        return res.status(400).send({ 
+            "status": 400, 
+            "error": "Names must only Alphabets and spaces are allowed" 
+        });
+      }
+
+      if (!userAuthHelper.isInt(req.body.phonenumber)) {
+        return res.status(400).send({ 
+            "status": 400, 
+            "error": "Only Digits are allowed URL" 
+        });
+      }
+
+      if (!userAuthHelper.isURL(req.body.passportUrl)) {
+        return res.status(400).send({ 
+            "status": 400, 
+            "error": "Invalid URL" 
         });
       }
 
