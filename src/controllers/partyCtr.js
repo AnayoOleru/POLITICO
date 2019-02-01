@@ -136,22 +136,22 @@ class Party{
   static async update(req, res) {
     const findOneQuery = 'SELECT * FROM party WHERE id=$1';
     const updateOneQuery =`UPDATE party
-      SET name=$1,type=$2, modified_date=$3
-      WHERE id=$4 returning *`;
+      SET name=$1 
+      WHERE id=$2 returning *`;
     try {
-      const { rows } = await db.query(findOneQuery, [req.params.id, req.user.id]);
+      const { rows } = await db.query(findOneQuery, [req.params.id]);
       if(!rows[0]) {
         return res.status(404).send({'message': 'Party not found'});
       }
       const values = [
         req.body.name || rows[0].name,
-        req.body.type || rows[0].type,
-        moment(new Date()),
         req.params.id,
       ];
+      console.log(values);
       const response = await db.query(updateOneQuery, values);
       return res.status(200).send(response.rows[0]);
     } catch(err) {
+      console.log(err)
       return res.status(400).send(err);
     }
   }
