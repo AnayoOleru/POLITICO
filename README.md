@@ -95,4 +95,5 @@ https://trustpolitico.herokuapp.com/api/v1/
 | **POST** | /offices/ | create a political office |
 | **GET** | /offices/ | fetch all political offices records |
 | **GET** | /offices/:office-id | fetch all political records |
-| - | -|  -|
+| **POST** | /auth/signup |  user could signup |
+| **POST** | /auth/login |  user could login |
