@@ -27,12 +27,13 @@ app.get('/api/v1', (req, res) => res.status(200).send({
 // admin: create, edit
 app.post('/api/v1/parties', token.verifyToken, partyCtr.create);
 app.put('/api/v1/party/:id/name', token.verifyToken, partyCtr.update);
+app.delete('/api/v1/party/:id', token.verifyToken, partyCtr.delete);
 // user
 
 app.get('/api/v1/parties/:partyId', token.verifyToken, partyCtr.getAParty);
 app.get('/api/v1/parties', token.verifyToken, partyCtr.getParties);
 
-app.delete('/api/v1/party/:id', partyCtr.delete);
+
 app.post('/api/v1/office', token.verifyToken, Office.create);
 app.get('/api/v1/office', token.verifyToken, Office.getAllOffices);
 app.get('/api/v1/office/:officeId', token.verifyToken, Office.getOneOffice);
