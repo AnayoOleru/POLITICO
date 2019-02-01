@@ -1,7 +1,6 @@
 import { json, urlencoded } from 'body-parser';
 import express from 'express';
 import Office from './src/controllers/officeCtr';
-import verifyAdmin from './helper/verifyAdmin';
 import userCtr from './src/controllers/userCtr';
 import partyCtr from './src/controllers/partyCtr';
 import token from './helper/tokenAuth';
