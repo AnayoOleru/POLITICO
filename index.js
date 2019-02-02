@@ -33,6 +33,14 @@ app.get('/api/v1/parties', token.verifyToken, partyCtr.getParties);
 app.get('/api/v1/parties/:id', token.verifyToken, partyCtr.getAParty);
 app.get('/api/v1/office', token.verifyToken, Office.getAllOffices);
 app.get('/api/v1/office/:id', token.verifyToken, Office.getOneOffice);
+// app.post('/office/<user-id>/register', token.verifyToken, Office.register);
+
+// candidate
+// app.post('/api/v1/votes', token.verifyToken, candidate.vote);
+
+// vote
+// app.get('/api/v1/office/<office-id>result', token.verifyToken, election.result);
+
 // 
 // user login
 app.post('/api/v1/auth/signup', userCtr.createUser);
@@ -43,8 +51,6 @@ app.get('/', (req, res) => res.status(200).send({
   "message": 'Welcome to POLITICO'
 }));
 
-// app.listen(3000)
-// console.log('app running on port ', 3000);
 app.listen(port, () => {
   console.log(`app is running on port ${port}`);
 });

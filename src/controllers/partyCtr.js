@@ -73,7 +73,10 @@ class Party{
       if(!rows[0]) {
         return res.status(404).send({"error": "Party not found"});
       }
-      console.log(rows[0])
+      // if(req.body.params !== rows[0].id){
+      //   return res.status(404).send({"error": "Your id is wrong"});
+      // }
+      console.log(rows[0].id)
       return res.status(200).send(rows[0]);
     } catch(error) {
       console.log(error)
