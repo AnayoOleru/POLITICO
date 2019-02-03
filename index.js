@@ -33,7 +33,7 @@ app.get('/api/v1/parties', token.verifyToken, partyCtr.getParties);
 app.get('/api/v1/parties/:id', token.verifyToken, partyCtr.getAParty);
 app.get('/api/v1/office', token.verifyToken, Office.getAllOffices);
 app.get('/api/v1/office/:id', token.verifyToken, Office.getOneOffice);
-// app.post('/office/<user-id>/register', token.verifyToken, Office.register);
+app.post('/office/<user-id>/register', token.verifyToken, Office.register);
 
 // candidate
 // app.post('/api/v1/votes', token.verifyToken, candidate.vote);

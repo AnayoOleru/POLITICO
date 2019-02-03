@@ -23,7 +23,8 @@
     "db-officerefresh": "npm run db-officedrop && npm run db-officecreate",
     "db-cancreate": "node ./databaseTables/candidatesTables createCanTables",
     "db-candrop": "node ./databaseTables/candidatesTables dropCanTables",
-    "db-canrefresh": "npm run db-candrop && npm run db-cancreate"
+    "db-canrefresh": "npm run db-candrop && npm run db-cancreate",
+    "candidate": "node ./databaseTables/candidatesTables"
 
   },
   "repository": {

@@ -14,16 +14,18 @@ pool.on('connect', () => {
 /**
  * Create user Tables
  */
-const createCanTables = () => {
+const createCand = () => {
   const queryText =
-    `CREATE TABLE IF NOT EXISTS
-      candidates(
-        id UUID PRIMARY KEY NOT NULL,
-        office UUID PRIMARY KEY NOT NULL,
-        party UUID PRIMARY KEY NOT NULL,
-        candidate UUID PRIMARY KEY NOT NULL,
-        registered_date TIMESTAMP
-      )`;
+  `CREATE TABLE IF NOT EXISTS candidates(
+    id UUID UNIQUE NOT NULL,
+    office UUID NOT NULL,
+    party UUID NOT NULL,
+    candidate UUID NOT NULL,
+    FOREIGN KEY (office) REFERENCES office (id) ON DELETE CASCADE,
+    FOREIGN KEY (party) REFERENCES party (id) ON DELETE CASCADE,
+    FOREIGN KEY (candidate) REFERENCES users (id) ON DELETE CASCADE,
+    PRIMARY KEY (office, candidate)
+  )`;
 
   pool.query(queryText)
     .then((res) => {
@@ -35,31 +37,7 @@ const createCanTables = () => {
       pool.end();
     });
 }
-
-/**
- * Drop Tables
- */
-const dropCanTables = () => {
-  const queryText = 'DROP TABLE IF EXISTS candidates';
-  pool.query(queryText)
-    .then((res) => {
-      console.log(res);
-      pool.end();
-    })
-    .catch((err) => {
-      console.log(err);
-      pool.end();
-    });
-}
-
-pool.on('remove', () => {
-  console.log('Table rcreation exited');
-  process.exit(0);
-});
-
-module.exports = {
-  createCanTables,
-  dropCanTables
-};
+module.exports = createCand;
 
 require('make-runnable');
+

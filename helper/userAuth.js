@@ -1,5 +1,8 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const userAuthHelper = {
   /**
@@ -95,14 +98,12 @@ const userAuthHelper = {
    * @param {string} id
    * @returns {string} token
    */
-  generateToken(id, isAdmin) {
-    const token = jwt.sign({
-      userId: id,
-      isAdmin
-    },
+  generateToken(userToken) {
+    const appToken = jwt.sign(
+      userToken,
       process.env.SECRET, { expiresIn: '7d' }
     );
-    return token;
+    return appToken;
   }
 }
 

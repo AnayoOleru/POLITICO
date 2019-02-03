@@ -2,6 +2,7 @@ import moment from 'moment';
 import uuidv4 from 'uuid/v4';
 import officeDb from '../db/officedb';
 import db from '../../databaseTables/dbconnect';
+// import Query from '../../helper/query'
 // import PartyModel from '../models/party';
 
 
@@ -15,13 +16,6 @@ class Office{
   
 
   static async create(req, res) {
-    const { isAdmin } = req.user;
-        if (isAdmin) {
-          return res.status(403).json({
-            "status": 403,
-            "message": "Access denied, you don't have the required credentials to access this route",
-          });
-        }
     const createQuery = `INSERT INTO
       office(id, name, type, created_date)
       VALUES($1, $2, $3, $4)
@@ -77,7 +71,7 @@ static async getAllOffices(req, res){
 }
 
   /**
-   * User fetch specific office
+    * User fetch specific office
    * @param {uuid} id
    * @param {Object} res - request object
    * @returns {array} - returns specific party
@@ -99,5 +93,30 @@ static async getAllOffices(req, res){
       return res.status(400).send(error)
     }
   }
+
+//   static async register(req, res) {
+//     const id = Number(req.params.id);
+//     const result = await Query.register([req.body.office, req.body.party, id]);
+//     if (result.rows) {
+//       return res.status(201).send({
+//         status: 201,
+//         data: [result.rows],
+//       });
+//     }
+//     let error = '';
+//     if (result.constraint.includes('pkey')) {
+//       error = 'Candidate already registered for this office';
+//       return res.status(409).send({
+//         status: 409,
+//         error,
+//       });
+//     }
+//     if (result.constraint.includes('party')) error = 'Party ID does not exist.';
+//     if (result.constraint.includes('office')) error = 'Office ID does not exist.';
+//     return res.status(404).send({
+//       status: 404,
+//       error,
+//     });
+// }
 }
 export default Office;

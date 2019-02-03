@@ -21,13 +21,13 @@ class Party{
         "error": "Some values are missing" 
     });
     }
-    const { isAdmin } = req.user;
-        if (isAdmin) {
-          return res.status(403).json({
-            status: 403,
-            message: "Access denied, you don't have the required credentials to access this route",
-          });
-        }
+    // const { isAdmin } = req.user;
+    //     if (isAdmin) {
+    //       return res.status(403).json({
+    //         status: 403,
+    //         message: "Access denied, you don't have the required credentials to access this route",
+    //       });
+    //     }
     const createQuery = `INSERT INTO
       party(id, name, hqaddress, logoUrl, created_date)
       VALUES($1, $2, $3, $4, $5)
@@ -128,11 +128,9 @@ class Party{
         req.body.name || rows[0].name,
         req.params.id,
       ];
-      console.log(values);
       const response = await db.query(updateOneQuery, values);
       return res.status(200).send(response.rows[0]);
     } catch(err) {
-      console.log(err)
       return res.status(400).send(err);
     }
   }
@@ -146,6 +144,7 @@ class Party{
     const deleteQuery = 'DELETE FROM party WHERE id=$1 returning *';
     try {
       const { rows } = await db.query(deleteQuery, req.params.id);
+      
       if(!rows[0]) {
         return res.status(404).send({'message': 'party not found'});
       }
@@ -153,6 +152,7 @@ class Party{
         "data": "deleted" 
       });
     } catch(error) {
+      console.log(error);
       return res.status(400).send(error);
     }
   }

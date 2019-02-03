@@ -59,6 +59,8 @@ const User = {
         });
       }
 
+
+
     const hashPassword = userAuthHelper.hashPassword(req.body.password);
 
     const createQuery = `INSERT INTO
@@ -83,7 +85,10 @@ const User = {
 
     try {
       const { rows } = await db.query(createQuery, values);
-      const token = userAuthHelper.generateToken(rows[0].id);
+      const userToken = { id: rows[0].id,  isAdmin: rows[0].isadmin }
+      
+      const token = userAuthHelper.generateToken(userToken);
+     
       return res.status(201).header('x-auth-token', token).json({
         status: 201,
         data: [{
@@ -140,7 +145,10 @@ const User = {
           "error": "The credentials you provided is incorrect" 
         });
       }
-      const token = userAuthHelper.generateToken(rows[0].id);
+      const userToken = { id: rows[0].id,  isAdmin: rows[0].isadmin }
+
+      const token = userAuthHelper.generateToken(userToken);
+
       console.log(token);
       return res.status(200).send({
         "status": 201,
@@ -150,6 +158,7 @@ const User = {
         }], 
       })
     } catch(error) {
+      console.log(error)
       return res.status(400).send({
         "status": 404,
         "error": error
