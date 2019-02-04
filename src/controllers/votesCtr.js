@@ -48,7 +48,6 @@ class Votes{
           "Created_by": "type in your id",
           "office": "type your office id",
           "candidate": "candidate id"
-        
       })
     }
   }
