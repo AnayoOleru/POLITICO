@@ -2,6 +2,7 @@ import moment from 'moment';
 import uuidv4 from 'uuid/v4';
 import officeDb from '../db/officedb';
 import db from '../../databaseTables/dbconnect';
+import userAuth  from '../../helper/userAuth';
 // import Query from '../../helper/query'
 // import PartyModel from '../models/party';
 
@@ -94,29 +95,48 @@ static async getAllOffices(req, res){
     }
   }
 
-//   static async register(req, res) {
-//     const id = Number(req.params.id);
-//     const result = await Query.register([req.body.office, req.body.party, id]);
-//     if (result.rows) {
-//       return res.status(201).send({
-//         status: 201,
-//         data: [result.rows],
-//       });
-//     }
-//     let error = '';
-//     if (result.constraint.includes('pkey')) {
-//       error = 'Candidate already registered for this office';
-//       return res.status(409).send({
-//         status: 409,
-//         error,
-//       });
-//     }
-//     if (result.constraint.includes('party')) error = 'Party ID does not exist.';
-//     if (result.constraint.includes('office')) error = 'Office ID does not exist.';
-//     return res.status(404).send({
-//       status: 404,
-//       error,
-//     });
-// }
+   /**
+   *
+   * @param {*} request
+   * @param {*} response
+   * @return promise;
+   */
+  static async officeResult(req, res) {
+    let  { officeid } = req.params;
+    let text = 'SELECT * FROM office WHERE id = $1';
+    let { rows } = await db.query(text, [officeid]);
+
+    if(!rows[0]) {
+      return res.status(404).send({
+        "status": 404,
+        "error": "Office not found"
+      });
+    }
+console.log(officeid)
+  let text2 = 'SELECT candidate, COUNT(candidate) FROM votes WHERE office = $1 GROUP BY candidate';
+ let row = await db.query(text2, [officeid]);
+ console.log(rows);
+  const pollResult = [];
+  for(let i = 0; i < row.rows.length; i++) {
+    const singleResult = {
+      "office": officeid,
+      "candidate": row.rows[i].candidate,
+      "result": Number(row.rows[i].count),
+    };
+    
+    pollResult.push(singleResult);
+  }
+  const response = {
+    "status": 200,
+    "data": pollResult 
+  };
+  console.log(response);
+  return res.status(200).send(response);
+  } catch(error) {
+    return res.status(500).send({
+      "status": 500,
+      "error": "Try again, there was an error"
+    })
+   }
 }
 export default Office;

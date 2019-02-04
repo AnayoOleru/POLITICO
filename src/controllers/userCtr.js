@@ -100,8 +100,8 @@ const User = {
       console.log(error);
       if (error.routine === '_bt_check_unique') {
         
-        return res.status(400).send({ 
-            "data": 400,
+        return res.status(404).send({ 
+            "data": 404,
             "message": "User with that EMAIL already exist" 
     })
       }

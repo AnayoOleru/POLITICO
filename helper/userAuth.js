@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import db from '../databaseTables/dbconnect';
 
 dotenv.config();
 
@@ -63,7 +64,7 @@ const userAuthHelper = {
 	 * @returns boolean
 	 */
   isInt(string) {
-    return (/^[0-9]+$/i.test(string));
+    return string ? (/^[0-9]+$/i.test(string)) : false;
   },
   /**
    * @description check if string is url
@@ -93,6 +94,23 @@ const userAuthHelper = {
       if(password.includes(' ')) return false;
       return true;
   },
+   /**
+   * iswhitespace helper method
+   * @param {string} email
+   * @param {string} password
+   * @returns {Boolean} True or False 
+   */
+  async validateUserId(req, res, next) {
+    const text = 'SELECT * FROM users WHERE id = $1';
+      const { rows } = await db.query(text, [req.params.id]);
+      if(!rows) {
+        return res.status(404).send({
+          "status": 404,
+          "error": "UserId not found"
+        });
+      }
+      next();
+},
   /**
    * Gnerate Token
    * @param {string} id

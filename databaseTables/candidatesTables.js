@@ -17,7 +17,7 @@ pool.on('connect', () => {
 const createCand = () => {
   const queryText =
   `CREATE TABLE IF NOT EXISTS candidates(
-    id UUID UNIQUE NOT NULL,
+    candidateId UUID UNIQUE NOT NULL,
     office UUID NOT NULL,
     party UUID NOT NULL,
     candidate UUID NOT NULL,
@@ -37,7 +37,32 @@ const createCand = () => {
       pool.end();
     });
 }
-module.exports = createCand;
+
+
+/**
+ * Drop Tables
+ */
+const dropCand = () => {
+  const queryText = 'DROP TABLE IF EXISTS candidates';
+  pool.query(queryText)
+    .then((res) => {
+      console.log(res);
+      pool.end();
+    })
+    .catch((err) => {
+      console.log(err);
+      pool.end();
+    });
+}
+
+pool.on('remove', () => {
+  console.log('Table creation exited');
+  process.exit(0);
+});
+module.exports = {
+  createCand,
+  dropCand
+};
 
 require('make-runnable');
 

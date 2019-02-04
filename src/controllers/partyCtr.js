@@ -18,7 +18,12 @@ class Party{
     if(!req.body.name || !req.body.hqaddress || !req.body.logoUrl){
       return res.status(400).send({ 
         "status": 400, 
-        "error": "Some values are missing" 
+        "error": [{
+          "message": "Some values are missing",
+          "name": "e.g APC",
+          "hqaddress": "address",
+          "logoUrl": "candidate's id" 
+  }] 
     });
     }
     // const { isAdmin } = req.user;
