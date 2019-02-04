@@ -83,26 +83,6 @@ https://trustpolitico.herokuapp.com/api/v1/
     npm run test
 ```
 
-### Application Endpoints
-
-| HTTP Request | End Point | Functionality |
-| -------------| -----------| ----------- |
-| **POST** | /parties | Create a political party |
-| **GET** | /parties/:party-id | fetch a specific party |
-| **GET** | /parties| fetch all political parties records |
-| **PATCH** | /parties/:party-id/name |  edit the name of a specific political party |
-| **DELETE** | /parties/:party-id | Delete a specific political party |
-| **POST** | /offices/ | create a political office |
-| **GET** | /offices/ | fetch all political offices records |
-| **GET** | /offices/:office-id | fetch all political records |
-| **POST** | /auth/signup |  user could signup |
-| **POST** | /auth/login |  user could login |
-
-
-
-
-
-
 ## API Usage
 
 API BASE URL https://trustpolitico.herokuapp.com/api/v1/. It's recommended to attach a `authorization` Header containing the generated `token` from `/api/auth/login` to all requests.
