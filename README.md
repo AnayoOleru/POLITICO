@@ -101,7 +101,7 @@ API BASE URL https://trustpolitico.herokuapp.com/api/v1/. It's recommended to at
 ### Office endpoints `/api/v1/office`
 
 | method | route            | description          | data                            |
-| ------ | ---------------- | -------------------- | ------------------------------- |           |
+| ------ | ---------------- | -------------------- | ------------------------------- |
 | POST   | /offices/         | Create a political office | `{type, name}` |
 | GET    | /offices/ | Fetch all political parties records         |
 | GET    | /offices/:officeid | Fetch a specific office     |
