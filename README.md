@@ -97,3 +97,57 @@ https://trustpolitico.herokuapp.com/api/v1/
 | **GET** | /offices/:office-id | fetch all political records |
 | **POST** | /auth/signup |  user could signup |
 | **POST** | /auth/login |  user could login |
+
+
+
+
+
+
+## API Usage
+
+API BASE URL https://trustpolitico.herokuapp.com/api/v1/. It's recommended to attach a `authorization` Header containing the generated `token` from `/api/auth/login` to all requests.
+
+
+### Parties endpoints `/api/v1/parties`
+
+| method | route          | description             | data                                 |
+| ------ | -------------- | ----------------------- | ------------------------------------ |
+| GET    | /parties         | Get all politcal parties      |
+| GET    | /parties/:partyid | Get a specific political party record          |
+| POST   | /parties         | Create/Add parties    | `{name, hqaddress, logoUrl}` |
+| PATCH   | /parties/:partyid | Edit the name of a specific political party        |
+| DELETE | /parties/:partyid | Delete a specific political party |
+
+### Office endpoints `/api/v1/office`
+
+| method | route            | description          | data                            |
+| ------ | ---------------- | -------------------- | ------------------------------- |           |
+| POST   | /offices/         | Create a political office | `{type, name}` |
+| GET    | /offices/ | Fetch all political parties records         |
+| GET    | /offices/:officeid | Fetch a specific office     |
+| POST | /office/:userid/register  | Register a user as a candidate  | `{office, prt}`
+| GET | /office/:officeid/result  | Collate and fetch the result of specicific office  |
+
+### Authentication endpoints `/api/v1/auth`
+
+| method | route        | description               | data                      |
+| ------ | ------------ | ------------------------- | ------------------------- |
+| POST   | /auth/login  | Sign In                   | `{email, password}`       |
+| POST   | /auth/signup | Sign up or create account | `{firstname, lastname, othername, email, phonenumber, passportUrl, password}` |
+
+### Authentication endpoints `/api/v1/votes`
+
+| method | route        | description               | data                      |
+| ------ | ------------ | ------------------------- | ------------------------- |
+| POST   | /votes  | Vote for a candidate                   | `{created_by, office, candidate}`       |
+
+
+```javascript
+
+// login as admin
+{
+  email: "anayokyle@gmail.com",
+  password: "anayokyleoleru"
+}
+```
+
