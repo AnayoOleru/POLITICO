@@ -15,7 +15,7 @@ class Votes{
    * @returns {array} - returns all key value pairs as object in array
    */
   static async votes(req, res) {
-    const { created_by, office, candidate } = req.body;
+    // const { created_by, office, candidate } = req.body;
 
     const createQuery = `INSERT INTO
       votes(id, created_on, created_by, office, candidate)
@@ -47,9 +47,10 @@ class Votes{
           "message": "You can't vote twice for this office or there was an error with your inputs",
           "Created_by": "type in your id",
           "office": "type your office id",
-          "candidate": "candidate id"
+          "candidate": "candidate"
+        }]
       })
-    }
+     }
   }
- }
+}
 export default Votes; 

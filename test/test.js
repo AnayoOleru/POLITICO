@@ -12,7 +12,8 @@ import chaiHttp from 'chai-http';
 import app from '../index';
 import {goodSignup, badSignup, badSignup2, badSignup3, badLogin, 
   badLogin2, badLogin3, isEmail, badTestParty, badTestParty2, 
-  badTestParty3, badTestParty4, offices, offices2, offices3 } from './inputField'
+  badTestParty3, badTestParty4, offices, offices2, offices3, vote1,
+vote2, vote3 } from './inputField'
 
 chai.use(chaiHttp);
 const { expect } = chai;
@@ -338,6 +339,54 @@ describe('Post \'/api/v1\'', () => {
         expect(err).to.be.null;
         expect(res).to.have.headers;
         expect(res).to.have.status(400);
+        expect(res).to.not.redirect;
+        expect(res.body).to.be.an('object');
+        done();
+      });
+  });
+});
+
+describe('Post \'/api/v1\'', () => {
+  it('POST vote for a candidate', (done) => { // WHEN EMAIL IS INCORRECTLY LAID
+    chai.request(app)
+      .post('/api/v1/vote')
+      .send(vote1)
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res).to.have.headers;
+        expect(res).to.have.status(404);
+        expect(res).to.not.redirect;
+        expect(res.body).to.be.an('object');
+        done();
+      });
+  });
+});
+
+describe('Post \'/api/v1\'', () => {
+  it('POST vote for a candidate', (done) => { // WHEN EMAIL IS INCORRECTLY LAID
+    chai.request(app)
+      .post('/api/v1/vote')
+      .send(vote2)
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res).to.have.headers;
+        expect(res).to.have.status(404);
+        expect(res).to.not.redirect;
+        expect(res.body).to.be.an('object');
+        done();
+      });
+  });
+});
+
+describe('Post \'/api/v1\'', () => {
+  it('POST vote for a candidate', (done) => { // WHEN EMAIL IS INCORRECTLY LAID
+    chai.request(app)
+      .post('/api/v1/vote')
+      .send(vote3)
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res).to.have.headers;
+        expect(res).to.have.status(404);
         expect(res).to.not.redirect;
         expect(res.body).to.be.an('object');
         done();

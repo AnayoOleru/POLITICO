@@ -109,8 +109,29 @@ const offices3 ={
     type: 'Federal',
     name: ''
 };
+
+const vote1 = {
+        created_by: " ",
+        office: "2643e397-4cf7-4968-89d5-96059bfd0ea6",
+        candidate: "ac0a889d-57d2-4477-805a-80cb22cf1b3c"
+}
+
+const vote2 = {
+    created_by: "4bdc719e-22c2-4fcc-a085-a51be56f34e9",
+    office: " ",
+    candidate: "ac0a889d-57d2-4477-805a-80cb22cf1b3c"
+}
+
+const vote3 = {
+    created_by: "4bdc719e-22c2-4fcc-a085-a51be56f34e9",
+    office: "2643e397-4cf7-4968-89d5-96059bfd0ea6",
+    candidate: ""
+}
+
+
 export {
     goodSignup, goodLogin, badSignup, badSignup2, badSignup3, badLogin, badLogin2, badLogin3, isEmail, testParty, badTestParty,
-    badTestParty2, badTestParty3, badTestParty4, offices, offices2, offices3 
+    badTestParty2, badTestParty3, badTestParty4, offices, offices2, offices3,
+    vote1, vote2, vote3
 };
 
