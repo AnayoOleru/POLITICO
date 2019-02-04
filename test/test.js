@@ -13,7 +13,7 @@ import app from '../index';
 import {goodSignup, badSignup, badSignup2, badSignup3, badLogin, 
   badLogin2, badLogin3, isEmail, badTestParty, badTestParty2, 
   badTestParty3, badTestParty4, offices, offices2, offices3, vote1,
-vote2, vote3 } from './inputField'
+vote2, vote3, candidate1, candidate2, candidate3 } from './inputField'
 
 chai.use(chaiHttp);
 const { expect } = chai;
@@ -383,6 +383,54 @@ describe('Post \'/api/v1\'', () => {
     chai.request(app)
       .post('/api/v1/vote')
       .send(vote3)
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res).to.have.headers;
+        expect(res).to.have.status(404);
+        expect(res).to.not.redirect;
+        expect(res.body).to.be.an('object');
+        done();
+      });
+  });
+});
+
+describe('Post \'/api/v1\'', () => {
+  it('POST register a candidate', (done) => { // WHEN EMAIL IS INCORRECTLY LAID
+    chai.request(app)
+      .post('/api/v1/:officeid/register')
+      .send(candidate1)
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res).to.have.headers;
+        expect(res).to.have.status(404);
+        expect(res).to.not.redirect;
+        expect(res.body).to.be.an('object');
+        done();
+      });
+  });
+});
+
+describe('Post \'/api/v1\'', () => {
+  it('POST register a candidate', (done) => { // WHEN EMAIL IS INCORRECTLY LAID
+    chai.request(app)
+      .post('/api/v1/:officeid/register')
+      .send(candidate2)
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res).to.have.headers;
+        expect(res).to.have.status(404);
+        expect(res).to.not.redirect;
+        expect(res.body).to.be.an('object');
+        done();
+      });
+  });
+});
+
+describe('Post \'/api/v1\'', () => {
+  it('POST register a candidate', (done) => { // WHEN EMAIL IS INCORRECTLY LAID
+    chai.request(app)
+      .post('/api/v1/:officeid/register')
+      .send(candidate3)
       .end((err, res) => {
         expect(err).to.be.null;
         expect(res).to.have.headers;

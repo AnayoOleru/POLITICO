@@ -128,10 +128,28 @@ const vote3 = {
     candidate: ""
 }
 
+const candidate1 = {
+    office: "",
+    party: "8356151d-acaf-40d6-9cd8-4207e386108e",
+    candidate: "ac0a889d-57d2-4477-805a-80cb22cf1b3c"
+}
+
+const candidate2 = {
+    office: "2643e397-4cf7-4968-89d5-96059bfd0ea6",
+    party: "",
+    candidate: "ac0a889d-57d2-4477-805a-80cb22cf1b3c"
+}
+
+const candidate3 = {
+    office: "2643e397-4cf7-4968-89d5-96059bfd0ea6",
+    party: "8356151d-acaf-40d6-9cd8-4207e386108e",
+    candidate: ""
+}
+
 
 export {
     goodSignup, goodLogin, badSignup, badSignup2, badSignup3, badLogin, badLogin2, badLogin3, isEmail, testParty, badTestParty,
     badTestParty2, badTestParty3, badTestParty4, offices, offices2, offices3,
-    vote1, vote2, vote3
+    vote1, vote2, vote3, candidate1, candidate2, candidate3
 };
 
