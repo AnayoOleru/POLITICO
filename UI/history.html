@@ -15,7 +15,7 @@
                 <a href="#" class="closebtn" onclick="closeNav()"><i class="fa fa-chevron-circle-right"></i></a>
                 <img style="width: 80px; padding-left: 30px;" src="images/userimg.png">
                 <h1 style="padding-left: 30px; color: #ffffff;">User</h1>
-                <a href="index.html"><span>Home</span></a>
+                <a href="../index.html"><span>Home</span></a>
                 <a href="parties.html"><i class="far fa-handshake"></i><span>Parties</span></a>
                 <a href="candidates.html"><i class="fas fa-users"></i><span>Candidates</span></a>
                 <a class="active" href="history.html"><i class="fas fa-box-open"></i><span>History</span></a>
@@ -24,31 +24,65 @@
             <div class="nav">
             <span style="font-size:30px;cursor:pointer;height: 30px;" class="openbutton" onclick="openNav()"><i class="fas fa-align-justify"></i></span>
     
-                    <div class="logo">POLITICO</div>
+            <a class="logo" href="../index.html">POLITICO</a>
+                        <!-- <div class="logo">POLITICO</div> -->
                     <ul> 
                         <li><a href="#" class="active">Username</a></li>
                     </ul>
-            </div> 
-            <h1 class="title">President<br>Vice-president</h1>
-        <div class="container">
-                <div class="box box2">
-                                <img class="img" src="images/PDP.png">
-                                <p class="people">Atiku Abubakar</p>
-                                <p class="people">Peter Obi</p>
-                                <button class="vote">Voted</button>
-                </div>
-        </div>
+            </div>
+        
+        <table id="t01">
+                        <caption class="header"><b>History</b></caption>
+                        <thead>
+                          <tr id="header">
+                            <th>Level</th>
+                            <th>Politician</th>
+                            <th>Second name</th>
+                            <th>Political party</th>
+                            <th>Office</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td data-th="Level:">Federal</td>
+                            <td data-th="Politician:">Atiku</td>
+                            <td data-th="other:">Abubakar</td>
+                            <td data-th="Party:">PDP</td>
+                            <td data-th="Office:">President</td>
+                            <td><button>Clear</button></td>
+      
+                          </tr>
+                          
+                          <tr>
+                            <td data-th="Level:">Federal</td>
+                            <td data-th="Politician:">Saraki</td>
+                            <td data-th="other:">Muhammed</td>
+                            <td data-th="Party:">PDP</td>
+                            <td data-th="Office:">Senate President</td>
+                            <td><button>Clear</button></td>
+                          </tr>
+                          <tr>
+                            <td data-th="Level:">State</td>
+                            <td data-th="Politician:">Agbaje</td>
+                            <td data-th="other:">Jimi</td>
+                            <td data-th="Party:">PDP</td>
+                            <td data-th="Office:">Governor</td>
+                            <td><button>Clear</button></td>
+                            </tr>
+                            <tr>
+                            <td data-th="Level:">State</td>
+                            <td data-th="Politician:">John</td>
+                            <td data-th="other:">Amos</td>
+                            <td data-th="Party:">SDC</td>
+                            <td data-th="Office:">LGA chairman Ojo</td>
+                            <td><button>Clear</button></td>
+                            </tr>
+                  
+                        </tbody>
+                      </table>
 
 
-        <h1 class="title">Senate</h1>
-        <div class="container">
-                <div class="box box6">
-                                <img class="img" src="images/PDP.png" alt="SDC">
-                                <p class="people">Philip</p>
-                                <button class="vote">Voted</button>
-                </div>
-        </div>
-                
             </div>
             <script src="scripts/history.js"></script>
 </body>

@@ -57,7 +57,6 @@ body{
     left: 0;
     background-color: rgb(10, 65, 86);
     overflow-x: hidden;
-    transition: 0.5s;
     padding-top: 60px;
 }
 
@@ -257,7 +256,8 @@ body{
         font-size: 20px;
         padding-top:3px;
         height: 40px;
-        width: 40%;;
+        width: 30%;
+        border-radius: 10px;
     }
     .modal form input[type="submit"]:hover{
         background-color: rgb(6, 38, 51);
@@ -317,7 +317,8 @@ body{
         font-size: 25px;
         padding-top:3px;
         height: 40px;
-        width: 40%;
+        width: 30%;
+        border-radius: 10px;
     }
     .modal1 form input[type="submit"]:hover{
         background-color: rgb(6, 38, 51);
@@ -338,7 +339,7 @@ body{
         top:0;
         z-index:1;
         width: 50%;
-        height: 250px;
+        height: 190px;
         display: none;
     }
     .modal2 button{
@@ -351,6 +352,7 @@ body{
         width: 150px;
         margin:20px;
         padding:0px;
+        border-radius: 10px;
     }
     .modal2 button:hover{
         background-color:rgb(5, 34, 46);
@@ -363,12 +365,16 @@ body{
     }
 
     @media screen and (max-width: 768px){
+.nav{
+    position: absolute;
+}
+
         .nav ul li a {
             display: none;
         }
         .modal{
             position: absolute;
-            margin-top:25%;
+            margin-top:60%;
             margin-left: 5%;
             background-color:rgb(10, 65, 86);
             border: solid #ffffff 2px;
@@ -378,18 +384,18 @@ body{
             top:0;
             z-index:1;
             width: 90%;
-            height: 250px;
+            height: 260px;
             display: none;
         }
         .modal form input[type="submit"]{
-            font-size: 4vh;
+            font-size: 3vh;
             padding-top:3px;
             height: 40px;
             width: 30%;;
         }
         .modal1{
             position: absolute;
-            margin-top:25%;
+            margin-top:60%;
             margin-left: 5%;
             background-color:rgb(10, 65, 86);
             border: solid #ffffff 2px;
@@ -399,18 +405,18 @@ body{
             top:0;
             z-index:1;
             width: 90%;
-            height: 250px;
+            height: 260px;
             display: none;
         }
         .modal1 form input[type="submit"]{
-            font-size: 4vh;
+            font-size: 3vh;
             padding-top:3px;
             height: 40px;
             width: 30%;;
         }
         .modal2{
             position: absolute;
-            margin-top:25%;
+            margin-top:60%;
             margin-left: 5%;
             background-color:rgb(10, 65, 86);
             border: solid #ffffff 2px;
@@ -431,10 +437,11 @@ body{
             bottom: 20px;
             left: 60px;
             text-align: center;
-            font-size: 25px;
+            font-size: 20px;
             height: 40px;
-            width: 150px;
-            margin:20px;
+            width: 50%;
+            margin:18px;
             padding:0px;
+
         }
     }

@@ -10,12 +10,12 @@
     <link rel="icon" type="image/ico" href="../images/pogo.png"/>
     <meta name="Description" content="Politico - Builds trust through transparency">
 </head>
-<body>
+<body id="blur">
         <div id="mySidenav" class="sidenav">
                 <a href="#" class="closebtn" onclick="closeNav()"><i class="fa fa-chevron-circle-right"></i></a>
                 <img style="width: 80px; padding-left: 30px;" src="../images/userimg.png">
                 <h1 style="padding-left: 30px; color: #ffffff;">Admin</h1>
-                <a href="../index.html"><span>Home</span></a>
+                <a href="../../index.html"><span>Home</span></a>
                 <a href="addparties.html"><i class="far fa-handshake"></i><span>Parties</span></a>
                 <a class="active" href="govOffice.html"><i class="fas fa-building"></i><span>Office</span></a>
                 <a href="#"><i class="fas fa-sign-out-alt"></i><span>Sign out</span></a>
@@ -24,40 +24,69 @@
             <span style="font-size:30px;cursor:pointer;height: 30px;" class="openbutton" onclick="openNav()"><i class="fas fa-align-justify"></i></span>
     
                     <!-- <img src="images/pogo.png"> -->
-                    <div class="logo">POLITICO</div>
+                    <!-- <div class="logo">POLITICO</div> -->
+                    <a class="logo" href="../../index.html">POLITICO</a>
                     <ul>
                         <li><a href="#" class="active">Username</a></li>
                     </ul>
             </div> 
 
-            <div class="office">
-            <p class="type">Federal</p>
-            <h1 class="name">President and <br>Vice-President</h1>
-            </div>
-            <hr>
-            <div class="office">
-                    <p class="type">Federal</p>      
-                    <h1 class="name">Senate</h1>
-                </div>
-                <hr>
+            
 
-            <div class="office">
+            <h1 class="title">Add Office</h1>
+            <div class="container">
+                <div class="box box1">
+                    <p class="type">Federal</p>
+                        <p class="people">President <br>Vice-president</p>
+                </div>
+                <div class="box box2">
+                        <p class="type">State</p>
+                                <p class="people">Governor of<br> Lagos</p>
+                </div>
+
+        <div class="box box2">
                 <p class="type">State</p>
-        <h1 class="name">Governor of Lagos</h1>
-            </div>
+                <p class="people">Senate<br>President</p>
+</div>
+<div class="box box2">
+        <p class="type">State</p>
+        <p class="people">Governor of<br>Port-Harcourt</p>
+</div>
+<div class="box box2">
+        <p class="type">State</p>
+        <p class="people">Governor of<br>Imo</p>
+</div>
+<div class="box box2">
+        <p class="type">Federal</p>
+        <p class="people">Senate<br>Minister</p>
+</div>
+<div class="box box2">
+        <p class="type">State</p>
+        <p class="people">Governor of<br>Enugu</p>
+</div>
+<div class="box box2">
+        <p class="type">State</p>
+        <p class="people">Governor of<br>Ogun state</p>
+</div>
+<!-- <div class="box box2">
+        <p class="type">State</p>
+        <p class="people">Governor of<br>Kaduna</p>
+</div> -->
+</div>
 
 
             
-
             <div class="modal" id="openmodal">
                 <form>
                     <h1>Add Political office</h1>
                     <input type="text" placeholder="type e.g State">
                     <input type="text" placeholder="name e.g Minister">
                     <br>
-                    <input type="submit" onclick="closeAdd()">
+                    <input type="submit" value="Cancel" onclick="closeAdd()">
+                    <input type="submit">
                 </form>
             </div>
+
 
             <button class="add" onclick="openAdd()">Add</button>
             <script src="../scripts/govOffice.js"></script>

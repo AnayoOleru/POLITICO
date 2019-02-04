@@ -4,7 +4,7 @@
 body{
     margin:0;
     padding: 0;
-    background-color: rgb(196, 197, 197);
+    background-color: rgb(255, 255, 255);
 }
 
 .nav{
@@ -16,7 +16,7 @@ body{
     padding: 0 100px;
     background-color: rgb(10, 65, 86);
     box-sizing:border-box;
-    transition: .3s;
+    /* transition: .3s; */
 }
 .nav ul{
     list-style: none;
@@ -57,7 +57,7 @@ body{
     left: 0;
     background-color: rgb(10, 65, 86);
     overflow-x: hidden;
-    transition: 0.5s;
+    transition: 0s;
     padding-top: 60px;
 }
 
@@ -72,7 +72,7 @@ body{
     font-size: 25px;
     color: #ffffff;
     display: block;
-    transition: 0.3s;
+    /* transition: 0.3s; */
 }
 
 .sidenav a:hover {
@@ -119,7 +119,7 @@ body{
       }
 
       .img{
-          width: 40px;
+          width: 10%;
           height: 35px;
           padding-top:10px;
       }
@@ -184,4 +184,10 @@ body{
         padding-top: 65px;
         text-align: center;
 
+    }
+
+    @media screen and (max-width: 768px){
+        .nav ul li a {
+            display:none;
+        }
     }

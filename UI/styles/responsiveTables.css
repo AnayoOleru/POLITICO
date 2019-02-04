@@ -1,0 +1,62 @@
+table.responsive,
+table.responsive table,
+table.responsive caption, 
+table.responsive thead, 
+table.responsive tfoot, 
+table.responsive tbody, 
+table.responsive tr, 
+table.responsive th, 
+table.responsive td { 
+    display:block; 
+}
+
+table.responsive td[data-label]::before { 
+    content: attr(data-label) ": "; 
+    font-weight:bold; 
+}
+       
+table.responsive .tabular-view-only { 
+    position: absolute; 
+    left:-9999px; 
+}  
+/* hide element off screen if it should only be shown in a tabular format */
+
+table.responsive tr { 
+    padding: .5em 1em;
+}
+table.responsive th { 
+    padding: .5em 1em;
+}
+
+
+table.responsive,
+table.responsive table { 
+    border-bottom: 1px solid #ccc; 
+    border-bottom: none; 
+}
+
+table.responsive tr { 
+    border-bottom: 1px solid #ccc; 
+}
+
+table.responsive td, 
+table.responsive th { 
+    border:none; 
+    padding:0; 
+    margin: .25em 0; 
+}
+
+/* Grid sortable headers */
+table.responsive .sorter::before {
+    content: "Sort by:"; 
+    display: inline; 
+    margin: 0 0.25em 0 0;
+}
+
+table.responsive .sorter > th { 
+    display: inline; 
+    margin: 0 0.5em 0 0; 
+}
+
+/* Grid - embedded filters */
+table.responsive .filter::before {display:block;} /* Display filter labels above inputs rather than inline */

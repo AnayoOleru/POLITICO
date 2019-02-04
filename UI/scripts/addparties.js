@@ -24,6 +24,8 @@ function openLog() {
 
 function closeLog() {
     openModal.style.display="none";
+    editBtn.disabled = false;
+    deleteBtn.disabled = false;
 }
 
 // edit party
