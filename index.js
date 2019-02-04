@@ -8,15 +8,23 @@ import votesCtr from './src/controllers/votesCtr';
 import token from './helper/tokenAuth';
 import verifyAdmin from './helper/verifyAdmin';
 import verifyId from './helper/userAuth';
-import verifyVoter from './src/middlewares/voteValidations'
+import verifyVoter from './src/middlewares/voteValidations';
+import path from 'path';
+import bodyParser from 'body-parser';
+
+// import obie from './Views/UI/styles';
 // import registerVoter from './src/middlewares/registerValidation'
 
 
-
-
 const app = express();
-app.use(json());
-app.use(urlencoded({
+
+app.use(express.static(path.join(__dirname)));
+app.use("/styles", express.static(__dirname + './Views/UI/styles'));
+app.use("/images", express.static(__dirname + './Views/UI/images'));
+app.use("/scripts", express.static(__dirname + 'Views/UI/scripts'));
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
   extended: true
 }));
 
@@ -48,10 +56,13 @@ app.get('/api/v1/office/:officeid/result', token.verifyToken, Office.officeResul
 app.post('/api/v1/auth/signup', userCtr.createUser);
 app.post('/api/v1/auth/login', userCtr.login);
 
-app.get('/', (req, res) => res.status(200).send({
-  "status": 200,
-  "message": 'Welcome to POLITICO'
-}));
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname + '/Views/index.html'));
+});
+// app.get('/', (req, res) => res.status(200).send({
+//   "status": 200,
+//   "message": 'Welcome to POLITICO'
+// }));
 
 app.all('*', (req, res) =>{
   res.status(404).send({
