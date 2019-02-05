@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" >
+    <head>
+        <meta charset="UTF-8">
+        <title>Error 500 Internal server error</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <style>
+            html, body{
+            height: 100%;
+            font-size: 62.5%;
+            font-family: Verdana, sans-serif;
+            }
+            .container {
+            position: relative;
+            height: 100%;
+            width: 100%;
+            }
+            .inner {
+            position: absolute;
+            max-width: 960px;
+            top: 30%;
+            left: 20%;
+            right: 0;
+            //margin-top: -9px;
+            font-size: 13px;
+            font-weight: 400;
+            }
+            .grid {
+            display: flex; 
+			flex-wrap: wrap; 
+            justify-content: center; 
+            align-items: center; 
+            }
+            .cell { 
+            box-sizing: border-box; 
+            flex-shrink: 0; 
+            width: calc(100% * 5 / 12); 
+            }
+            img {
+            height: 100%; 
+            width: 100%; 
+            }
+            @media only screen and (max-width:600px) {
+			.inner {
+			left: 10%;
+			}
+            .cell {
+            width: 100%;
+            font-size: 200px;
+            }
+            #write{
+                font-size: 200px;
+            }
+			img {
+			padding-top: 50px;
+            }
+            }
+        </style>
+    </head>
+    <body>
+		<div class="container">
+            <div class="inner">
+                <div class="grid">
+                    <div class="cell" id="write" style="font-size: 50px; margin: 0; padding: 0">500 Something went wrong<br>
+                        <!-- Opps! That page can't be found.<br>
+                    It looks like nothing was found at this location -->
+                    </div>
+                    <div class="cell" style="width: 20%; height: 120px;"><img src="images/pogo.png" /></div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

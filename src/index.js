@@ -129,13 +129,22 @@ app.post(
 //   "message": 'Welcome to POLITICO'
 // }));
 
+// Handle 404: send an 404 error page
+app.use(function(req, res) {
+  res.status(404).sendFile(path.join(__dirname + '../../UI/404.html'));
+});
 
-app.all('*', (req, res) =>{
-  res.status(404).send({
-    "status": 404,
-    "error": "Resource not found on the server" 
-  })
-})
+// Handle 500: send a 500 error
+app.use(function(error, req, res, next) {
+  res.status(500).sendFile(path.join(__dirname + '../../UI/500.html'));
+});
+
+// app.all('*', (req, res) =>{
+//   res.status(404).send({
+//     "status": 404,
+//     "error": "Resource not found on the server" 
+//   })
+// })
 
 app.listen(port, () => {
   console.log(`app is running on port ${port}`);
