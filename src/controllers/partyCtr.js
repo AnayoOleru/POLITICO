@@ -3,7 +3,7 @@ import uuidv4 from 'uuid/v4';
 import moment from 'moment';
 import partyDb from '../db/partydb';
 // import PartyModel from '../models/party';
-import db from '../../databaseTables/dbconnect';
+import db from '../databaseTables/dbconnect';
 
 // const partyModel = new PartyModel()
 

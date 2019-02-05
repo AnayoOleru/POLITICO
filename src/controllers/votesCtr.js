@@ -1,8 +1,8 @@
 import uuidv4 from 'uuid/v4';
 import moment from 'moment';
 // import moment from 'moment';
-import db from '../../databaseTables/dbconnect';
-import userAuth from '../../helper/userAuth';
+import db from '../databaseTables/dbconnect';
+import userAuth from '../helper/userAuth';
 import { request } from 'http';
 
 // const partyModel = new PartyModel()

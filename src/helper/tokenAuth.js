@@ -26,7 +26,7 @@ const TokenAuth = {
       const decoded = await jwt.verify(token, process.env.SECRET);
       const text = 'SELECT * FROM users WHERE id = $1';
       const { rows } = await db.query(text, [decoded.id]);
-      if(!rows[0]) {
+      if(!rows) {
         return res.status(400).send({
             "status": 400, 
             "error": "The token you provided is invalid" 
@@ -35,9 +35,9 @@ const TokenAuth = {
       req.user = { id: decoded.id, isAdmin: decoded.isAdmin };
       next();
     } catch(error) {
-      return res.status(400).send({
-        "status": 400, 
-        "error": error 
+      return res.status(500).send({
+        "status": 500, 
+        "error": "sorry something went wrong, go back and check" 
     });
     }
 }

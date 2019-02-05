@@ -9,7 +9,7 @@
 
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import app from '../index';
+import app from '../src/index';
 import {goodSignup, badSignup, badSignup2, badSignup3, badLogin, 
   badLogin2, badLogin3, isEmail, badTestParty, badTestParty2, 
   badTestParty3, badTestParty4, offices, offices2, offices3, vote1,
@@ -276,7 +276,7 @@ describe('Post \'/api/v1\'', () => {
 describe('GET /office', () => {
   it('should return all offices', (done) => {
     chai.request(app)
-      .get('/api/v1/office')
+      .get('/api/v1/offices')
       .send(offices2)
       .end((err, res) => {
         expect(res.status).to.equal(400);
@@ -289,7 +289,7 @@ describe('GET /office', () => {
 describe('GET /offices', () => {
   it('should return all offices', (done) => {
     chai.request(app)
-      .get('/api/v1/office')
+      .get('/api/v1/offices')
       .send(offices3)
       .end((err, res) => {
         expect(res.status).to.equal(400);
@@ -302,7 +302,7 @@ describe('GET /offices', () => {
 describe('Fetch office by Id',() => {
   it('should return 401 because there is no token', (done) => {
     chai.request(app)
-      .get('/api/v1/office/a34e2e87-eeaa-4721-80e9-724309e6bbea')
+      .get('/api/v1/offices/a34e2e87-eeaa-4721-80e9-724309e6bbea')
       .end((err, res) => {
         expect(err).to.be.null;
         expect(res).to.have.headers;
@@ -317,7 +317,7 @@ describe('Fetch office by Id',() => {
 describe('Post \'/api/v1\'', () => {
   it('POST office to account', (done) => { // WHEN EMAIL IS INCORRECTLY LAID
     chai.request(app)
-      .post('/api/v1/office')
+      .post('/api/v1/offices')
       .send(offices2)
       .end((err, res) => {
         expect(err).to.be.null;
@@ -333,7 +333,7 @@ describe('Post \'/api/v1\'', () => {
 describe('Post \'/api/v1\'', () => {
   it('POST office to account', (done) => { // WHEN EMAIL IS INCORRECTLY LAID
     chai.request(app)
-      .post('/api/v1/office')
+      .post('/api/v1/offices')
       .send(offices3)
       .end((err, res) => {
         expect(err).to.be.null;

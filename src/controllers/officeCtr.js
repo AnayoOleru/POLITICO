@@ -1,8 +1,8 @@
 import moment from 'moment';
 import uuidv4 from 'uuid/v4';
 import officeDb from '../db/officedb';
-import db from '../../databaseTables/dbconnect';
-import userAuth  from '../../helper/userAuth';
+import db from '../databaseTables/dbconnect';
+import userAuth  from '../helper/userAuth';
 // import Query from '../../helper/query'
 // import PartyModel from '../models/party';
 

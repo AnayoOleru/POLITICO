@@ -1,5 +1,7 @@
 const validateUserInput = (req, res, next) => {
-  const { fullname } = req.body;
+  const { firstname } = req.body;
+  const { secondname } = req.body;
+  const {othername } = req.body;
   const { email } = req.body;
   const { password } = req.body;
   const { confirmPassword } = req.body;

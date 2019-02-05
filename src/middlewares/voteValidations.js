@@ -1,4 +1,4 @@
-import userAuth from '../../helper/userAuth';
+import userAuth from '../helper/userAuth';
 const validateVote = async (req, res, next) => {
 const { created_by, office, candidate } = req.body;
 
