@@ -45,19 +45,19 @@ const User = {
         });
       }
 
-      if (!userAuthHelper.isInt(req.body.phonenumber)) {
-        return res.status(400).send({ 
-            "status": 400, 
-            "error": "Only Digits are allowed URL" 
-        });
-      }
+      // if (!userAuthHelper.isInt(req.body.phonenumber)) {
+      //   return res.status(400).send({ 
+      //       "status": 400, 
+      //       "error": "Only Digits are allowed URL" 
+      //   });
+      // }
 
-      if (!userAuthHelper.isURL(req.body.passportUrl)) {
-        return res.status(400).send({ 
-            "status": 400, 
-            "error": "Invalid URL" 
-        });
-      }
+      // if (!userAuthHelper.isURL(req.body.passportUrl)) {
+      //   return res.status(400).send({ 
+      //       "status": 400, 
+      //       "error": "Invalid URL" 
+      //   });
+      // }
 
 
 

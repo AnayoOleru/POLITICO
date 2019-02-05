@@ -15,10 +15,18 @@ import bodyParser from 'body-parser';
 
 const app = express();
 
+app.use('*', (req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
+
 app.use(express.static(path.join(__dirname)));
 app.use("/styles", express.static(__dirname + '../../UI/styles'));
 app.use("/images", express.static(__dirname + '../../UI/images'));
 app.use("/scripts", express.static(__dirname + '../../UI/scripts'));
+app.use("/views", express.static(__dirname + '../../UI/views'));
 
 
 app.use(bodyParser.json());
@@ -31,7 +39,7 @@ const port = process.env.PORT || 3000;
 
 // homepage
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname + '../../UI/index.html'));
+  res.sendFile(path.join(__dirname + '../../UI/views/index.html'));
 });
 
 app.get('/api/v1', (req, res) => res.status(200).send({
@@ -131,12 +139,12 @@ app.post(
 
 // Handle 404: send an 404 error page
 app.use(function(req, res) {
-  res.status(404).sendFile(path.join(__dirname + '../../UI/404.html'));
+  res.status(404).sendFile(path.join(__dirname + '../../UI/views/404.html'));
 });
 
 // Handle 500: send a 500 error
 app.use(function(error, req, res, next) {
-  res.status(500).sendFile(path.join(__dirname + '../../UI/500.html'));
+  res.status(500).sendFile(path.join(__dirname + '../../UI/views/500.html'));
 });
 
 // app.all('*', (req, res) =>{
