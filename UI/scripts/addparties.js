@@ -57,3 +57,34 @@ function closeDelete() {
 }
 
 
+// Consuming the API
+// alert("connected!");
+document.getElementById('addParty').addEventListener('submit', addParty);
+
+function loginPost(e){
+    e.preventDefault();
+
+    
+    let name = document.getElementById('name').value;
+    let hqaddress = document.getElementById('hqaddress').value;
+    let logoURL = document.getElementById('logoURL').value;
+
+
+    fetch('http://localhost:3000/api/v1/parties', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-type': 'application/json'
+        },
+        body: JSON.stringify({
+            name: name, 
+            hqaddress: hqaddress,
+            logoURL: logoURL
+        })
+        
+    })
+    .then((res) => res.json())
+    // render the parties page
+        .then((res) => res.render('/views/parties.html'))
+}
+
