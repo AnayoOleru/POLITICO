@@ -1,4 +1,4 @@
-import { json, urlencoded } from 'body-parser';
+// import { json, urlencoded } from 'body-parser';
 import express from 'express';
 import Office from './controllers/officeCtr';
 import userCtr from './controllers/userCtr';
@@ -9,21 +9,30 @@ import token from './helper/tokenAuth';
 import verifyAdmin from './helper/verifyAdmin';
 import verifyId from './helper/userAuth';
 import verifyVoter from './middlewares/voteValidations';
-
-
-
-
+import path from 'path';
+import bodyParser from 'body-parser';
 
 
 const app = express();
-app.use(json());
-app.use(urlencoded({
+
+app.use(express.static(path.join(__dirname)));
+app.use("/styles", express.static(__dirname + '../../UI/styles'));
+app.use("/images", express.static(__dirname + '../../UI/images'));
+app.use("/scripts", express.static(__dirname + '../../UI/scripts'));
+
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
   extended: true
 }));
 
 app.use(express.json())
 const port = process.env.PORT || 3000;
 
+// homepage
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname + '../../UI/index.html'));
+});
 
 app.get('/api/v1', (req, res) => res.status(200).send({
   "status": 200,
@@ -115,10 +124,11 @@ app.post(
   userCtr.login
   );
 
-app.get('/', (req, res) => res.status(200).send({
-  "status": 200,
-  "message": 'Welcome to POLITICO'
-}));
+// app.get('/', (req, res) => res.status(200).send({
+//   "status": 200,
+//   "message": 'Welcome to POLITICO'
+// }));
+
 
 app.all('*', (req, res) =>{
   res.status(404).send({
