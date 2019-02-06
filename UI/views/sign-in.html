@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>POLITICO | Sign in</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="styles/sign-in.css" />
-    <link rel="icon" type="image/ico" href="images/pogo.png"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../styles/sign-in.css" />
+    <link rel="icon" type="image/ico" href="../images/pogo.png"/>
     <meta name="Description" content="Politico - Builds trust through transparency">
     
 </head>
 <body>
         <div class="container">
                 <nav> 
-                        <a href="index.html"><img src="images/pogo.png"></a>
+                        <a href="index.html"><img src="../images/pogo.png"></a>
                         <!-- <img src="images/pogo.png"> -->
                         <ul> 
                             <li><a href="sign-up.html">Sign up</a></li>
@@ -23,20 +23,21 @@
                     </div>
         </header>
         
-        <h1 class="header">Sign in with POLITICO</h1>
-    <form class="form" action="#">
+        <h1 class="header">Sign in</h1>
+    <form class="form" action="#" id="loginPost">
         <p><b style="padding-right: 9px;">Email Address</b>
-        <input type="email" name="Email" placeholder="e.g johnfever@politico.com" required>
+        <input type="email" name="Email" placeholder="e.g johnfever@politico.com" id="email" required>
         </p>
         <p><b style="padding-right: 42px;">Password</b>
-        <input type="password" name="Password" placeholder="***" required>
+        <input type="password" name="Password" placeholder="***" id="password" required>
         </p>
-        <p style="padding-right:65px;"><button>Sign in</button></p>
+        <div id="result"></div>
+        <p style="padding-right:65px;"><input type="submit" value="Sign in"></p>
     </form>
     <p align="center" style="padding-left: 38px;">Don't have an account? <a href="sign-up.html" style="color: rgb(10, 65, 86); text-decoration: none;">sign up</a></p>
     <p align="center" style="padding-right: 60px;"><a href="reset.html" style="color: rgb(10, 65, 86); text-decoration: none;">Forgot password?</a></p>
         
 
-        <script src="#"></script>
+        <script src="../scripts/signin.js"></script>
 </body>
 </html>

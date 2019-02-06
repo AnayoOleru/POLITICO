@@ -15,7 +15,7 @@
                 <a href="#" class="closebtn" onclick="closeNav()"><i class="fa fa-chevron-circle-right"></i></a>
                 <img style="width: 80px; padding-left: 30px;" src="../images/userimg.png">
                 <h1 style="padding-left: 30px; color: #ffffff;">Admin</h1>
-                <a href="../index.html"><span>Home</span></a>
+                <a href="index.html"><span>Home</span></a>
                 <a href="addparties.html"><i class="far fa-handshake"></i><span>Parties</span></a>
                 <a class="active" href="govOffice.html"><i class="fas fa-building"></i><span>Office</span></a>
                 <a href="#"><i class="fas fa-sign-out-alt"></i><span>Sign out</span></a>
@@ -25,7 +25,7 @@
     
                     <!-- <img src="images/pogo.png"> -->
                     <!-- <div class="logo">POLITICO</div> -->
-                    <a class="logo" href="../index.html">POLITICO</a>
+                    <a class="logo" href="index.html">POLITICO</a>
                     <ul>
                         <li><a href="#" class="active">Username</a></li>
                     </ul>
@@ -77,10 +77,10 @@
 
             
             <div class="modal" id="openmodal">
-                <form>
+                <form id="addOffice">
                     <h1>Add Political office</h1>
-                    <input type="text" placeholder="type e.g State">
-                    <input type="text" placeholder="name e.g Minister">
+                    <input type="text" placeholder="type e.g State" id="type" required>
+                    <input type="text" placeholder="name e.g Minister" id="name" required>
                     <br>
                     <input type="submit" value="Cancel" onclick="closeAdd()">
                     <input type="submit">

@@ -15,7 +15,7 @@
                 <a href="#" class="closebtn" onclick="closeNav()"><i class="fa fa-chevron-circle-right"></i></a>
                 <img style="width: 80px; padding-left: 30px;" src="../images/userimg.png">
                 <h1 style="padding-left: 30px; color: #ffffff;">Admin</h1>
-                <a href="../index.html"><span>Home</span></a>
+                <a href="index.html"><span>Home</span></a>
                 <a class="active" href="addparties.html"><i class="far fa-handshake"></i><span>Parties</span></a>
                 <a href="govOffice.html"><i class="fas fa-building"></i><span>Office</span></a>
                 <a href="#"><i class="fas fa-sign-out-alt"></i><span>Sign out</span></a>
@@ -24,7 +24,7 @@
             <span style="font-size:30px;cursor:pointer;height: 30px;" class="openbutton" onclick="openNav()"><i class="fas fa-align-justify"></i></span>
     
                     <!-- <div class="logo">POLITICO</div> -->
-                    <a class="logo" href="../index.html">POLITICO</a>
+                    <a class="logo" href="index.html">POLITICO</a>
                     <ul> 
                         <li><a href="#" class="active">Username</a></li>
                     </ul>
@@ -115,11 +115,11 @@
 
         <!-- add party -->
             <div class="modal" id="openmodal">
-                        <form class="partylog">
+                        <form class="partylog" id="addParty">
                                 <h1>Add Party</h1>
-                                <input type="text" placeholder="party name">
-                                <input type="text" placeholder="HQ address">
-                            <input type="file">
+                                <input type="text" placeholder="party name" id="name" required>
+                                <input type="text" placeholder="HQ address" id="hqaddress" required>
+                            <input type="file" id="logoURL" required>
                             <!-- <input type="text" placholder="party name"> -->
                             <br>
                             <input type="submit" value="cancel" onclick="closeLog()">
