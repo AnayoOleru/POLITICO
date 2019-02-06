@@ -15,16 +15,23 @@ class Party{
    * @returns {array} - returns all key value pairs as object in array
    */
   static async create(req, res) {
-    if(!req.body.name || !req.body.hqaddress || !req.body.logoUrl){
+    if(!req.body.logoUrl){
       return res.status(400).send({ 
         "status": 400, 
-        "error": [{
-          "message": "Some values are missing",
-          "name": "e.g APC",
-          "hqaddress": "address",
-          "logoUrl": "candidate's id" 
-  }] 
+        "error": "Logo field is empty" 
     });
+    }
+    if(!req.body.name){
+      return res.status(400).send({
+        "status": 400,
+        "error": "Party field is empty"
+      })
+    }
+    if(!req.body.hqaddress){
+      return res.status(400).send({
+        "status": 400,
+        "error": "Address field is empty"
+      })
     }
     // const { isAdmin } = req.user;
     //     if (isAdmin) {
