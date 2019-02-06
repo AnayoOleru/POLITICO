@@ -23,5 +23,9 @@ function loginPost(e){
     })
     .then((res) => res.json())
     // render user dashboard
-        .then((res) => res.render('/views/parties.html'))
+        .then((data) => {
+            setTimeout(function() {
+                window.location.href = '/views/parties.html';
+              }, 3000);
+        })
 }
