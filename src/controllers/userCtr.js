@@ -41,7 +41,7 @@ const User = {
       if (!userAuthHelper.isName(req.body.firstname, req.body.lastname, req.body.othername)) {
         return res.status(400).send({ 
             "status": 400, 
-            "error": "Names must only Alphabets and spaces are allowed" 
+            "error": "Names must only be Alphabets, spaces are allowed" 
         });
       }
 

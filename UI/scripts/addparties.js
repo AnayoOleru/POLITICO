@@ -1,3 +1,13 @@
+// import swal from 'sweetalert';
+
+// function verifyToken(){
+//     let token = window.localStorage.getItem('token');
+
+//     if(token == undefined){
+//         window.location.href = '/views/sign-in.html';
+//     }
+// }
+
 let sideNav = document.getElementById("mySidenav");
 let openParty = document.getElementById("openparty");
 let addbtn = document.getElementById("addbtn");
@@ -61,13 +71,18 @@ function closeDelete() {
 // alert("connected!");
 document.getElementById('addParty').addEventListener('submit', addParty);
 
-function loginPost(e){
+function addParty(e){
     e.preventDefault();
 
     
     let name = document.getElementById('name').value;
     let hqaddress = document.getElementById('hqaddress').value;
-    let logoURL = document.getElementById('logoURL').value;
+    let logoUrl = document.getElementById('logoURL').value;
+    let result = document.getElementById('result');
+    // let partyImage = document.getElementById('partyImage').value;
+    // let partyName = document.getElementById('partyName').value;
+    // let partyAddress = document.getElementById('partyAddress').value;
+    let responseStatus = false;
 
 
     fetch('http://localhost:3000/api/v1/parties', {
@@ -79,12 +94,26 @@ function loginPost(e){
         body: JSON.stringify({
             name: name, 
             hqaddress: hqaddress,
-            logoURL: logoURL
+            logoUrl: logoUrl
         })
         
     })
-    .then((res) => res.json())
+    .then((res) => {
+        if(res.ok){
+            responseStatus = true;
+        }
+       return res.json()
+    })
     // render the parties page
-        .then((res) => res.render('/views/parties.html'))
+    .then((res) => {
+        console.log(res);
+        if(!responseStatus){
+            result.innerHTML = res.error;
+        }else{
+            // swal("Here's the title!", "...and here's the text!");
+        // window.localStorage.setItem('token', res.data.token);
+        // window.location.href = '/views/parties.html';
+        }
+    })
 }
 
