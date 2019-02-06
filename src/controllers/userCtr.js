@@ -41,23 +41,23 @@ const User = {
       if (!userAuthHelper.isName(req.body.firstname, req.body.lastname, req.body.othername)) {
         return res.status(400).send({ 
             "status": 400, 
-            "error": "Names must only Alphabets and spaces are allowed" 
+            "error": "Names must only be Alphabets and spaces are allowed" 
         });
       }
 
-      if (!userAuthHelper.isInt(req.body.phonenumber)) {
-        return res.status(400).send({ 
-            "status": 400, 
-            "error": "Only Digits are allowed URL" 
-        });
-      }
+      // if (!userAuthHelper.isInt(req.body.phonenumber)) {
+      //   return res.status(400).send({ 
+      //       "status": 400, 
+      //       "error": "Only Digits are allowed URL" 
+      //   });
+      // }
 
-      if (!userAuthHelper.isURL(req.body.passportUrl)) {
-        return res.status(400).send({ 
-            "status": 400, 
-            "error": "Invalid URL" 
-        });
-      }
+      // if (!userAuthHelper.isURL(req.body.passportUrl)) {
+      //   return res.status(400).send({ 
+      //       "status": 400, 
+      //       "error": "Invalid URL" 
+      //   });
+      // }
 
 
 
