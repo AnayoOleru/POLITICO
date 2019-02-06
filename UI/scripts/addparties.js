@@ -61,13 +61,13 @@ function closeDelete() {
 // alert("connected!");
 document.getElementById('addParty').addEventListener('submit', addParty);
 
-function loginPost(e){
+function addParty(e){
     e.preventDefault();
 
     
-    let name = document.getElementById('name').value;
+    let name = document.getElementById('name').innerHTML="WHOOO";
     let hqaddress = document.getElementById('hqaddress').value;
-    let logoURL = document.getElementById('logoURL').value;
+    let logoUrl = document.getElementById('logoURL').value;
 
 
     fetch('http://localhost:3000/api/v1/parties', {
@@ -79,12 +79,12 @@ function loginPost(e){
         body: JSON.stringify({
             name: name, 
             hqaddress: hqaddress,
-            logoURL: logoURL
+            logoUrl: logoUrl
         })
         
     })
     .then((res) => res.json())
     // render the parties page
-        .then((res) => res.render('/views/parties.html'))
+        .then((data) => console.log(data))
 }
 
