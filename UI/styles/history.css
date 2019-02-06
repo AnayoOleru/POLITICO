@@ -108,7 +108,7 @@ body{
         }
         
         table {
-        width: 50%;
+        width: 90%;
         margin: 130px auto;
         }
 
@@ -121,9 +121,17 @@ body{
         }
         
         th, td {
-        padding: 15px;
+        padding: 20px;
         text-align: center;
         }
+        td{
+            font-size: 20px;
+        }
+        td:hover{
+            background-color: rgb(38, 112, 141);
+            color: #ffffff;
+        }
+
         
         
         
@@ -146,6 +154,7 @@ body{
           padding-left: 50%;
         /*     margin-bottom: 3px; */
           text-align: right;
+          font-size: 30px;
         }
         
         td:first-child {
@@ -162,8 +171,8 @@ body{
         }
         }
         
-        th:first-child,
-        td:first-child {
+        /* th:first-child, */
+        th{
         color: white;
         font-weight: bold;
         background: rgb(10, 65, 86);;

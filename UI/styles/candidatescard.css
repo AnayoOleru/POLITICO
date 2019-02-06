@@ -93,7 +93,7 @@ body {
 .card {
     perspective: 150rem;
     position: relative;
-    height: 90rem;
+    height: 12rem;
 }
 
 .card__side--front {
