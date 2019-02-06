@@ -17,6 +17,30 @@ class Office{
   
 
   static async create(req, res) {
+    
+    if (!req.body.type) {
+      return res.status(400).send({ 
+          "status": 400, 
+          "error": "Type field is empty" 
+      });
+    }
+
+    if (!req.body.name) {
+      return res.status(400).send({ 
+          "status": 400, 
+          "error": "Name field is empty" 
+      });
+    }
+
+    if (!req.body.type || !req.body.name) {
+      return res.status(400).send({ 
+          "status": 400, 
+          "error": "Some values are missing" 
+      });
+    }
+
+
+
     const createQuery = `INSERT INTO
       office(id, name, type, created_date)
       VALUES($1, $2, $3, $4)

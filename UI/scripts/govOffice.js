@@ -28,6 +28,8 @@ function addOffice(e){
     
     let type = document.getElementById('type').value;
     let name = document.getElementById('name').value;
+    let result = document.getElementById('result').value;
+    let responseStatus = false;
 
 
     fetch('http://localhost:3000/api/v1/offices', {
@@ -42,7 +44,17 @@ function addOffice(e){
         })
         
     })
-    .then((res) => res.json())
+    .then((res) => {
+        console.log(res)
+        if(res.ok){
+            responseStatus = true;
+        }
+       return res.json()
+    })
     // render the office page
-        .then((data) => console.log(data))
+        .then((res) => {
+            if(!responseStatus){
+                result.innerHTML = res.error;
+            }
+        })
 }
