@@ -1,4 +1,4 @@
-import { json, urlencoded } from 'body-parser';
+// import { json, urlencoded } from 'body-parser';
 import express from 'express';
 import Office from './controllers/officeCtr';
 import userCtr from './controllers/userCtr';
@@ -9,21 +9,38 @@ import token from './helper/tokenAuth';
 import verifyAdmin from './helper/verifyAdmin';
 import verifyId from './helper/userAuth';
 import verifyVoter from './middlewares/voteValidations';
-
-
-
-
+import path from 'path';
+import bodyParser from 'body-parser';
 
 
 const app = express();
-app.use(json());
-app.use(urlencoded({
+
+app.use('*', (req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
+
+app.use(express.static(path.join(__dirname)));
+app.use("/styles", express.static(__dirname + '../../UI/styles'));
+app.use("/images", express.static(__dirname + '../../UI/images'));
+app.use("/scripts", express.static(__dirname + '../../UI/scripts'));
+app.use("/views", express.static(__dirname + '../../UI/views'));
+
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
   extended: true
 }));
 
 app.use(express.json())
 const port = process.env.PORT || 3000;
 
+// homepage
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname + '../../UI/views/index.html'));
+});
 
 app.get('/api/v1', (req, res) => res.status(200).send({
   "status": 200,
@@ -115,17 +132,27 @@ app.post(
   userCtr.login
   );
 
-app.get('/', (req, res) => res.status(200).send({
-  "status": 200,
-  "message": 'Welcome to POLITICO'
-}));
+// app.get('/', (req, res) => res.status(200).send({
+//   "status": 200,
+//   "message": 'Welcome to POLITICO'
+// }));
 
-app.all('*', (req, res) =>{
-  res.status(404).send({
-    "status": 404,
-    "error": "Resource not found on the server" 
-  })
-})
+// Handle 404: send an 404 error page
+app.use(function(req, res) {
+  res.status(404).sendFile(path.join(__dirname + '../../UI/views/404.html'));
+});
+
+// Handle 500: send a 500 error
+app.use(function(error, req, res, next) {
+  res.status(500).sendFile(path.join(__dirname + '../../UI/views/500.html'));
+});
+
+// app.all('*', (req, res) =>{
+//   res.status(404).send({
+//     "status": 404,
+//     "error": "Resource not found on the server" 
+//   })
+// })
 
 app.listen(port, () => {
   console.log(`app is running on port ${port}`);
