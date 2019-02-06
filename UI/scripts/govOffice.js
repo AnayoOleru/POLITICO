@@ -44,5 +44,5 @@ function addOffice(e){
     })
     .then((res) => res.json())
     // render the office page
-        .then((res) => res.render('/views/parties.html'))
+        .then((data) => console.log(data))
 }
