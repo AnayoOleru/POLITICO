@@ -32,5 +32,10 @@ function addPost(e){
         
     })
     .then((res) => res.json())
-        .then((res) => res.render('/views/parties.html'))
+        .then((res) => {
+            setTimeout(function() {
+                window.location.href = '/views/parties.html';
+              }, 3000);
+           
+        })
 }
