@@ -17,7 +17,7 @@ function addPost(e){
     let responseStatus = false;
 
 
-    fetch('http://localhost:3000/api/v1/auth/signup', {
+    fetch('https://trustpolitico.herokuapp.com/api/v1/auth/signup', {
         method: 'POST',
         headers: {
             'Accept': 'application/json, text/plain, */*',
