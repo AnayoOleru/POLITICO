@@ -125,6 +125,11 @@ p{
     font-family: 'Montserrat', sans-serif;
 }
 
+#result{
+    font-size: 20px;
+    padding: 20px;
+}
+
 #button{
     background-color: rgb(10, 65, 86); /* Green */
     border: none;

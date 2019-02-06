@@ -1,3 +1,4 @@
+
 // alert("connected!");
 document.getElementById('addpost').addEventListener('submit', addPost);
 
@@ -12,6 +13,8 @@ function addPost(e){
     let phonenumber = document.getElementById('phone').value;
     let passportUrl = document.getElementById('file').value;
     let password = document.getElementById('password').value;
+    let result = document.getElementById('result');
+    let responseStatus = false;
 
 
     fetch('http://localhost:3000/api/v1/auth/signup', {
@@ -31,6 +34,24 @@ function addPost(e){
         })
         
     })
-    .then((res) => res.json())
-        .then((res) => res.render('/views/parties.html'))
+    .then((res) => {
+        if(res.ok){
+            responseStatus = true;
+        }
+       return res.json()
+    })
+    .then((res) => {
+        console.log(res);
+        if(!responseStatus){
+            result.innerHTML = res.error;
+            // setTimeout(function() {
+            //     result.innerHTML = "";
+            //   }, 7000);
+        }else{
+
+        window.localStorage.setItem('token', res.data.token);
+        window.location.href = '/views/parties.html';
+        // console.log(res);
+        }
+    })
 }

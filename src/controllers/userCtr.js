@@ -93,7 +93,11 @@ const User = {
         status: 201,
         data: [{
           token,
-          user: rows[0],
+          user:{
+            id: rows[0].id,
+            name: rows[0].firstname
+          }
+
         }],
       });
     } catch(error) {
