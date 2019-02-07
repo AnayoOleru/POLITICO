@@ -52,7 +52,10 @@ if (!userAuthHelper.isHigher(req.body.name, req.body.type)) {
   })
     };
 
-
+    let query = {
+      text: 'SELECT * FROM office WHERE name = $1',
+      values: [name],
+    };
 
     const createQuery = `INSERT INTO
       office(id, name, type, created_date)
@@ -66,6 +69,13 @@ if (!userAuthHelper.isHigher(req.body.name, req.body.type)) {
     ];
 console.log(values)
     try {
+      const result = await db.query(query);
+      if (result.row !== 0) {
+        return res.status(400).json({
+          status: 400,
+          error: 'An office with this name already exist',
+        });
+      }
       const { rows } = await db.query(createQuery, values);
       return res.status(201).send({
         "status": 201,
@@ -76,9 +86,9 @@ console.log(values)
       });
       console.log(error)
     } catch(error) {
-      return res.status(400).send({
+      return res.status(500).send({
         "status": 400,
-        "data": error
+        "data": "There was an error, please try again."
       });
     }
   }
