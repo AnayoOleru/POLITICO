@@ -162,13 +162,13 @@ if (!userAuthHelper.isHigher(req.body.name, req.body.hqaddress)) {
    * @returns {object} updated party
    */
   static async update(req, res) {
-    if(!req.body.name || !req.body.hqaddress || !req.body.logoUrl){
+    if(!req.body.name){
       return res.status(400).send({
         "status": 400,
         "error": "Inputs fields can't be left empty"
       })
     }
-    
+
     const findOneQuery = 'SELECT * FROM party WHERE id=$1';
     const updateOneQuery =`UPDATE party
       SET name=$1 
@@ -198,7 +198,7 @@ if (!userAuthHelper.isHigher(req.body.name, req.body.hqaddress)) {
   static async delete(req, res) {
     const deleteQuery = 'DELETE FROM party WHERE id=$1 returning *';
     try {
-      const { rows } = await db.query(deleteQuery, req.params.id);
+      const { rows } = await db.query(deleteQuery, [req.params.id]);
       
       if(!rows[0]) {
         return res.status(404).send({'message': 'party not found'});
