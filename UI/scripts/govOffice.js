@@ -102,9 +102,9 @@ function addOffice(e){
         })
 }
 
-// Consuming the API for users to edit a specific party
+// Consuming the API for users to edit a specific office
 // alert("connected!");
-document.getElementById('partEdit').addEventListener('submit', partEdit);
+document.getElementById('').addEventListener('submit', );
 
 function partyEdit(e){
     e.preventDefault();
@@ -144,43 +144,3 @@ function partyEdit(e){
 }
 
 
-// Consuming the API for admin to delete a specific political party
-// alert("connected!");
-document.getElementById('partyDelete').addEventListener('submit', partyDelete);
-
-function partyDelete(e){
-    e.preventDefault();
-
-    
-    let type = document.getElementById('type').value;
-    let name = document.getElementById('name').value;
-    let result = document.getElementById('result').value;
-    let responseStatus = false;
-
-
-    fetch('https://trustpolitico.herokuapp.com/api/v1/', {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json, text/plain, */*',
-            'Content-type': 'application/json'
-        },
-        body: JSON.stringify({
-            type: type, 
-            name: name
-        })
-        
-    })
-    .then((res) => {
-        console.log(res)
-        if(res.ok){
-            responseStatus = true;
-        }
-       return res.json()
-    })
-    // render the office page
-        .then((res) => {
-            if(!responseStatus){
-                result.innerHTML = res.error;
-            }
-        })
-}
