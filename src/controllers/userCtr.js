@@ -92,12 +92,8 @@ const User = {
       return res.status(201).header('x-auth-token', token).json({
         status: 201,
         data: [{
-          token,
-          user:{
-            id: rows[0].id,
-            name: rows[0].firstname
-          }
-
+          "token": token,
+          "user": rows[0]
         }],
       });
     } catch(error) {
