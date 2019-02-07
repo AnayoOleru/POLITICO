@@ -16,6 +16,12 @@ class Party{
    * @returns {array} - returns all key value pairs as object in array
    */
   static async create(req, res) {
+    if(!req.body.name || !req.body.hqaddress || !req.body.logoUrl){
+      return res.status(400).send({
+        "status": 400,
+        "error": "Inputs fields can't be left empty"
+      })
+    }
     if(!req.body.logoUrl){
       return res.status(400).send({ 
         "status": 400, 
@@ -52,13 +58,22 @@ if (!userAuthHelper.isHigher(req.body.name, req.body.hqaddress)) {
     "error": "Alphabets only"
   })
     };
-    // const { isAdmin } = req.user;
-    //     if (isAdmin) {
-    //       return res.status(403).json({
-    //         status: 403,
-    //         message: "Access denied, you don't have the required credentials to access this route",
-    //       });
-    //     }
+    if (!userAuthHelper.isURL(req.body.logoUrl)) {
+      return res.status(400).send({
+        "status": 400,  
+        "error": "Incorrect URL. Use http://"
+      })
+        };
+      const check = `SELECT * FROM party WHERE name=$1`
+      const { name } = req.body;
+      const result = await db.query(check, [name]);
+      if(result.rowCount !== 0){
+        return res.status(400).send({
+          "status":400,
+          "error": "Party already exist"
+        })
+      }
+  
     const createQuery = `INSERT INTO
       party(id, name, hqaddress, logoUrl, created_date)
       VALUES($1, $2, $3, $4, $5)
@@ -70,6 +85,7 @@ if (!userAuthHelper.isHigher(req.body.name, req.body.hqaddress)) {
       req.body.logoUrl,
       moment(new Date())
     ];
+    
 
     try {
       const { rows } = await db.query(createQuery, values);
@@ -146,10 +162,18 @@ if (!userAuthHelper.isHigher(req.body.name, req.body.hqaddress)) {
    * @returns {object} updated party
    */
   static async update(req, res) {
+    if(!req.body.name || !req.body.hqaddress || !req.body.logoUrl){
+      return res.status(400).send({
+        "status": 400,
+        "error": "Inputs fields can't be left empty"
+      })
+    }
+    
     const findOneQuery = 'SELECT * FROM party WHERE id=$1';
     const updateOneQuery =`UPDATE party
       SET name=$1 
       WHERE id=$2 returning *`;
+      
     try {
       const { rows } = await db.query(findOneQuery, [req.params.id]);
       if(!rows[0]) {

@@ -132,27 +132,27 @@ app.post(
   userCtr.login
   );
 
-// app.get('/', (req, res) => res.status(200).send({
-//   "status": 200,
-//   "message": 'Welcome to POLITICO'
-// }));
+app.get('/', (req, res) => res.status(200).send({
+  "status": 200,
+  "message": 'Welcome to POLITICO'
+}));
 
 // Handle 404: send an 404 error page
-app.use(function(req, res) {
-  res.status(404).sendFile(path.join(__dirname + '../../UI/views/404.html'));
-});
+// app.use(function(req, res) {
+//   res.status(404).sendFile(path.join(__dirname + '../../UI/views/404.html'));
+// });
 
 // Handle 500: send a 500 error
-app.use(function(error, req, res, next) {
-  res.status(500).sendFile(path.join(__dirname + '../../UI/views/500.html'));
-});
+// app.use(function(error, req, res, next) {
+//   res.status(500).sendFile(path.join(__dirname + '../../UI/views/500.html'));
+// });
 
-// app.all('*', (req, res) =>{
-//   res.status(404).send({
-//     "status": 404,
-//     "error": "Resource not found on the server" 
-//   })
-// })
+app.all('*', (req, res) =>{
+  res.status(404).send({
+    "status": 404,
+    "error": "Resource not found on the server" 
+  })
+})
 
 app.listen(port, () => {
   console.log(`app is running on port ${port}`);

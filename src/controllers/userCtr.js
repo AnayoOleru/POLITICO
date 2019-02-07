@@ -159,7 +159,7 @@ const User = {
       })
     } catch(error) {
       console.log(error)
-      return res.status(400).send({
+      return res.status(404).send({
         "status": 404,
         "error": error
       })

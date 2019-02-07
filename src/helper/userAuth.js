@@ -83,6 +83,17 @@ const userAuthHelper = {
 
     
   },
+
+  /**
+	 * @description check if string is digit
+	 * @param {string} string
+	 * @returns boolean
+	 */
+  isURL(string) {
+    return (/https?:\/\/[^\s]+/.test(string));
+
+    
+  },
   /**
    * @description check if string is url
    * @originalAauthor Diogo Cardoso

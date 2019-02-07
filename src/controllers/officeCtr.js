@@ -17,6 +17,12 @@ class Office{
   
 
   static async create(req, res) {
+    if(!req.body.type || !req.body.name){
+      return res.status(400).send({
+        "status": 400,
+        "error": "Inputs fields can't be left empty"
+      })
+    }
     
     if (!req.body.type) {
       return res.status(400).send({ 
@@ -113,7 +119,7 @@ static async getAllOffices(req, res){
     console.log(error);
     return res.status(400).send({
       "status": 400,
-      "error":error
+      "error":"Bad Request"
     });
   }
 }
@@ -138,7 +144,10 @@ static async getAllOffices(req, res){
         "status": 200,
         "data": rows[0]});
     } catch(error) {
-      return res.status(400).send(error)
+      return res.status(400).send({
+        "status": 400,
+        "error":"Bad request. Check and try again"
+      })
     }
   }
 
