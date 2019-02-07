@@ -11,7 +11,7 @@ const User = {
    * @returns {object} User Object
    */
   async createUser(req, res) {
-    if (!req.body.email || !req.body.password || !req.body.firstname || !req.body.lastname || !req.body.passportUrl) {
+    if (!req.body.email  || !req.body.password || !req.body.firstname || !req.body.lastname || !req.body.passportUrl) {
         return res.status(400).send({ 
             "status": 400, 
             "error": "Some values are missing" 
