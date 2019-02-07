@@ -58,10 +58,15 @@ if (!userAuthHelper.isHigher(req.body.name, req.body.type)) {
   })
     };
 
-    let query = {
-      text: 'SELECT * FROM office WHERE name = $1',
-      values: [name],
-    };
+    const check = `SELECT * FROM office WHERE type=$1`
+      const { type } = req.body;
+      const result = await db.query(check, [type]);
+      if(result.rowCount !== 0){
+        return res.status(400).send({
+          "status":400,
+          "error": "Office already exist"
+        })
+      }
 
     const createQuery = `INSERT INTO
       office(id, name, type, created_date)
@@ -131,6 +136,7 @@ static async getAllOffices(req, res){
    * @returns {array} - returns specific party
    */
   static async getOneOffice(req, res) {
+    
     const text = 'SELECT * FROM office WHERE id = $1';
     try {
       const { rows } = await db.query(text, [req.params.id]);
@@ -140,10 +146,17 @@ static async getAllOffices(req, res){
           "error": "Office not found"
         });
       }
+      // if (!userAuthHelper.isUUID(req.params)) {
+      //   return res.status(400).send({
+      //     "status": 400,  
+      //     "error": "The user ID used is invalid"
+      // });
+      // }
       return res.status(200).send({
         "status": 200,
         "data": rows[0]});
     } catch(error) {
+      console.log(error);
       return res.status(400).send({
         "status": 400,
         "error":"Bad request. Check and try again"
@@ -159,6 +172,13 @@ static async getAllOffices(req, res){
    */
   static async officeResult(req, res) {
     let  { officeid } = req.params;
+
+    if (!userAuthHelper.isUUID(officeid)) {
+      return res.status(400).send({
+        "status": 400,  
+        "error": "The user ID used is invalid"
+    });
+    }
     let text = 'SELECT * FROM office WHERE id = $1';
     let { rows } = await db.query(text, [officeid]);
 

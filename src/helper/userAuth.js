@@ -94,6 +94,17 @@ const userAuthHelper = {
 
     
   },
+
+  /**
+	 * @description check if UUID is valid
+	 * @param {string} string
+	 * @returns boolean
+	 */
+  isUUID(string) {
+    return (/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/.test(string));
+
+    
+  },
   /**
    * @description check if string is url
    * @originalAauthor Diogo Cardoso

@@ -30,6 +30,12 @@ const User = {
         "error": "Please enter a valid email"
     });
 }
+if(!req.body.passportUrl){
+  return res.status(400).send({ 
+    "status": 400, 
+    "error": "URL field is empty" 
+});
+}
 
     if (!userAuthHelper.ispasswordValid(req.body.password)) {
         return res.status(400).send({ 
@@ -100,8 +106,8 @@ const User = {
       console.log(error);
       if (error.routine === '_bt_check_unique') {
         
-        return res.status(404).send({ 
-            "data": 404,
+        return res.status(409).send({ 
+            "data": 409,
             "error": "User with that EMAIL already exist" 
     });
       }
@@ -122,6 +128,12 @@ const User = {
       return res.status(400).send({
         "status": 400,
         "error": "Some values are missing"
+      });
+    }
+    if (!userAuthHelper.isWhiteSpace(req.body.email, req.body.password)) {
+      return res.status(400).send({ 
+          "status": 400, 
+          "error": "White Space are not allowed in input fields" 
       });
     }
     if (!userAuthHelper.isValidEmail(req.body.email)) {

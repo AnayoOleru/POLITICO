@@ -2,8 +2,9 @@ import uuidv4 from 'uuid/v4';
 import moment from 'moment';
 // import moment from 'moment';
 import db from '../databaseTables/dbconnect';
-import userAuth from '../helper/userAuth';
-import { request } from 'http';
+import userAuthHelper from '../helper/userAuth';
+// import userAuth from '../helper/userAuth';
+// import { request } from 'http';
 
 // const partyModel = new PartyModel()
 
@@ -15,7 +16,20 @@ class Votes{
    * @returns {array} - returns all key value pairs as object in array
    */
   static async votes(req, res) {
+
     // const { created_by, office, candidate } = req.body;
+    if (!req.body.created_by  || !req.body.office || !req.body.candidate) {
+      return res.status(400).send({ 
+          "status": 400, 
+          "error": "Some values are missing" 
+      });
+    }
+    if (!userAuthHelper.isWhiteSpace(req.body.created_by, req.body.office, req, req.body.candidate)) {
+      return res.status(400).send({ 
+          "status": 400, 
+          "error": "White Space are not allowed in input fields" 
+      });
+    }
 
     const createQuery = `INSERT INTO
       votes(id, created_on, created_by, office, candidate)
@@ -44,10 +58,10 @@ class Votes{
       return res.status(400).send({
         "status": 400,
         "error": [{
-          "message": "You can't vote twice for this office or there was an error with your inputs",
-          "Created_by": "type in your id",
-          "office": "type your office id",
-          "candidate": "candidate"
+          "message": "You have already voted for this office or there was an error with your inputs",
+          "Created_by": "should be your id",
+          "office": "should be your office id",
+          "candidate": "should be your candidate id"
         }]
       })
      }

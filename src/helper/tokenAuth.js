@@ -15,26 +15,30 @@ const TokenAuth = {
    */
   async verifyToken(req, res, next) {
     const token = req.headers['x-access-token'];
-    console.log(token);
+    
     if(!token) {
       return res.status(400).send({
         "status": 400, 
-        "error": "Token is not provided" 
+        "error": "User not authorised!"  
     });
     }
     try {
-      const decoded = await jwt.verify(token, process.env.SECRET);
+      console.log(process.env.SECRET)
+      const decoded = jwt.verify(token, process.env.SECRET);
+      console.log('2323')
       const text = 'SELECT * FROM users WHERE id = $1';
       const { rows } = await db.query(text, [decoded.id]);
+      console.log(rows);
       if(!rows) {
         return res.status(400).send({
             "status": 400, 
-            "error": "The token you provided is invalid" 
+            "error": "User not authorised!" 
         });
       }
       req.user = { id: decoded.id, isAdmin: decoded.isAdmin };
       next();
     } catch(error) {
+      console.log(error)
       return res.status(500).send({
         "status": 500, 
         "error": "sorry something went wrong, go back and check" 

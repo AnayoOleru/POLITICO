@@ -1,6 +1,7 @@
 import uuidv4 from 'uuid/v4';
 // import moment from 'moment';
 import db from '../databaseTables/dbconnect';
+import userAuthHelper from '../helper/userAuth';
 
 // const partyModel = new PartyModel()
 
@@ -41,7 +42,8 @@ class Candidates{
         "status": 201,
         "data": [{
           "message": "Candidate Registered",
-          "data": rows[0]
+          "office": rows[0].candidate
+
         }],
       });
     } catch(error) {

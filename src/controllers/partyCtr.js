@@ -113,6 +113,12 @@ if (!userAuthHelper.isHigher(req.body.name, req.body.hqaddress)) {
   static async getAParty(req, res) {
     const { id } = req.params;
     console.log(req.params)
+    if (!userAuthHelper.isUUID(id)) {
+      return res.status(400).send({
+        "status": 400,  
+        "error": "The user ID used is invalid"
+    });
+    }
     const text = 'SELECT * FROM party WHERE id = $1';
     try {
       const { rows } = await db.query(text, [id]);
@@ -165,7 +171,7 @@ if (!userAuthHelper.isHigher(req.body.name, req.body.hqaddress)) {
     if(!req.body.name){
       return res.status(400).send({
         "status": 400,
-        "error": "Inputs fields can't be left empty"
+        "error": "Input field can't be left empty"
       })
     }
 
@@ -177,7 +183,10 @@ if (!userAuthHelper.isHigher(req.body.name, req.body.hqaddress)) {
     try {
       const { rows } = await db.query(findOneQuery, [req.params.id]);
       if(!rows[0]) {
-        return res.status(404).send({'message': 'Party not found'});
+        return res.status(404).send({
+          "status": 404,
+          "message": "Party not found"
+        });
       }
       const values = [
         req.body.name || rows[0].name,
@@ -186,7 +195,9 @@ if (!userAuthHelper.isHigher(req.body.name, req.body.hqaddress)) {
       const response = await db.query(updateOneQuery, values);
       return res.status(200).send(response.rows[0]);
     } catch(err) {
-      return res.status(400).send(err);
+      return res.status(400).send({
+        "error": "Oops, something wrong happened. Check and try again"
+      });
     }
   }
   /**
@@ -201,14 +212,19 @@ if (!userAuthHelper.isHigher(req.body.name, req.body.hqaddress)) {
       const { rows } = await db.query(deleteQuery, [req.params.id]);
       
       if(!rows[0]) {
-        return res.status(404).send({'message': 'party not found'});
+        return res.status(404).send({
+          "error": 404,
+          "message": "party not found"
+        });
       }
       return res.status(410).send({ 
         "data": "deleted" 
       });
     } catch(error) {
       console.log(error);
-      return res.status(400).send(error);
+      return res.status(400).send({
+        "error": "Oops, something wrong happened. Check and try again"
+      });
     }
   }
 
