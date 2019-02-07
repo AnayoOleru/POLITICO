@@ -1,3 +1,15 @@
+function verifyToken(){
+    let token = window.localStorage.getItem('token');
+    // let admin = token.isadmin;
+
+    // if(!admin){
+    //     window.location.href = '/views/sign-in.html';
+    // }
+    if(!token){
+        window.location.href = '/views/sign-in.html';
+    }
+}
+
 function openNav() {
     document.getElementById("mySidenav").style.width = "200px";
 }
@@ -7,51 +19,50 @@ function closeNav() {
 }
 
 
+// 
+let templateContainer = document.getElementById('card');
+const template = (partyArray) => {
+    let template = ' ';
+    partyArray.forEach((element) =>{
+        template += `
+                <div class="col-1-of-3">
+                    <div class="card">
+                        <div class="card__side card__side--front">
+                            <div class="card__picture card__picture--1" id="img">&nbsp;${element.logoUrl}</div>
+                            <div class="card__details">
+                                <ul>
+                                    <li style="font-size: 30px" id="name">${element.name} </li>
+                        
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        `
+    })
+    return template;
+}
+
 // Consuming the API for parties, users should be able to get all parties
 // alert("connected!");
-document.getElementById('allparties').addEventListener('submit', allParties);
+// document.getElementById('allparties').addEventListener('submit', allParties);
 
-function allParties(e){
-    e.preventDefault();
-
-    
-    let office = document.getElementById('name').value;
-    let user = document.getElementById('hqaddress').value;
-    let result = document.getElementById('result');
-    // let partyImage = document.getElementById('partyImage').value;
-    // let partyName = document.getElementById('partyName').value;
-    // let partyAddress = document.getElementById('partyAddress').value;
-    let responseStatus = false;
+const getParties = () => {
 
 
-    fetch('https://trustpolitico.herokuapp.com/api/v1/parties', {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json, text/plain, */*',
-            'Content-type': 'application/json'
-        },
-        body: JSON.stringify({
-            name: name, 
-            hqaddress: hqaddress,
-            logoUrl: logoUrl
+    fetch('https://localhost:3000/api/v1/parties')
+        // method: 'POST',
+        // headers: {
+        //     'Accept': 'application/json, text/plain, */*',
+        //     'Content-type': 'application/json',
+        //     'Authorisation': `x-access-token ${token}`
+        // },
+        .then(res => res.json())
+        .then((data) => {
+            const template = partyTemplate(data);
+            templateContainer.innerHTML = template;
+
         })
-        
-    })
-    .then((res) => {
-        if(res.ok){
-            responseStatus = true;
-        }
-       return res.json()
-    })
-    // render the parties page
-    .then((res) => {
-        console.log(res);
-        if(!responseStatus){
-            result.innerHTML = res.error;
-        }else{
-            // swal("Here's the title!", "...and here's the text!");
-        // window.localStorage.setItem('token', res.data.token);
-        // window.location.href = '/views/parties.html';
-        }
-    })
+
+        getParties();
 }

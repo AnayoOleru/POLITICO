@@ -10,7 +10,7 @@
     <link rel="icon" type="image/ico" href="../images/pogo.png"/>
     <meta name="Description" content="Politico - Builds trust through transparency">
 </head>
-<body>
+<body onload="verifyToken()">
         <div id="mySidenav" class="sidenav">
                 <a href="#" class="closebtn" onclick="closeNav()"><i class="fa fa-chevron-circle-right"></i></a>
                 
@@ -32,46 +32,6 @@
                     </ul>
             </div> 
 
-            <!-- <ul class="list">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Parties</a></li>
-            </ul> -->
-
-        <!-- <div class="container">
-                <div class="box box1">
-                    <img class="logos" src="../images/Accord.jpg">
-                </div>
-                <div class="box box2">
-                        <img class="logos" src="../images/APC.png">
-                </div>
-                <div class="box box3">
-                        <img class="logos" src="../images/APGA.jpg">
-                </div>
-                <div class="box box4">
-                        <img class="logos" src="../images/GPN.jpg">
-                </div>
-                <div class="box box5">
-                        <img class="logos" src="../images/PDP.png">
-                </div>
-                <div class="box box6">
-                        <img class="logos" src="../images/PDM.jpg">
-                </div>
-                <div class="box box7">
-                        <img class="logos" src="../images/YDP.jpg">
-            </div>
-            <div class="box box8">
-                    <img class="logos" src="../images/COPE.png">
-        </div>
-        <div class="box box9">
-                <img class="logos" src="../images/ADC.jpg">
-    </div>
-    <div class="box box10">
-            <img class="logos" src="../images/UPN.png">
-</div>
-<div class="box box11">
-        <img class="logos" src="../images/ZLP.jpg">
-</div> -->
-
 <main style="background-color:#ffffff">
         <section class="section-cards">
             <div class="text-cards">
@@ -79,30 +39,18 @@
                     Parties
                 </h1>
             </div>
-            <div class="row">
+            <div class="row" id="card">
                 <div class="col-1-of-3">
                     <div class="card">
                         <div class="card__side card__side--front">
-                            <div class="card__picture card__picture--1">&nbsp;</div>
-                            <!-- <h4 class="card__heading">
-                                <span class="card__heading-span card__heading-span--1">APC</span>
-                            </h4> -->
+                            <div class="card__picture card__picture--1" id="img">&nbsp;</div>
                             <div class="card__details">
                                 <ul>
-                                    <li style="font-size: 30px">All Progressive Congress </li>
-                                    <!-- <li style="font-size: 30px">Buhari</li> -->
+                                    <li style="font-size: 30px" id="name">All Progressive Congress </li>
+                        
                                 </ul>
                             </div>
                         </div>
-                        <!-- <div class="card__side card__side--back card__side--back-1">
-                            <div class="card__cta">
-                                <div class="card__price-box">
-                                    <p class="card__price-only">PDP</p>
-                                    <p class="card__price-value">Peop</p>
-                                </div>
-                                <a href="#" class="btn">Vote</a>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
                 <div class="col-1-of-3">
@@ -119,16 +67,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <!-- later -->
-                        <!-- <div class="card__side card__side--back card__side--back-2">
-                            <div class="card__cta">
-                                <div class="card__price-box">
-                                    <p class="card__price-only">PDP</p>
-                                    <p class="card__price-value">Atiku</p>
-                                </div>
-                                <a href="#" class="btn">Vote</a>
-                            </div>
-                        </div> -->
+                        
                     </div>
                 </div>
 
@@ -136,25 +75,15 @@
                     <div class="card">
                         <div class="card__side card__side--front">
                             <div class="card__picture card__picture--3">&nbsp;</div>
-                            <!-- <h4 class="card__heading">
-                                <span class="card__heading-span card__heading-span--3">ACCORD</span>
-                            </h4> -->
+                            
                             <div class="card__details">
                                 <ul>
                                     <li style="font-size: 30px">ACCORD</li>
-                                    <!-- <li style="font-size: 30px">Agbaje</li> -->
+
                                 </ul>
                             </div>
                         </div>
-                        <!-- <div class="card__side card__side--back card__side--back-3">
-                            <div class="card__cta">
-                                <div class="card__price-box">
-                                    <p class="card__price-only">PDP</p>
-                                    <p class="card__price-value">Agbaje</p>
-                                </div>
-                                <a href="#" class="btn">Vote</a>
-                            </div>
-                        </div> -->
+                       
                     </div>
                 </div>
             </div>

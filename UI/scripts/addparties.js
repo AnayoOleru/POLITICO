@@ -2,7 +2,7 @@
 
 function verifyToken(){
     let token = window.localStorage.getItem('token');
-    let admin = token.isadmin;
+    // let admin = token.isadmin;
 
     // if(!admin){
     //     window.location.href = '/views/sign-in.html';
@@ -113,10 +113,6 @@ function addParty(e){
         console.log(res);
         if(!responseStatus){
             result.innerHTML = res.error;
-        }else{
-            // swal("Here's the title!", "...and here's the text!");
-        // window.localStorage.setItem('token', res.data.token);
-        // window.location.href = '/views/parties.html';
         }
     })
 }
