@@ -4,6 +4,7 @@ import moment from 'moment';
 import partyDb from '../db/partydb';
 // import PartyModel from '../models/party';
 import db from '../databaseTables/dbconnect';
+import userAuthHelper from '../helper/userAuth';
 
 // const partyModel = new PartyModel()
 
@@ -33,6 +34,24 @@ class Party{
         "error": "Address field is empty"
       })
     }
+    if (!userAuthHelper.isAddress(req.body.hqaddress)) {
+      return res.status(400).send({
+        "status": 400,  
+        "error": "Please enter a valid address"
+    });
+}
+if (!userAuthHelper.isName(req.body.name)) {
+  return res.status(400).send({
+    "status": 400,  
+    "error": "Alphabets only"
+});
+}
+if (!userAuthHelper.isHigher(req.body.name, req.body.hqaddress)) {
+  return res.status(400).send({
+    "status": 400,  
+    "error": "Alphabets only"
+  })
+    };
     // const { isAdmin } = req.user;
     //     if (isAdmin) {
     //       return res.status(403).json({

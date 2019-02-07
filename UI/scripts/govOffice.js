@@ -32,7 +32,7 @@ function addOffice(e){
     let responseStatus = false;
 
 
-    fetch('http://localhost:3000/api/v1/offices', {
+    fetch('https://trustpolitico.herokuapp.com/api/v1/offices', {
         method: 'POST',
         headers: {
             'Accept': 'application/json, text/plain, */*',

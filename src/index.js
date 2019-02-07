@@ -70,8 +70,8 @@ app.delete(
 
 app.post(
   '/api/v1/offices', 
-  // token.verifyToken, 
-  // verifyAdmin.verifyIsAdmin, 
+  token.verifyToken, 
+  verifyAdmin.verifyIsAdmin, 
   Office.create
   );
 

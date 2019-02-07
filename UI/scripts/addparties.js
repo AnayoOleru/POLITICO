@@ -1,12 +1,16 @@
 // import swal from 'sweetalert';
 
-// function verifyToken(){
-//     let token = window.localStorage.getItem('token');
+function verifyToken(){
+    let token = window.localStorage.getItem('token');
+    let admin = token.isadmin;
 
-//     if(token == undefined){
-//         window.location.href = '/views/sign-in.html';
-//     }
-// }
+    // if(!admin){
+    //     window.location.href = '/views/sign-in.html';
+    // }
+    if(!token){
+        window.location.href = '/views/sign-in.html';
+    }
+}
 
 let sideNav = document.getElementById("mySidenav");
 let openParty = document.getElementById("openparty");
@@ -85,7 +89,7 @@ function addParty(e){
     let responseStatus = false;
 
 
-    fetch('http://localhost:3000/api/v1/parties', {
+    fetch('https://trustpolitico.herokuapp.com/api/v1/parties', {
         method: 'POST',
         headers: {
             'Accept': 'application/json, text/plain, */*',

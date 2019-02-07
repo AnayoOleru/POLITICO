@@ -2,7 +2,7 @@ import moment from 'moment';
 import uuidv4 from 'uuid/v4';
 import officeDb from '../db/officedb';
 import db from '../databaseTables/dbconnect';
-import userAuth  from '../helper/userAuth';
+import userAuthHelper from '../helper/userAuth';
 // import Query from '../../helper/query'
 // import PartyModel from '../models/party';
 
@@ -38,6 +38,19 @@ class Office{
           "error": "Some values are missing" 
       });
     }
+  
+  if (!userAuthHelper.isName(req.body.name)) {
+  return res.status(400).send({
+    "status": 400,  
+    "error": "Alphabets only"
+});
+}
+if (!userAuthHelper.isHigher(req.body.name, req.body.type)) {
+  return res.status(400).send({
+    "status": 400,  
+    "error": "Alphabets only"
+  })
+    };
 
 
 

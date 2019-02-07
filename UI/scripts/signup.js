@@ -15,6 +15,7 @@ function addPost(e){
     let password = document.getElementById('password').value;
     let result = document.getElementById('result');
     let responseStatus = false;
+    console.log('hhhhhh')
 
 
     fetch('https://trustpolitico.herokuapp.com/api/v1/auth/signup', {
@@ -37,6 +38,8 @@ function addPost(e){
     .then((res) => {
         if(res.ok){
             responseStatus = true;
+            result.innerHTML = "Signup successful!"
+            result.style.color="green"
         }
        return res.json()
     })
@@ -49,7 +52,7 @@ function addPost(e){
             //   }, 7000);
         }else{
 
-        window.localStorage.setItem('token', res.data.token);
+        window.localStorage.setItem('token', res.data[0].token);
         window.location.href = '/views/parties.html';
         // console.log(res);
         }

@@ -37,8 +37,10 @@ const userAuthHelper = {
    * @returns {Boolean} True or False
    */
   ispasswordValid(password) {
-      if(password.length > 6) return true;
-      return false;
+   return (/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password))
+      // if(password.
+      //   length > 6) return true;
+      // return false;
   },
   /**
 	 * validate address:
@@ -48,8 +50,21 @@ const userAuthHelper = {
 	 * @returns boolean
 	 */
   isAddress(address) {
-    return (/^[a-zAZ0-9,.-\s]+$/i.test(address));
+    return (/[A-Za-z0-9'\.\-\s\,]/.test(address));
   },
+  /**
+	 * validate address:
+	 * @description the isAddress methods will pass only
+	 * if the string contains alphabets, numbers, spaces, period, comma, and dash
+	 * @param {string} address
+	 * @returns boolean
+	 */
+  isHigher(higher) {
+    if(higher.length < 30) return true;
+      return false;
+  },
+
+  
   /**
 	 * @description allow only alphabets and spaces
 	 * @param {string} name
@@ -64,7 +79,7 @@ const userAuthHelper = {
 	 * @returns boolean
 	 */
   isInt(string) {
-    return string ? (/^[0-9]+$/i.test(string)) : false;
+    return (/^[0]\d{10}$/.test(string));
 
     
   },
