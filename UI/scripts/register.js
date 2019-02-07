@@ -1,17 +1,8 @@
-function openNav() {
-    document.getElementById("mySidenav").style.width = "200px";
-}
-
-function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-}
-
-
-// Consuming the API for parties, users should be able to get all parties
+// Consuming the API for votes, users hsould be able to vote
 // alert("connected!");
-document.getElementById('allparties').addEventListener('submit', allParties);
+document.getElementById('register').addEventListener('submit', userRegister);
 
-function allParties(e){
+function userRegister(e){
     e.preventDefault();
 
     
@@ -24,7 +15,7 @@ function allParties(e){
     let responseStatus = false;
 
 
-    fetch('https://trustpolitico.herokuapp.com/api/v1/parties', {
+    fetch('https://trustpolitico.herokuapp.com/api/v1/office/:id/register', {
         method: 'POST',
         headers: {
             'Accept': 'application/json, text/plain, */*',

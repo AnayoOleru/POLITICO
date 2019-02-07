@@ -36,10 +36,10 @@ function loginPost(e){
             result.innerHTML = res.error;
         }
         if(res.data[0].user.isadmin == true){
-        window.localStorage.setItem('token', res.data.token);
+        window.localStorage.setItem('token', res.data[0].token);
         window.location.href = '/views/govOffice.html';
         }else{
-        window.localStorage.setItem('token', res.data.token);
+        window.localStorage.setItem('token', res.data[0].token);
         window.location.href = '/views/parties.html';
         }
     })

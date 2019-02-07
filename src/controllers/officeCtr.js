@@ -2,7 +2,7 @@ import moment from 'moment';
 import uuidv4 from 'uuid/v4';
 import officeDb from '../db/officedb';
 import db from '../databaseTables/dbconnect';
-import userAuth  from '../helper/userAuth';
+import userAuthHelper from '../helper/userAuth';
 // import Query from '../../helper/query'
 // import PartyModel from '../models/party';
 
@@ -17,6 +17,46 @@ class Office{
   
 
   static async create(req, res) {
+    
+    if (!req.body.type) {
+      return res.status(400).send({ 
+          "status": 400, 
+          "error": "Type field is empty" 
+      });
+    }
+
+    if (!req.body.name) {
+      return res.status(400).send({ 
+          "status": 400, 
+          "error": "Name field is empty" 
+      });
+    }
+
+    if (!req.body.type || !req.body.name) {
+      return res.status(400).send({ 
+          "status": 400, 
+          "error": "Some values are missing" 
+      });
+    }
+  
+  if (!userAuthHelper.isName(req.body.name)) {
+  return res.status(400).send({
+    "status": 400,  
+    "error": "Alphabets only"
+});
+}
+if (!userAuthHelper.isHigher(req.body.name, req.body.type)) {
+  return res.status(400).send({
+    "status": 400,  
+    "error": "Alphabets only"
+  })
+    };
+
+    let query = {
+      text: 'SELECT * FROM office WHERE name = $1',
+      values: [name],
+    };
+
     const createQuery = `INSERT INTO
       office(id, name, type, created_date)
       VALUES($1, $2, $3, $4)
@@ -29,6 +69,13 @@ class Office{
     ];
 console.log(values)
     try {
+      const result = await db.query(query);
+      if (result.row !== 0) {
+        return res.status(400).json({
+          status: 400,
+          error: 'An office with this name already exist',
+        });
+      }
       const { rows } = await db.query(createQuery, values);
       return res.status(201).send({
         "status": 201,
@@ -39,9 +86,9 @@ console.log(values)
       });
       console.log(error)
     } catch(error) {
-      return res.status(400).send({
+      return res.status(500).send({
         "status": 400,
-        "data": error
+        "data": "There was an error, please try again."
       });
     }
   }

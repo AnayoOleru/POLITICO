@@ -4,6 +4,7 @@ import moment from 'moment';
 import partyDb from '../db/partydb';
 // import PartyModel from '../models/party';
 import db from '../databaseTables/dbconnect';
+import userAuthHelper from '../helper/userAuth';
 
 // const partyModel = new PartyModel()
 
@@ -15,17 +16,42 @@ class Party{
    * @returns {array} - returns all key value pairs as object in array
    */
   static async create(req, res) {
-    if(!req.body.name || !req.body.hqaddress || !req.body.logoUrl){
+    if(!req.body.logoUrl){
       return res.status(400).send({ 
         "status": 400, 
-        "error": [{
-          "message": "Some values are missing",
-          "name": "e.g APC",
-          "hqaddress": "address",
-          "logoUrl": "candidate's id" 
-  }] 
+        "error": "Logo field is empty" 
     });
     }
+    if(!req.body.name){
+      return res.status(400).send({
+        "status": 400,
+        "error": "Party field is empty"
+      })
+    }
+    if(!req.body.hqaddress){
+      return res.status(400).send({
+        "status": 400,
+        "error": "Address field is empty"
+      })
+    }
+    if (!userAuthHelper.isAddress(req.body.hqaddress)) {
+      return res.status(400).send({
+        "status": 400,  
+        "error": "Please enter a valid address"
+    });
+}
+if (!userAuthHelper.isName(req.body.name)) {
+  return res.status(400).send({
+    "status": 400,  
+    "error": "Alphabets only"
+});
+}
+if (!userAuthHelper.isHigher(req.body.name, req.body.hqaddress)) {
+  return res.status(400).send({
+    "status": 400,  
+    "error": "Alphabets only"
+  })
+    };
     // const { isAdmin } = req.user;
     //     if (isAdmin) {
     //       return res.status(403).json({
