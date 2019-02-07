@@ -2,7 +2,7 @@ import moment from 'moment';
 import uuidv4 from 'uuid/v4';
 import officeDb from '../db/officedb';
 import db from '../databaseTables/dbconnect';
-import userAuth  from '../helper/userAuth';
+import userAuthHelper from '../helper/userAuth';
 // import Query from '../../helper/query'
 // import PartyModel from '../models/party';
 
@@ -17,6 +17,43 @@ class Office{
   
 
   static async create(req, res) {
+    
+    if (!req.body.type) {
+      return res.status(400).send({ 
+          "status": 400, 
+          "error": "Type field is empty" 
+      });
+    }
+
+    if (!req.body.name) {
+      return res.status(400).send({ 
+          "status": 400, 
+          "error": "Name field is empty" 
+      });
+    }
+
+    if (!req.body.type || !req.body.name) {
+      return res.status(400).send({ 
+          "status": 400, 
+          "error": "Some values are missing" 
+      });
+    }
+  
+  if (!userAuthHelper.isName(req.body.name)) {
+  return res.status(400).send({
+    "status": 400,  
+    "error": "Alphabets only"
+});
+}
+if (!userAuthHelper.isHigher(req.body.name, req.body.type)) {
+  return res.status(400).send({
+    "status": 400,  
+    "error": "Alphabets only"
+  })
+    };
+
+
+
     const createQuery = `INSERT INTO
       office(id, name, type, created_date)
       VALUES($1, $2, $3, $4)

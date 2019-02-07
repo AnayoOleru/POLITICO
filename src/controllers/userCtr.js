@@ -34,7 +34,7 @@ const User = {
     if (!userAuthHelper.ispasswordValid(req.body.password)) {
         return res.status(400).send({ 
             "status": 400, 
-            "error": "Password Must Be at least Six Characters And Must Be A string" 
+            "error": "Password must be minimum eight characters, at least one letter and one number:" 
         });
       }
 
@@ -45,12 +45,12 @@ const User = {
         });
       }
 
-      // if (!userAuthHelper.isInt(req.body.phonenumber)) {
-      //   return res.status(400).send({ 
-      //       "status": 400, 
-      //       "error": "Only Digits are allowed URL" 
-      //   });
-      // }
+      if (!userAuthHelper.isInt(req.body.phonenumber)) {
+        return res.status(400).send({ 
+            "status": 400, 
+            "error": "Invalid Nigerian phone-number" 
+        });
+      }
 
       // if (!userAuthHelper.isURL(req.body.passportUrl)) {
       //   return res.status(400).send({ 
@@ -106,8 +106,8 @@ const User = {
         
         return res.status(404).send({ 
             "data": 404,
-            "message": "User with that EMAIL already exist" 
-    })
+            "error": "User with that EMAIL already exist" 
+    });
       }
       return res.status(400).send({
             "data":
