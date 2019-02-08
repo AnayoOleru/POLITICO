@@ -7,6 +7,9 @@
 # POLITICO
  > :ng: Politico is a web-app that enables both citizens give their mandate to politicians running for different government offices. POLITICO also enables politicians to express interest to run for an office, while building trust in the process through transparency. :slot_machine:
 
+#  API Documentation
+https://app.swaggerhub.com/apis-docs/Anayo-Oleru/politico/1.0
+
  # UI
 https://anayooleru.github.io/POLITICO/
 
