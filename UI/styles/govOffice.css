@@ -73,6 +73,7 @@ body{
 }
 
 .sidenav a {
+    border-bottom: 1px solid rgb(99, 175, 211);
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
