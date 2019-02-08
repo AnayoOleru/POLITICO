@@ -50,7 +50,11 @@ class Votes{
         "status": 201,
         "data": [{
           "message": "Vote complete",
-          "data": rows[0],
+          "data": {
+           "office":rows[0].office,
+           "candidate":rows[0].candidate,
+           "voter":rows[0].created_by
+          }
         }],
       });
     } catch(error) {

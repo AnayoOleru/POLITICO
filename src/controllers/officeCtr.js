@@ -58,9 +58,9 @@ if (!userAuthHelper.isHigher(req.body.name, req.body.type)) {
   })
     };
 
-    const check = `SELECT * FROM office WHERE type=$1`
-      const { type } = req.body;
-      const result = await db.query(check, [type]);
+    const check = `SELECT * FROM office WHERE name=$1`
+      const { name } = req.body;
+      const result = await db.query(check, [name]);
       if(result.rowCount !== 0){
         return res.status(400).send({
           "status":400,
@@ -80,13 +80,13 @@ if (!userAuthHelper.isHigher(req.body.name, req.body.type)) {
     ];
 console.log(values)
     try {
-      const result = await db.query(query);
-      if (result.row !== 0) {
-        return res.status(400).json({
-          status: 400,
-          error: 'An office with this name already exist',
-        });
-      }
+      // const result = await db.query(query);
+      // if (result.row !== 0) {
+      //   return res.status(400).json({
+      //     status: 400,
+      //     error: 'An office with this name already exist',
+      //   });
+      // }
       const { rows } = await db.query(createQuery, values);
       return res.status(201).send({
         "status": 201,
@@ -146,12 +146,12 @@ static async getAllOffices(req, res){
           "error": "Office not found"
         });
       }
-      // if (!userAuthHelper.isUUID(req.params)) {
-      //   return res.status(400).send({
-      //     "status": 400,  
-      //     "error": "The user ID used is invalid"
-      // });
-      // }
+      if (!userAuthHelper.isUUID(req.params)) {
+        return res.status(400).send({
+          "status": 400,  
+          "error": "The user ID used is invalid"
+      });
+      }
       return res.status(200).send({
         "status": 200,
         "data": rows[0]});

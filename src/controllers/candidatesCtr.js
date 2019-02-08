@@ -13,7 +13,8 @@ class Candidates{
    * @returns {array} - returns all key value pairs as object in array
    */
   static async register(req, res) {
-    if(!req.body.office || !req.body.party || !req.body.candidate){
+    console.log("ggggg")
+    if( !req.body.office || !req.body.party ){
       return res.status(400).send({ 
         "status": 400, 
         "error": [{
@@ -23,6 +24,11 @@ class Candidates{
             "candidate": "the user id you wants to register" 
     }]
 })
+    }
+    if(!req.body.candidate){
+      return res.status(400).send({
+        "data":"null"
+      })
     }
     const createQuery = `INSERT INTO
       candidates(id, office, party, candidate)
@@ -42,7 +48,9 @@ class Candidates{
         "status": 201,
         "data": [{
           "message": "Candidate Registered",
-          "office": rows[0].candidate
+          "Candidate-id":rows[0].id, 
+          "office": rows[0].office,
+          "user": rows[0].candidate
 
         }],
       });

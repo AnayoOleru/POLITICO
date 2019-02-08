@@ -112,8 +112,7 @@ if(!req.body.passportUrl){
     });
       }
       return res.status(400).send({
-            "data":
-            error
+            "data": "Oops, something went wrong, check and try again"
       });
     }
   },

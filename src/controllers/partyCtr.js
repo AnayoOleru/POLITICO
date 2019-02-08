@@ -61,7 +61,7 @@ if (!userAuthHelper.isHigher(req.body.name, req.body.hqaddress)) {
     if (!userAuthHelper.isURL(req.body.logoUrl)) {
       return res.status(400).send({
         "status": 400,  
-        "error": "Incorrect URL. Use http://"
+        "error": "Incorrect URL. Use https://"
       })
         };
       const check = `SELECT * FROM party WHERE name=$1`
