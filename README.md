@@ -16,8 +16,6 @@ https://anayooleru.github.io/POLITICO/
  ## UI Pages
  User profile: `../POLITICO/UI/parties.html`
 
- Politician profile: `../POLITICO/UI/politician/politician.html`
-
  Admin: `../POLITICO/UI/admin/govOffice.html` 
 
  ## UI Implemented features
