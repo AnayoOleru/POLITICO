@@ -1,12 +1,16 @@
 // import swal from 'sweetalert';
+let token = window.localStorage.getItem('token');
+let admin = token.isAdmin;
 
+    
 function verifyToken(){
-    let token = window.localStorage.getItem('token');
-    let admin = token.isadmin;
+    console.log(token);
+    // let token = window.localStorage.getItem('token');
+    // let admin = token.isadmin;
 
-    // if(!admin){
-    //     window.location.href = '/views/sign-in.html';
-    // }
+    if(admin == false){
+        window.location.href = '/views/sign-in.html';
+    }
     if(!token){
         window.location.href = '/views/sign-in.html';
     }
