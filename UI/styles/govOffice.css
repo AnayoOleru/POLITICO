@@ -204,20 +204,20 @@ body{
 
     .add{
         position: fixed;
-        font-size: 30px;
-        margin: 30px 15px;
+        font-size: 50px;
+        margin: 50px 65px;
         color: #ffffff;
         bottom:0%;
         right: 0%;
-        background-color: rgb(10, 65, 86);
+        background-color: rgb(226, 31, 5);
         border: none;
-        padding: 40px;
+        padding: 20px 40px;
         text-align: center;
         text-decoration: none;
         border-radius: 50%;
   }
   .add:hover{
-    background-color: rgb(4, 26, 34); 
+    background-color: rgb(116, 18, 5); 
   }
 
 
@@ -294,14 +294,14 @@ body{
         color: rgb(251, 254, 255);
     }
 
-    .add{
+    /* .add{
         position: fixed;
         font-size: 30px;
         margin: 30px 15px;
         color: #ffffff;
         bottom:0%;
         right: 0%;
-        background-color: rgb(10, 65, 86);
+        background-color: rgb(226, 31, 5);
         border: none;
         padding: 40px;
         text-align: center;
@@ -310,7 +310,7 @@ body{
   }
   .add:hover{
     background-color: rgb(4, 26, 34); 
-  }
+  } */
 
   .container {
     display: flex;
