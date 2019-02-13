@@ -44,7 +44,7 @@ function addPost(e){
        return res.json()
     })
     .then((res) => {
-        console.log(res);
+        console.log(res.user);
         if(!responseStatus){
             result.innerHTML = res.error;
             // setTimeout(function() {
@@ -54,7 +54,7 @@ function addPost(e){
 
         window.localStorage.setItem('token', res.data[0].token);
         window.location.href = '/views/parties.html';
-        // console.log(res);
+        console.log(res);
         }
     })
 }
