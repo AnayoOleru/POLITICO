@@ -1,3 +1,15 @@
+let token = window.localStorage.getItem('token');
+function verifyToken(){
+    console.log('Reached');
+    if(!token){
+        window.location.href = '/views/sign-in.html';
+    }
+    // if(res.data[0].user.isadmin == false){
+    //     window.location.href = '/views/sign-in.html';
+    // }
+    
+}
+
 function openNav() {
     document.getElementById("mySidenav").style.width = "200px";
 }
@@ -8,50 +20,40 @@ function closeNav() {
 
 
 // Consuming the API for parties, users should be able to get all parties
-// alert("connected!");
-document.getElementById('allparties').addEventListener('submit', allParties);
 
-function allParties(e){
-    e.preventDefault();
-
-    
-    let office = document.getElementById('name').value;
-    let user = document.getElementById('hqaddress').value;
-    let result = document.getElementById('result');
-    // let partyImage = document.getElementById('partyImage').value;
-    // let partyName = document.getElementById('partyName').value;
-    // let partyAddress = document.getElementById('partyAddress').value;
-    let responseStatus = false;
-
-
+function UserGetParties(){
     fetch('https://trustpolitico.herokuapp.com/api/v1/parties', {
-        method: 'POST',
+        method: 'GET',
         headers: {
             'Accept': 'application/json, text/plain, */*',
-            'Content-type': 'application/json'
+            'Content-type': 'application/json',
+            'x-access-token': token
         },
-        body: JSON.stringify({
-            name: name, 
-            hqaddress: hqaddress,
-            logoUrl: logoUrl
-        })
+    })
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data);
+            let result = '';
+            data.data.forEach((party) => {
+                result +=
+                `<div class="col-1-of-3">
+                <div class="card">
+                    <div class="card__side card__side--front">
+                        <div class="card__picture card__picture--1" id="partyImage">&nbsp;</div>
+                        <div class="card__details">
+                            <ul>
+                                <li style="font-size: 30px" id="partyName">${party.name}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div> `
+            });
+        document.getElementById('partyResult').innerHTML = result;
+    })
+    
+
         
-    })
-    .then((res) => {
-        if(res.ok){
-            responseStatus = true;
-        }
-       return res.json()
-    })
-    // render the parties page
-    .then((res) => {
-        console.log(res);
-        if(!responseStatus){
-            result.innerHTML = res.error;
-        }else{
-            // swal("Here's the title!", "...and here's the text!");
-        // window.localStorage.setItem('token', res.data.token);
-        // window.location.href = '/views/parties.html';
-        }
-    })
 }
+
+UserGetParties();

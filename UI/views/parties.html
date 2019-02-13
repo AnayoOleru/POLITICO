@@ -10,7 +10,7 @@
     <link rel="icon" type="image/ico" href="../images/pogo.png"/>
     <meta name="Description" content="Politico - Builds trust through transparency">
 </head>
-<body>
+<body onload= "verifyToken()">
         <div id="mySidenav" class="sidenav">
                 <a href="#" class="closebtn" onclick="closeNav()"><i class="fa fa-chevron-circle-right"></i></a>
                 
@@ -79,84 +79,8 @@
                     Parties
                 </h1>
             </div>
-            <div class="row">
-                <div class="col-1-of-3">
-                    <div class="card">
-                        <div class="card__side card__side--front">
-                            <div class="card__picture card__picture--1">&nbsp;</div>
-                            <!-- <h4 class="card__heading">
-                                <span class="card__heading-span card__heading-span--1">APC</span>
-                            </h4> -->
-                            <div class="card__details">
-                                <ul>
-                                    <li style="font-size: 30px">All Progressive Congress </li>
-                                    <!-- <li style="font-size: 30px">Buhari</li> -->
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- <div class="card__side card__side--back card__side--back-1">
-                            <div class="card__cta">
-                                <div class="card__price-box">
-                                    <p class="card__price-only">PDP</p>
-                                    <p class="card__price-value">Peop</p>
-                                </div>
-                                <a href="#" class="btn">Vote</a>
-                            </div>
-                        </div> -->
-                    </div>
-                </div>
-                <div class="col-1-of-3">
-                    <div class="card">
-                        <div class="card__side card__side--front">
-                            <div class="card__picture card__picture--2">&nbsp;</div>
-                            <!-- <h4 class="card__heading">
-                                <span class="card__heading-span card__heading-span--2">PDP</span>
-                            </h4> -->
-                            <div class="card__details">
-                                <ul>
-                                    <li style="font-size: 30px">Peoples Democratic Party</li>
-                                    <!-- <li style="font-size: 30px">Atiku</li> -->
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- later -->
-                        <!-- <div class="card__side card__side--back card__side--back-2">
-                            <div class="card__cta">
-                                <div class="card__price-box">
-                                    <p class="card__price-only">PDP</p>
-                                    <p class="card__price-value">Atiku</p>
-                                </div>
-                                <a href="#" class="btn">Vote</a>
-                            </div>
-                        </div> -->
-                    </div>
-                </div>
+            <div class="row" id="partyResult">
 
-                <div class="col-1-of-3">
-                    <div class="card">
-                        <div class="card__side card__side--front">
-                            <div class="card__picture card__picture--3">&nbsp;</div>
-                            <!-- <h4 class="card__heading">
-                                <span class="card__heading-span card__heading-span--3">ACCORD</span>
-                            </h4> -->
-                            <div class="card__details">
-                                <ul>
-                                    <li style="font-size: 30px">ACCORD</li>
-                                    <!-- <li style="font-size: 30px">Agbaje</li> -->
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- <div class="card__side card__side--back card__side--back-3">
-                            <div class="card__cta">
-                                <div class="card__price-box">
-                                    <p class="card__price-only">PDP</p>
-                                    <p class="card__price-value">Agbaje</p>
-                                </div>
-                                <a href="#" class="btn">Vote</a>
-                            </div>
-                        </div> -->
-                    </div>
-                </div>
             </div>
 
         </section>
