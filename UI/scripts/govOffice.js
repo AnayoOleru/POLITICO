@@ -44,7 +44,7 @@ function addOffice(e){
     let responseStatus = false;
 
 
-    fetch('http://localhost:3000/api/v1/offices', {
+    fetch('https://trustpolitico.herokuapp.com/api/v1/offices', {
         method: 'POST',
         headers: {
             'Accept': 'application/json, text/plain, */*',
@@ -81,126 +81,41 @@ function addOffice(e){
 
 
 
-// Consuming the API to get a specific Party
-// alert("connected!");
-document.getElementById('addOffice').addEventListener('submit', addOffice);
-
-function addOffice(e){
-    e.preventDefault();
-
-    
-    let type = document.getElementById('type').value;
-    let name = document.getElementById('name').value;
-    let result = document.getElementById('result').value;
-    let responseStatus = false;
-
-
+function getOffice(){
     fetch('https://trustpolitico.herokuapp.com/api/v1/offices', {
-        method: 'POST',
+        method: 'GET',
         headers: {
             'Accept': 'application/json, text/plain, */*',
-            'Content-type': 'application/json'
+            'Content-type': 'application/json',
+            'x-access-token': token
         },
-        body: JSON.stringify({
-            type: type, 
-            name: name
-        })
-        
     })
-    .then((res) => {
-        console.log(res)
-        if(res.ok){
-            responseStatus = true;
-        }
-       return res.json()
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data);
+            let result = '';
+            data.data.forEach((office) => {
+                result +=
+                `<div class="box box2">
+                <p class="type">${office.type}</p>
+                <p class="people">${office.name}</p>
+        </div> `
+            });
+        document.getElementById('officeResult').innerHTML = result;
     })
-    // render the office page
-        .then((res) => {
-            if(!responseStatus){
-                result.innerHTML = res.error;
-            }
-        })
-}
-
-// Consuming the API for users to edit a specific party
-// alert("connected!");
-document.getElementById('partEdit').addEventListener('submit', partEdit);
-
-function partyEdit(e){
-    e.preventDefault();
-
     
-    let type = document.getElementById('type').value;
-    let name = document.getElementById('name').value;
-    let result = document.getElementById('result').value;
-    let responseStatus = false;
 
-
-    fetch('https://trustpolitico.herokuapp.com/api/v1/offices', {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json, text/plain, */*',
-            'Content-type': 'application/json'
-        },
-        body: JSON.stringify({
-            type: type, 
-            name: name
-        })
         
-    })
-    .then((res) => {
-        console.log(res)
-        if(res.ok){
-            responseStatus = true;
-        }
-       return res.json()
-    })
-    // render the office page
-        .then((res) => {
-            if(!responseStatus){
-                result.innerHTML = res.error;
-            }
-        })
 }
 
+// admin can edit political party
+// function editParty(){
 
-// Consuming the API for admin to delete a specific political party
-// alert("connected!");
-document.getElementById('partyDelete').addEventListener('submit', partyDelete);
+// }
 
-function partyDelete(e){
-    e.preventDefault();
+// admin can delete political party
+// function deleteParty(){
 
-    
-    let type = document.getElementById('type').value;
-    let name = document.getElementById('name').value;
-    let result = document.getElementById('result').value;
-    let responseStatus = false;
+// }
 
-
-    fetch('https://trustpolitico.herokuapp.com/api/v1/', {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json, text/plain, */*',
-            'Content-type': 'application/json'
-        },
-        body: JSON.stringify({
-            type: type, 
-            name: name
-        })
-        
-    })
-    .then((res) => {
-        console.log(res)
-        if(res.ok){
-            responseStatus = true;
-        }
-       return res.json()
-    })
-    // render the office page
-        .then((res) => {
-            if(!responseStatus){
-                result.innerHTML = res.error;
-            }
-        })
-}
+getOffice();
