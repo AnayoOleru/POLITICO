@@ -1,19 +1,14 @@
-// import swal from 'sweetalert';
+
 let token = window.localStorage.getItem('token');
-let admin = token.isAdmin;
-
-    
 function verifyToken(){
-    console.log(token);
-    // let token = window.localStorage.getItem('token');
-    // let admin = token.isadmin;
-
-    if(admin == false){
-        window.location.href = '/views/sign-in.html';
-    }
+    console.log('Reached');
     if(!token){
         window.location.href = '/views/sign-in.html';
     }
+    // if(res.data[0].user.isadmin == false){
+    //     window.location.href = '/views/sign-in.html';
+    // }
+    
 }
 
 let sideNav = document.getElementById("mySidenav");
@@ -97,7 +92,8 @@ function addParty(e){
         method: 'POST',
         headers: {
             'Accept': 'application/json, text/plain, */*',
-            'Content-type': 'application/json'
+            'Content-type': 'application/json',
+            'x-access-token': token
         },
         body: JSON.stringify({
             name: name, 
@@ -109,6 +105,8 @@ function addParty(e){
     .then((res) => {
         if(res.ok){
             responseStatus = true;
+            result.innerHTML = "party successfully created";
+            result.style.color="white";
         }
        return res.json()
     })
@@ -117,11 +115,11 @@ function addParty(e){
         console.log(res);
         if(!responseStatus){
             result.innerHTML = res.error;
-        }else{
-            // swal("Here's the title!", "...and here's the text!");
-        // window.localStorage.setItem('token', res.data.token);
-        // window.location.href = '/views/parties.html';
-        }
+            result.style.color="White";
+        } 
+        if(res.data[0].user.isadmin == true){
+            window.location.href = '/views/signin.html';
+            }
     })
 }
 

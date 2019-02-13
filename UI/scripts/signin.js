@@ -31,7 +31,7 @@ function loginPost(e){
        return res.json()
     })
     .then((res) => {
-        console.log(res);
+        console.log(res.data);
         if(!responseStatus){
             result.innerHTML = res.error;
         }
