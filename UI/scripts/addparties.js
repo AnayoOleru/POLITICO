@@ -121,5 +121,62 @@ function addParty(e){
             window.location.href = '/views/signin.html';
             }
     })
+};
+
+function getParties(){
+    fetch('https://trustpolitico.herokuapp.com/api/v1/parties', {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-type': 'application/json',
+            'x-access-token': token
+        },
+    })
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data);
+            let result = '';
+            data.data.forEach((party) => {
+                result +=
+                `<div class="col-1-of-3">
+                <div class="card">
+                    <div class="card__side card__side--front">
+                        <div class="card__picture card__picture--1" id="partyImage">&nbsp;</div>
+                        <div class="card__details">
+                            <ul>
+                                <li style="font-size: 30px" id="partyName">${party.name}</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card__side card__side--back card__side--back-1">
+                        <div class="card__cta">
+                            <div class="card__price-box">
+                                <p class="card__price-only">Headquater Address</p>
+                                <p class="card__price-only" id="partyAddress">${party.hqaddress}</p>
+                            </div>
+                            <a href="#" class="btn" id="edit">Edit</a>
+                            <a href="#" class="btn" id="delete">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div> `
+            });
+        document.getElementById('partyResult').innerHTML = result;
+    })
+    
+
+        
 }
+
+// admin can edit political party
+// function editParty(){
+
+// }
+
+// admin can delete political party
+// function deleteParty(){
+
+// }
+
+getParties();
 
