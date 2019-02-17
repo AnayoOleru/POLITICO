@@ -83,6 +83,14 @@ app.post(
   candidateCtr.register
   );
 
+  app.get(
+    '/api/v1/users', 
+    token.verifyToken, 
+    verifyAdmin.verifyIsAdmin, 
+    verifyId.validateUserId,
+    userCtr.getAllUsers
+    );
+
 
 // user
 app.get(
@@ -120,6 +128,12 @@ app.get(
   token.verifyToken, 
   Office.officeResult
   );
+
+  app.get(
+    '/api/v1/candidates', 
+    token.verifyToken, 
+    candidateCtr.getAllCandidates
+    );
 
 // user login
 app.post(
