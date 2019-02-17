@@ -39,7 +39,7 @@ describe('GET \'/api/v1\'', () => {
   });
 });
 
-describe('Post \'/api/v1\'', () => {
+describe('POST \'/api/v1/auth/signup\'', () => {
   it('POST create an account', (done) => { // WHEN PASSWORD FIELD IS LEFT BLANK
     chai.request(app)
       .post('/api/v1/auth/signup')
@@ -55,7 +55,7 @@ describe('Post \'/api/v1\'', () => {
   });
 });
 
-describe('Post \'/api/v1\'', () => {
+describe('POST \'/api/v1/auth/signup\'', () => {
   it('POST create an account', (done) => { // WHEN NAMES FIELD IS LEFT BLANK
     chai.request(app)
       .post('/api/v1/auth/signup')
@@ -71,7 +71,7 @@ describe('Post \'/api/v1\'', () => {
   });
 });
 
-describe('Post \'/api/v1\'', () => {
+describe('POST \'/api/v1/auth/signup\'', () => {
   it('POST create an account', (done) => { // WHEN NAMES FIELD IS LEFT BLANK
     chai.request(app)
       .post('/api/v1/auth/signup')
@@ -89,7 +89,7 @@ describe('Post \'/api/v1\'', () => {
 
 
 // login
-describe('Post \'/api/v1\'', () => {
+describe('POST \'/api/v1/auth/login\'', () => {
   it('POST login to account', (done) => { // WHEN EMAIL IS INCORRECTLY LAID
     chai.request(app)
       .post('/api/v1/auth/login')
@@ -105,7 +105,7 @@ describe('Post \'/api/v1\'', () => {
   });
 });
 
-describe('Post \'/api/v1\'', () => {
+describe('POST \'/api/v1/auth/login\'', () => {
   it('POST login to account', (done) => { // WHEN NAMES PASSWORD IS EMPTY
     chai.request(app)
       .post('/api/v1/auth/login')
@@ -121,7 +121,7 @@ describe('Post \'/api/v1\'', () => {
   });
 });
 
-describe('Post \'/api/v1\'', () => {
+describe('POST \'/api/v1/auth/login\'', () => {
   it('POST Login to account', (done) => { // WHEN ALL FIELDS ARE EMPTY
     chai.request(app)
       .post('/api/v1/auth/login')
@@ -157,7 +157,7 @@ describe('Post \'/api/v1\'', () => {
 // });
 
 // get all parties
-describe('GET /parties', () => {
+describe('GET \'api/v1/parties\'', () => {
   it('should return all parties', (done) => {
     chai.request(app)
       .get('/api/v1/parties')
@@ -170,7 +170,7 @@ describe('GET /parties', () => {
   });
 });
 
-describe('GET /parties', () => {
+describe('GET \'api/v1/parties\'', () => {
   it('should return all parties', (done) => {
     chai.request(app)
       .get('/api/v1/parties')
@@ -183,7 +183,7 @@ describe('GET /parties', () => {
   });
 });
 
-describe('GET /parties', () => {
+describe('GET \'api/v1/parties\'', () => {
   it('should return all parties', (done) => {
     chai.request(app)
       .get('/api/v1/parties')
@@ -196,7 +196,7 @@ describe('GET /parties', () => {
   });
 });
 
-describe('GET /parties', () => {
+describe('GET \'api/v1/parties\'', () => {
   it('should return all parties', (done) => {
     chai.request(app)
       .get('/api/v1/parties')
@@ -224,7 +224,7 @@ describe('Fetch Parties by Id',() => {
   });
 });
 
-describe('Post \'/api/v1\'', () => {
+describe('POST \'/api/v1/parties\'', () => {
   it('POST login to account', (done) => { // WHEN EMAIL IS INCORRECTLY LAID
     chai.request(app)
       .post('/api/v1/parties')
@@ -240,7 +240,7 @@ describe('Post \'/api/v1\'', () => {
   });
 });
 
-describe('Post \'/api/v1\'', () => {
+describe('POST \'/api/v1/parties\'', () => {
   it('POST login to account', (done) => { // WHEN EMAIL IS INCORRECTLY LAID
     chai.request(app)
       .post('/api/v1/parties')
@@ -256,7 +256,7 @@ describe('Post \'/api/v1\'', () => {
   });
 });
 
-describe('Post \'/api/v1\'', () => {
+describe('POST \'/api/v1/parties\'', () => {
   it('POST login to account', (done) => { // WHEN EMAIL IS INCORRECTLY LAID
     chai.request(app)
       .post('/api/v1/parties')
@@ -330,7 +330,7 @@ describe('Post \'/api/v1\'', () => {
   });
 });
 
-describe('Post \'/api/v1\'', () => {
+describe('Post \'/api/v1/offices\'', () => {
   it('POST office to account', (done) => { // WHEN EMAIL IS INCORRECTLY LAID
     chai.request(app)
       .post('/api/v1/offices')
@@ -435,6 +435,48 @@ describe('Post \'/api/v1\'', () => {
         expect(err).to.be.null;
         expect(res).to.have.headers;
         expect(res).to.have.status(404);
+        expect(res).to.not.redirect;
+        expect(res.body).to.be.an('object');
+        done();
+      });
+  });
+});
+
+// get all users
+describe('GET /users', () => {
+  it('should return all users', (done) => {
+    chai.request(app)
+      .get('/api/v1/users')
+      .send(goodSignup)
+      .end((err, res) => {
+        expect(res.status).to.equal(400);
+        expect(res.body).to.not.be.empty;
+        done(err);
+      });
+  });
+});
+
+describe('GET /users', () => {
+  it('should return all users', (done) => {
+    chai.request(app)
+      .get('/api/v1/users')
+      .send(badSignup2)
+      .end((err, res) => {
+        expect(res.status).to.equal(400);
+        expect(res.body).to.not.be.empty;
+        done(err);
+      });
+  });
+});
+
+describe('Fetch all users',() => {
+  it('should return 401 when there is no token', (done) => {
+    chai.request(app)
+      .get('/api/v1/users')
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res).to.have.headers;
+        expect(res).to.have.status(400);
         expect(res).to.not.redirect;
         expect(res.body).to.be.an('object');
         done();

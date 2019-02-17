@@ -175,10 +175,23 @@ if(!req.body.passportUrl){
         "error": error
       })
     }
-  }
+  },
 
   /**
    * Get all
    */
+  async getAllUsers(req, res) {
+    const findAllQuery = 'SELECT * FROM users';
+    try{
+      const { rows, rowCount } = await db.query(findAllQuery);
+      return res.status(200).send({
+        "status": 200,
+       "data": rows, rowCount 
+      });
+    } catch(error) {
+      console.log(error)
+      return res.status(400).send(error);
+    }
+  }
   }
 export default User;

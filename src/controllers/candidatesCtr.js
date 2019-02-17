@@ -62,5 +62,22 @@ class Candidates{
       })
     }
   }
+
+  /**
+   * Get all Candidates
+   */
+  static async getAllCandidates(req, res) {
+    const findAllQuery = 'SELECT * FROM candidates';
+    try{
+      const { rows, rowCount } = await db.query(findAllQuery);
+      return res.status(200).send({
+        "status": 200,
+       "data": rows, rowCount 
+      });
+    } catch(error) {
+      console.log(error)
+      return res.status(400).send(error);
+    }
+  }
  }
 export default Candidates; 
