@@ -31,7 +31,7 @@ class Candidates{
       })
     }
     const createQuery = `INSERT INTO
-      candidates(id, office, party, candidate)
+      candidates(candidateId, office, party, candidate)
       VALUES($1, $2, $3, $4)
       returning *`;
     const values = [
@@ -48,7 +48,7 @@ class Candidates{
         "status": 201,
         "data": [{
           "message": "Candidate Registered",
-          "Candidate-id":rows[0].id, 
+          "Candidate-id":rows[0].candidateId, 
           "office": rows[0].office,
           "user": rows[0].candidate
 
