@@ -31,14 +31,17 @@ class Candidates{
       })
     }
     const createQuery = `INSERT INTO
-      candidates(candidateId, office, party, candidate)
-      VALUES($1, $2, $3, $4)
+      candidates(candidateId, office, officeName, party, partyName, candidate, candidateName)
+      VALUES($1, $2, $3, $4, $5, $6, $7)
       returning *`;
     const values = [
       uuidv4(),
       req.body.office,
+      req.body.officeName,
       req.body.party,
-      req.body.candidate
+      req.body.partyName,
+      req.body.candidate,
+      req.body.candidateName
     ];
     console.log(values)
 

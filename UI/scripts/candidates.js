@@ -1,5 +1,14 @@
+let token = window.localStorage.getItem('token');
+function verifyToken(){
+    console.log('Reached');
+    // alert('connected!');
+    if(!token){
+        window.location.href = '/views/sign-in.html';
+    }
+}
+
 function openNav() {
-    document.getElementById("mySidenav").style.width = "200px";
+    document.getElementById("mySidenav").style.width = "250px";
 }
 
 function closeNav() {
@@ -12,6 +21,58 @@ function voteColor(){
     voted.style.color = "#ffffff";
 }
 
+
+// users get all candidates
+function getAllCandidates(){
+    fetch('https://trustpolitico.herokuapp.com/api/v1/candidates', {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-type': 'application/json',
+            'x-access-token': token
+        },
+    })
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data);
+            let result = '';
+            data.data.forEach((candidate, user) => {
+                result +=
+                
+            `
+            <div class="col-1-of-3">
+                        <div class="card">
+                <div class="card__side card__side--front">
+                 <div class="card__picture card__picture--1">&nbsp;</div>
+                <h4 class="card__heading">
+            <span class="card__heading-span card__heading-span--1">${candidate.officename}</span>
+            </h4>
+            <div class="card__details">
+               <ul>
+            <li style="font-size: 25px">${candidate.candidatename}</li>
+            </ul>
+            </div>
+             </div>
+            <div class="card__side card__side--back card__side--back-1">
+             <div class="card__cta">
+             <div class="card__price-box">
+            <p class="card__price-only">${candidate.partyname}</p>
+            <p class="card__price-value">${candidate.candidatename}</p>
+              </div>
+            <a href="#" class="btn">Vote</a>
+                </div>
+                    </div>
+                        </div>
+                `
+            });
+        document.getElementById('candidatescard').innerHTML = result;
+    })
+    
+
+        
+}
+
+getAllCandidates();
 // Consuming the API for votes, users hsould be able to vote
 // alert("connected!");
 document.getElementById('vote').addEventListener('submit', vote);

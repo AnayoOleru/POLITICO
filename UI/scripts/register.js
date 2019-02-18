@@ -36,12 +36,11 @@ function getAllUsers(){
             data.data.forEach((user) => {
                 result +=
                 `
-                <option id=${user.id}>${user.firstname}</option> `
+                <option id=${user.id}>${user.firstname} ${user.lastname}</option> `
             });
+
         document.getElementById('users').innerHTML = result;
     })
-    
-
         
 }
 
@@ -107,8 +106,11 @@ function register(e){
    let partyValue = document.getElementById('parties');
    let officeValue = document.getElementById('offices');
    let userId = userValue.options[userValue.selectedIndex].id;
+   let userName = userValue.options[userValue.selectedIndex].value;
    let partyId = partyValue.options[partyValue.selectedIndex].id;
+   let partyName = partyValue.options[partyValue.selectedIndex].value;
    let officeId = officeValue.options[officeValue.selectedIndex].id;
+   let officeName = officeValue.options[officeValue.selectedIndex].value;
    let result = document.getElementById('result');
 //    console.log(userRegisterValue, partyRegisterValue, officeRegisterValue);
 
@@ -123,9 +125,12 @@ function register(e){
             'x-access-token': token
         },
         body: JSON.stringify({
-            office: officeId, 
+            office: officeId,
+            officeName:officeName, 
             party: partyId,
-            candidate: userId
+            partyName: partyName,
+            candidate: userId,
+            candidateName: userName
         })
         
     })

@@ -13,7 +13,7 @@
     <link rel="icon" type="image/ico" href="../images/pogo.png"/>
     <meta name="Description" content="Politico - Builds trust through transparency">
 </head>
-<body>
+<body onload= "verifyToken()">
         <div id="mySidenav" class="sidenav">
                 <a href="#" class="closebtn" onclick="closeNav()"><i class="fa fa-chevron-circle-right"></i></a>
                 <img style="width: 80px; padding-left: 30px;" src="../images/userimg.png">
@@ -40,33 +40,10 @@
                                                     Candidates
                                                 </h1>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-1-of-3">
-                                                    <div class="card">
-                                                        <div class="card__side card__side--front">
-                                                            <div class="card__picture card__picture--1">&nbsp;</div>
-                                                            <h4 class="card__heading">
-                                                                <span class="card__heading-span card__heading-span--1">President</span>
-                                                            </h4>
-                                                            <div class="card__details">
-                                                                <ul>
-                                                                    <li style="font-size: 30px">Muhammadu</li>
-                                                                    <li style="font-size: 30px">Buhari</li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                        <div class="card__side card__side--back card__side--back-1">
-                                                            <div class="card__cta">
-                                                                <div class="card__price-box">
-                                                                    <p class="card__price-only">APC</p>
-                                                                    <p class="card__price-value">Buhari</p>
-                                                                </div>
-                                                                <a href="#" class="btn">Vote</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                            <div class="row" id="candidatescard">
+                                                
                                                 </div>
-                                                <div class="col-1-of-3">
+                                                <!-- <div class="col-1-of-3">
                                                     <div class="card">
                                                         <div class="card__side card__side--front">
                                                             <div class="card__picture card__picture--2">&nbsp;</div>
@@ -80,7 +57,6 @@
                                                                 </ul>
                                                             </div>
                                                         </div>
-                                                        <!-- later -->
                                                         <div class="card__side card__side--back card__side--back-2">
                                                             <div class="card__cta">
                                                                 <div class="card__price-box">
@@ -91,9 +67,9 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                 
-                                                <div class="col-1-of-3">
+                                                <!-- <div class="col-1-of-3">
                                                     <div class="card">
                                                         <div class="card__side card__side--front">
                                                             <div class="card__picture card__picture--3">&nbsp;</div>
@@ -117,8 +93,8 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
+                                                </div> -->
+                                        
                                 
                                         </section>
                                 
