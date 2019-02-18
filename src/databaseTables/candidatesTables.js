@@ -19,8 +19,11 @@ const createCand = () => {
   `CREATE TABLE IF NOT EXISTS candidates(
     candidateId UUID UNIQUE NOT NULL,
     office UUID NOT NULL,
+    officeName VARCHAR(128) NOT NULL,
     party UUID NOT NULL,
+    partyName VARCHAR(128) NOT NULL,
     candidate UUID NOT NULL,
+    candidateName VARCHAR(128) NOT NULL,
     FOREIGN KEY (office) REFERENCES office (id) ON DELETE CASCADE,
     FOREIGN KEY (party) REFERENCES party (id) ON DELETE CASCADE,
     FOREIGN KEY (candidate) REFERENCES users (id) ON DELETE CASCADE,
