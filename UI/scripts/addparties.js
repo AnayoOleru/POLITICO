@@ -20,7 +20,7 @@ let deleteBtn = document.getElementById("delete");
 let openModal = document.getElementById("openmodal");
 
 function openNav() {
-    sideNav.style.width = "200px";
+    sideNav.style.width = "250px";
 }
 
 function closeNav() {
