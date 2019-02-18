@@ -36,7 +36,7 @@ function getAllUsers(){
             data.data.forEach((user) => {
                 result +=
                 `
-                <option>${user.firstname} ${user.lastname} ${user.othername}</option> `
+                <option id=${user.id}>${user.firstname}</option> `
             });
         document.getElementById('users').innerHTML = result;
     })
@@ -62,7 +62,7 @@ function getAllParties(){
             data.data.forEach((party) => {
                 result +=
                 `
-                <option>${party.name}</option> `
+                <option id=${party.id}>${party.name}</option> `
             });
         document.getElementById('parties').innerHTML = result;
     })
@@ -87,7 +87,7 @@ function getAllOffice(){
             data.data.forEach((office) => {
                 result +=
                 `
-                <option>${office.name}</option> `
+                <option id=${office.id}>${office.name}</option> `
             });
         document.getElementById('offices').innerHTML = result;
     })
@@ -99,22 +99,23 @@ function getAllOffice(){
 
 document.getElementById('regBtn').addEventListener('click', register);
 console.log('gggg')
+
 function register(e){
     e.preventDefault();
 
    let userValue = document.getElementById('users');
    let partyValue = document.getElementById('parties');
    let officeValue = document.getElementById('offices');
-   let userRegisterValue = userValue.options[userValue.selectedIndex].value;
-   let partyRegisterValue = partyValue.options[partyValue.selectedIndex].value;
-   let officeRegisterValue = officeValue.options[officeValue.selectedIndex].value;
+   let userId = userValue.options[userValue.selectedIndex].id;
+   let partyId = partyValue.options[partyValue.selectedIndex].id;
+   let officeId = officeValue.options[officeValue.selectedIndex].id;
    let result = document.getElementById('result');
-   console.log(userRegisterValue, partyRegisterValue, officeRegisterValue);
+//    console.log(userRegisterValue, partyRegisterValue, officeRegisterValue);
 
    let responseStatus = false;
 
 
-    fetch('https://trustpolitico.herokuapp.com/api/v1/office/:userid/register', {
+    fetch(`https://trustpolitico.herokuapp.com/api/v1/office/${userId}/register`, {
         method: 'POST',
         headers: {
             'Accept': 'application/json, text/plain, */*',
@@ -122,9 +123,9 @@ function register(e){
             'x-access-token': token
         },
         body: JSON.stringify({
-            office: officeRegisterValue, 
-            party: partyRegisterValue,
-            candidate: userRegisterValue
+            office: officeId, 
+            party: partyId,
+            candidate: userId
         })
         
     })
@@ -132,7 +133,7 @@ function register(e){
         if(res.ok){
             responseStatus = true;
             result.innerHTML = "Candidate successfully registered";
-            result.style.color="black";
+            result.style.color="green";
         }
         console.log(res);
        return res.json()
@@ -142,7 +143,7 @@ function register(e){
         console.log(res);
         if(!responseStatus){
             result.innerHTML = res.error;
-            result.style.color="black";
+            result.style.color="red";
         } 
         if(res.data[0].user.isadmin == true){
             window.location.href = '/views/signin.html';

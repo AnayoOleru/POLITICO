@@ -23,7 +23,7 @@ const createVote = () => {
     office UUID NOT NULL,
     candidate UUID NOT NULL,
     FOREIGN KEY (office) REFERENCES office (id) ON DELETE CASCADE,
-    FOREIGN KEY (candidate) REFERENCES candidates (id) ON DELETE CASCADE,
+    FOREIGN KEY (candidate) REFERENCES candidates (candidateId) ON DELETE CASCADE,
     FOREIGN KEY (created_by) REFERENCES users (id) ON DELETE CASCADE,
     PRIMARY KEY (office, candidate)
   )`;
