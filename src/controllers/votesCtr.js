@@ -32,15 +32,18 @@ class Votes{
     }
 
     const createQuery = `INSERT INTO
-      votes(id, created_on, created_by, office, candidate)
-      VALUES($1, $2, $3, $4, $5)
+      votes(id, created_on, created_by, userName, office, officeName, candidate, candidateName)
+      VALUES($1, $2, $3, $4, $5, $6, $7, $8)
       returning *`;
     const values = [
       uuidv4(),
       moment(new Date()),
       req.body.created_by,
+      req.body.userName,
       req.body.office,
-      req.body.candidate
+      req.body.officeName,
+      req.body.candidate,
+      req.body.candidateName
     ];
     console.log(values)
 
