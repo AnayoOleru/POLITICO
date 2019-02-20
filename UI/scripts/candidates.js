@@ -1,7 +1,7 @@
 let token = window.localStorage.getItem('token');
+var payload = JSON.parse(window.atob(token.split('.')[1])); 
+    // console.log(payload);
 function verifyToken(){
-    console.log('Reached');
-    // alert('connected!');
     if(!token){
         window.location.href = '/views/sign-in.html';
     }
@@ -36,7 +36,7 @@ function getAllCandidates(){
         .then((data) => {
             console.log(data);
             let result = '';
-            data.data.forEach((candidate, user) => {
+            data.data.forEach((candidate) => {
                 result +=
                 
             `
@@ -45,7 +45,7 @@ function getAllCandidates(){
                 <div class="card__side card__side--front">
                  <div class="card__picture card__picture--1">&nbsp;</div>
                 <h4 class="card__heading">
-            <span class="card__heading-span card__heading-span--1">${candidate.officename}</span>
+            <span class="card__heading-span card__heading-span--1" id=${candidate.candidateid}>${candidate.officename}</span>
             </h4>
             <div class="card__details">
                <ul>
@@ -59,13 +59,23 @@ function getAllCandidates(){
             <p class="card__price-only">${candidate.partyname}</p>
             <p class="card__price-value">${candidate.candidatename}</p>
               </div>
-            <a href="#" class="btn">Vote</a>
+              <a href="#" class="btn" onClick="vote('${candidate.office}', '${candidate.officename}', '${candidate.candidateid}', '${candidate.candidatename}')">Vote</a>
                 </div>
                     </div>
                         </div>
                 `
             });
-        document.getElementById('candidatescard').innerHTML = result;
+
+    //         created_by UUID NOT NULL, 
+    // userName VARCHAR(128) NOT NULL,
+
+    // office UUID NOT NULL,
+    // officeName VARCHAR(128) NOT NULL,
+    // candidate UUID NOT NULL,
+    // candidateName VARCHAR(128) NOT NULL,
+            
+       document.getElementById('candidatescard').innerHTML = result;
+        
     })
     
 
@@ -75,32 +85,28 @@ function getAllCandidates(){
 getAllCandidates();
 // Consuming the API for votes, users hsould be able to vote
 // alert("connected!");
-document.getElementById('vote').addEventListener('submit', vote);
+// document.querySelectorAll('.vote').forEach((node) => {
 
-function Vote(e){
-    e.preventDefault();
+//     node.addEventListener('click', vote)
+// })
 
-    
-    let office = document.getElementById('name').value;
-    let candidate = document.getElementById('hqaddress').value;
-    let voter = document.getElementById('logoURL').value;
-    let result = document.getElementById('result');
-    // let partyImage = document.getElementById('partyImage').value;
-    // let partyName = document.getElementById('partyName').value;
-    // let partyAddress = document.getElementById('partyAddress').value;
-    let responseStatus = false;
-
+function vote(office, officeName, candidateId, candidateName){
+    console.log(payload.lastName);
 
     fetch('https://trustpolitico.herokuapp.com/api/v1/votes', {
         method: 'POST',
         headers: {
             'Accept': 'application/json, text/plain, */*',
-            'Content-type': 'application/json'
+            'Content-type': 'application/json',
+            'x-access-token': token
         },
         body: JSON.stringify({
-            name: name, 
-            hqaddress: hqaddress,
-            logoUrl: logoUrl
+            created_by: payload.id, 
+            userName: payload.lastName,
+            office: office,
+            officeName: officeName,
+            candidate: candidateId,
+            candidateName: candidateName
         })
         
     })
@@ -110,15 +116,11 @@ function Vote(e){
         }
        return res.json()
     })
-    // render the parties page
-    .then((res) => {
-        console.log(res);
-        if(!responseStatus){
-            result.innerHTML = res.error;
-        }else{
-            // swal("Here's the title!", "...and here's the text!");
-        // window.localStorage.setItem('token', res.data.token);
-        // window.location.href = '/views/parties.html';
-        }
-    })
+    // .then((res) => {
+    //     console.log(res);
+    //     if(!responseStatus){
+     
+    //     }else{
+    //     }
+    // })
 }

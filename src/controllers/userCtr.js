@@ -91,7 +91,7 @@ if(!req.body.passportUrl){
 
     try {
       const { rows } = await db.query(createQuery, values);
-      const userToken = { id: rows[0].id,  isAdmin: rows[0].isadmin }
+      const userToken = { id: rows[0].id,  isAdmin: rows[0].isadmin, userName: rows[0].firstname }
       
       const token = userAuthHelper.generateToken(userToken);
      
@@ -156,7 +156,7 @@ if(!req.body.passportUrl){
           "error": "The credentials you provided is incorrect" 
         });
       }
-      const userToken = { id: rows[0].id,  isAdmin: rows[0].isadmin }
+      const userToken = { id: rows[0].id,  isAdmin: rows[0].isadmin, userName: rows[0].firstname, lastName: rows[0].lastname}
 
       const token = userAuthHelper.generateToken(userToken);
 
