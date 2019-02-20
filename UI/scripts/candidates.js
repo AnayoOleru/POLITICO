@@ -65,14 +65,6 @@ function getAllCandidates(){
                         </div>
                 `
             });
-
-    //         created_by UUID NOT NULL, 
-    // userName VARCHAR(128) NOT NULL,
-
-    // office UUID NOT NULL,
-    // officeName VARCHAR(128) NOT NULL,
-    // candidate UUID NOT NULL,
-    // candidateName VARCHAR(128) NOT NULL,
             
        document.getElementById('candidatescard').innerHTML = result;
         
@@ -113,6 +105,7 @@ function vote(office, officeName, candidateId, candidateName){
     .then((res) => {
         if(res.ok){
             responseStatus = true;
+            //  document.querySelectorAll('.btn').style.background-color : "red";
         }
        return res.json()
     })
