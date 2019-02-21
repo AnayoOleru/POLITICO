@@ -142,20 +142,22 @@
                     <div class="modal1" id="openparty">
                                 <form>
                                         <h1>Edit Party</h1>
-                                        <input type="text" placeholder="party name">
-                                <input type="text" placeholder="HQ address">
-                                    <input type="file">
+                                        <input type="text" placeholder="party name" id="editvalue">
                                     <br>
-                                    <input type="submit" value="cancel" onclick="closeEdit()">
-                                    <input type="submit">
+                                    <div id="result">error&success</div>
+                                    <br>
+                                         <input type="submit" value="cancel" onclick="closeEdit()">
+                                         <input type="submit" onclick="editSubmit()">
                                 </form>
                             </div>
 
                             <!-- delete party -->
                             <div class="modal2" id="deleteparty">
                                                 <h1>This party will be deleted</h1>
+                                                <div id="delResult">Error&success</div>
                                             <button onclick="closeDelete()">Cancel</button>
-                                            <button>Go on</button>
+                                            <button onclick="deleteGo()">Go on</button>
+                                            
                                     </div>
 
         <button class="add" id="addbtn" onclick="openLog()">+</button>
