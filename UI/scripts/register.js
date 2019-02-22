@@ -1,12 +1,15 @@
 let token = window.localStorage.getItem('token');
+let payload = JSON.parse(window.atob(token.split('.')[1]));
 function verifyToken(){
-    console.log('Reached');
-    // alert('connected!');
     if(!token){
         window.location.href = '/views/sign-in.html';
     }
-    
+    if(payload.isAdmin == false){
+        window.location.href = '/views/sign-in.html';
+    }
+    // check if token has expired
 }
+
 
 // sidenav
 let sideNav = document.getElementById("mySidenav");

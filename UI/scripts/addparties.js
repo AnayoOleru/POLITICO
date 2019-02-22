@@ -1,8 +1,7 @@
+let token = window.localStorage.getItem('token');
+let payload = JSON.parse(window.atob(token.split('.')[1]));
 
- 
 function verifyToken(){
-    let token = window.localStorage.getItem('token');
-    var payload = JSON.parse(window.atob(token.split('.')[1]));
     if(!token){
         window.location.href = '/views/sign-in.html';
     }
@@ -12,8 +11,6 @@ function verifyToken(){
     
 }
 
-let token = window.localStorage.getItem('token');
-var payload = JSON.parse(window.atob(token.split('.')[1]));
 
 let sideNav = document.getElementById("mySidenav");
 let openParty = document.getElementById("openparty");

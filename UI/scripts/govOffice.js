@@ -1,14 +1,14 @@
-
 let token = window.localStorage.getItem('token');
+let payload = JSON.parse(window.atob(token.split('.')[1]));
 function verifyToken(){
-    console.log('Reached');
     if(!token){
         window.location.href = '/views/sign-in.html';
     }
-    // if(res.data[0].user.isadmin == false){
-    //     window.location.href = '/views/sign-in.html';
-    // }
-    
+    // only admin can acess this page
+    if(payload.isAdmin == false){
+        window.location.href = '/views/sign-in.html';
+    }
+    // check if token has expired
 }
 
 // Add modal
@@ -44,7 +44,7 @@ function addOffice(e){
     let responseStatus = false;
 
 
-    fetch('http://localhost:3000/api/v1/offices', {
+    fetch('https://trustpolitico.herokuapp.com/api/v1/offices', {
         method: 'POST',
         headers: {
             'Accept': 'application/json, text/plain, */*',
@@ -82,7 +82,7 @@ function addOffice(e){
 
 
 function getOffice(){
-    fetch('http://localhost:3000/api/v1/offices', {
+    fetch('https://trustpolitico.herokuapp.com/api/v1/offices', {
         method: 'GET',
         headers: {
             'Accept': 'application/json, text/plain, */*',
@@ -107,15 +107,5 @@ function getOffice(){
 
         
 }
-
-// admin can edit political party
-// function editParty(){
-
-// }
-
-// admin can delete political party
-// function deleteParty(){
-
-// }
 
 getOffice();

@@ -1,6 +1,6 @@
 import moment from 'moment';
 import uuidv4 from 'uuid/v4';
-import db from '../databaseTables/dbconnect';
+import db from '../controllers/databaseTables/dbconnect';
 import userAuthHelper from '../helper/userAuth';
 
 const User = {

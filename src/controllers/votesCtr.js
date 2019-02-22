@@ -1,7 +1,7 @@
 import uuidv4 from 'uuid/v4';
 import moment from 'moment';
 // import moment from 'moment';
-import db from '../databaseTables/dbconnect';
+import db from '../controllers/databaseTables/dbconnect';
 import userAuthHelper from '../helper/userAuth';
 // import userAuth from '../helper/userAuth';
 // import { request } from 'http';

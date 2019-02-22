@@ -1,13 +1,14 @@
 let token = window.localStorage.getItem('token');
+let payload = JSON.parse(window.atob(token.split('.')[1]));
 function verifyToken(){
-    console.log('Reached');
     if(!token){
         window.location.href = '/views/sign-in.html';
     }
-    // if(res.data[0].user.isadmin == false){
-    //     window.location.href = '/views/sign-in.html';
-    // }
-    
+    // admin shouldn't be able to acess this page
+    if(payload.isAdmin == true){
+        window.location.href = '/views/sign-in.html';
+    }
+    // check if token has expired
 }
 
 function openNav() {

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title> Server Error | 500</title>
+    <title>Error | 401</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css">
     <link rel="icon" type="image/ico" href="../images/pogo.png"/>
@@ -12,10 +12,11 @@
 <body>
     
     <div class="container">
-        <h1>500</h1>
-        <p>Internal Server Error</p>
-        <p>Sorry, something went wrong</p>
-        <h2>Check your connection or Reload your page</h2>
+        <h1>401</h1>
+        <p>Session expired, please login again. Sorry for the incovenience.</p>
+        <h3>Redirecting to login in 30 secs...</h3>
+        <h2>Can't wait? <a href="sign-in.html">Force redirect</a></h2>
+        <div id="date"></div>
     </div>
 
     <style>
@@ -38,6 +39,27 @@
     .container p{
         font-size: 3vh;
     }
+    .container a{
+        background-color: brown;
+        color: white;
+        height: 80px;
+        width: 20%;
+        border-radius: 5px;
+        text-decoration: none;
+
+    }
+    .container a:hover{
+        background-color: rgb(4, 29, 39);
+        color: white;
+    }
     </style>
+
+<script>
+setTimeout(function(){
+            window.location.href = '/views/sign-in.html'; 
+        }, 30000);
+        let d = new Date();
+        document.getElementById('date').innerHTML = d;
+</script>
 </body>
 </html>
