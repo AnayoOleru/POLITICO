@@ -71,7 +71,7 @@ function addParty(e){
     let responseStatus = false;
 
 
-    fetch('http://localhost:3000/api/v1/parties', {
+    fetch('https://trustpolitico.herokuapp.com/api/v1/parties', {
         method: 'POST',
         headers: {
             'Accept': 'application/json, text/plain, */*',
@@ -107,7 +107,7 @@ function addParty(e){
 };
 
 function getParties(){
-    fetch('http://localhost:3000/api/v1/parties', {
+    fetch('https://trustpolitico.herokuapp.com/api/v1/parties', {
         method: 'GET',
         headers: {
             'Accept': 'application/json, text/plain, */*',
@@ -170,7 +170,7 @@ function editSubmit(){
     let Id = openParty.dataset.partyId;
     let name = document.getElementById('editvalue').value;
 
-    fetch(`http://localhost:3000/api/v1/parties/${Id}/name`, {
+    fetch(`https://trustpolitico.herokuapp.com/api/v1/parties/${Id}/name`, {
         method: 'PATCH',
         headers: {
             'Accept': 'application/json, text/plain, */*',
@@ -210,7 +210,7 @@ let delResult = document.getElementById('delResult');
 function deleteGo(){
     let Id = openParty.dataset.partyId;
    
-    fetch(`http://localhost:3000/api/v1/parties/${Id}`, {
+    fetch(`https://trustpolitico.herokuapp.com/api/v1/parties/${Id}`, {
         method: 'DELETE',
         headers: {
             'Accept': 'application/json, text/plain, */*',
