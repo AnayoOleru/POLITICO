@@ -90,8 +90,5 @@ function showResult(officeId){
                 `
             });
         document.getElementById('tableRow').innerHTML = result;
-    })
-    
-
-        
+    })        
 }

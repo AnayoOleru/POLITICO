@@ -146,6 +146,13 @@ app.post(
   userCtr.login
   );
 
+  // user/admin logout
+  app.post(
+    '/api/v1/auth/signout',
+    token.verifyToken,
+    userCtr.signout
+  )
+
 app.get('/', (req, res) => res.status(200).send({
   "status": 200,
   "message": 'Welcome to POLITICO'

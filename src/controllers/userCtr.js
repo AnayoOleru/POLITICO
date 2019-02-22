@@ -176,6 +176,49 @@ if(!req.body.passportUrl){
       })
     }
   },
+  /**
+   * signout
+   * @param {object} req 
+   * @param {object} res
+   * @returns {object} user object 
+   */
+  async signout(req, res) {
+    
+    const text = 'SELECT * FROM users WHERE email = $1';
+    try {
+      const { rows } = await db.query(text, [req.body.email]);
+      if (!rows[0]) {
+        return res.status(400).send({
+          "status": 400,
+          "error": "The credentials you provided is incorrect"
+        });
+      }
+      if(!userAuthHelper.comparePassword(rows[0].password, req.body.password)) {
+        return res.status(400).send({
+          "status": 400, 
+          "error": "The credentials you provided is incorrect" 
+        });
+      }
+      const userToken = { id: rows[0].id,  isAdmin: rows[0].isadmin, userName: rows[0].firstname, lastName: rows[0].lastname}
+
+      const token = userAuthHelper.generateToken(userToken);
+
+      console.log(token);
+      return res.status(200).send({
+        "status": 201,
+        "data": [{
+          "token": token,
+          "user": rows[0],
+        }], 
+      })
+    } catch(error) {
+      console.log(error)
+      return res.status(404).send({
+        "status": 404,
+        "error": error
+      })
+    }
+  },
 
   /**
    * Get all

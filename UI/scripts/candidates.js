@@ -1,6 +1,5 @@
 let token = window.localStorage.getItem('token');
 let payload = JSON.parse(window.atob(token.split('.')[1]));
-let date = ;
 function verifyToken(){
     // check if no token
     if(!token){
