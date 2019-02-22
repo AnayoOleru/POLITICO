@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
-import db from '../databaseTables/dbconnect';
+import db from '../controllers/databaseTables/dbconnect';
 
 dotenv.config();
 

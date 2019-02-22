@@ -1,7 +1,7 @@
 import moment from 'moment';
 import uuidv4 from 'uuid/v4';
 import officeDb from '../db/officedb';
-import db from '../databaseTables/dbconnect';
+import db from '../controllers/databaseTables/dbconnect';
 import userAuthHelper from '../helper/userAuth';
 // import Query from '../../helper/query'
 // import PartyModel from '../models/party';
@@ -211,7 +211,7 @@ console.log(officeid)
   } catch(error) {
     return res.status(500).send({
       "status": 500,
-      "error": "Try again, there was an error"
+      "error": error
     })
    }
 }

@@ -1,9 +1,22 @@
 let token = window.localStorage.getItem('token');
-var payload = JSON.parse(window.atob(token.split('.')[1])); 
-    // console.log(payload);
+let payload = JSON.parse(window.atob(token.split('.')[1]));
+let date = ;
 function verifyToken(){
+    // check if no token
     if(!token){
         window.location.href = '/views/sign-in.html';
+    }
+    // only admin can access this page
+    if(payload.isAdmin == true){
+        window.location.href = '/views/sign-in.html';
+    }
+    // check if token has expired
+    if(payload.iat >= payload.exp){
+        console.log("Token had expired!")
+        window.location.href = '/views/401.html';
+        setTimeout(function(){
+            window.location.href = '/views/sign-in.html'; 
+        }, 30000);
     }
 }
 
@@ -68,19 +81,10 @@ function getAllCandidates(){
             
        document.getElementById('candidatescard').innerHTML = result;
         
-    })
-    
-
-        
+    })        
 }
 
 getAllCandidates();
-// Consuming the API for votes, users hsould be able to vote
-// alert("connected!");
-// document.querySelectorAll('.vote').forEach((node) => {
-
-//     node.addEventListener('click', vote)
-// })
 
 function vote(office, officeName, candidateId, candidateName){
     console.log(payload.lastName);

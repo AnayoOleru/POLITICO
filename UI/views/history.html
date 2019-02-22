@@ -10,7 +10,7 @@
     <link rel="icon" type="image/ico" href="../images/pogo.png"/>
     <meta name="Description" content="Politico - Builds trust through transparency">
 </head>
-<body>
+<body onload= "verifyToken()">
         <div id="mySidenav" class="sidenav">
                 <a href="#" class="closebtn" onclick="closeNav()"><i class="fa fa-chevron-circle-right"></i></a>
                 <img style="width: 80px; padding-left: 30px;" src="../images/userimg.png">
@@ -26,40 +26,37 @@
     
             <!-- <a class="logo" href="index.html">POLITICO</a> -->
                         <!-- <div class="logo">POLITICO</div> -->
-                    <ul> 
-                        <li><a href="#" class="active">Username</a></li>
+                    <ul id="username"> 
+                        <!-- <li><a href="#" class="active">Username</a></li> -->
                     </ul>
             </div>
-        
+
+            
+            <!-- 2 -->
+            <div id="mySidenav2" class="sidenav2">
+              <a href="#" class="closebtn2" onclick="closeNav2()"><i class="fa fa-chevron-circle-right"></i></a>
+              <h2 style="padding-left: 30px; color: #ffffff;">Offices</h2>
+              
+          </div>
+          <div class="nav2">
+          <span style="font-size:30px;cursor:pointer;height: 30px;" class="openbutton2" onclick="openNav2()"><i class="fas fa-align-justify"></i></span>
+  
+          <!-- <a class="logo" href="index.html">POLITICO</a> -->
+                      <!-- <div class="logo">POLITICO</div> -->
+          </div>
+
         <table id="t01">
                         <caption class="header"><b>Results</b></caption><br>
                         <thead>
                           <tr id="header">
                             <th style="font-size:bold; font-size: 30px;">Office</th>
+
                             <th style="font-size:bold; font-size: 30px;">Candidate</th>
                             <th style="font-size:bold; font-size: 30px;">Result</th>
                           </tr>
                         </thead>
-                        <tbody>
-                          <tr>
-                            <td data-th="Office:">President</td>
-                            <td data-th="Candidate:">Atiku Abubakar</td>
-                            <td data-th="Result:">1,002</td>
-      
-                          </tr>
+                        <tbody id="tableRow">
                           
-                          <tr>
-                            <td data-th="Office:">Senate</td>
-                            <td data-th="Candidate:">Bukola Saraki</td>
-                            <td data-th="Result:">2, 456</td>
-      
-                          </tr>
-                          <tr>
-                            <td data-th="Office:">Governor of Lagos</td>
-                            <td data-th="Candidate:">Jimi Agbaje</td>
-                            <td data-th="Result:">1,245</td>
-      
-                          </tr>
                   
                         </tbody>
                       </table>

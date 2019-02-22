@@ -48,6 +48,49 @@ body{
     color:rgb(255, 255, 255);
 }
 
+/* 2 */
+.nav2{
+    display:none;
+    width: 100%;
+    position: fixed;
+    top:60px;
+    left :0px;
+    height: 60px;
+    padding: 0 100px;
+    background-color: rgb(86, 10, 10);
+    box-sizing:border-box;
+    transition: .3s;
+}
+.nav2 ul{
+    list-style: none;
+    float: right;
+    margin: 0;
+    padding: 0;
+    display:flex;
+}
+
+.nav2 ul li{
+    list-style: none;
+}
+.nav2 ul li a {
+    width: 100%;
+    line-height: 80px;
+    color:rgb(245, 242, 240);
+    padding: 5px 10px;
+    text-decoration:none;
+    text-transform: uppercase;
+    transition:.3s;
+}
+.logo{
+    padding: 22px 0px;
+    height: 80px;
+    float: left;
+    font-size: 24px;
+    font-weight: bold;
+    transition: .3s;
+    color:rgb(255, 255, 255);
+}
+
 .sidenav {
     height: 100%;
     width: 0;
@@ -97,6 +140,59 @@ body{
 .openbutton:hover{
     color: cadetblue;
 }
+
+/* 2 */
+.sidenav2 {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 60px;
+    right: 0;
+    background-color: rgb(10, 65, 86);
+    overflow-x: hidden;
+    padding-top: 15px;
+}
+
+.sidenav2 .active{
+    background-color: rgb(255, 255, 255);
+    color: rgb(10, 65, 86);
+}
+
+.sidenav2 a {
+    border-bottom: 1px solid rgb(99, 175, 211);
+    padding: 4px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #ffffff;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav2 a:hover {
+    border: solid 4px rgb(10, 65, 86);
+    color: rgb(10, 65, 86);
+    background-color: #ffffff;
+}
+
+.sidenav2 .closebtn2 {
+    display: none;
+    position: relative;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+.openbutton2 i{
+    display: none;
+    position: absolute;
+    padding-left: 30px;
+    padding-top: 20px;
+    width: 50px;
+}
+.openbutton2:hover{
+    color: cadetblue;
+}
       @media screen and (max-width: 768px){
         .nav ul li a {
             display: none;
@@ -109,7 +205,9 @@ body{
         }
         
         table {
-        width: 90%;
+            position: absolute;
+            left:30px;
+        width: 75%;
         margin: 130px auto;
         }
 
@@ -137,13 +235,29 @@ body{
         
         
         @media screen and (max-width: 640px) {
+            .nav2{
+                display: block;
+                right:0;
+                padding: 0 80%;
+                position:fixed;
+            }
+            .sidenav2{
+                width: 0;
+            }
+            .sidenav2 .closebtn2 {
+                display: block;
+            }
+            .openbutton2 i{
+                display: block;
+            }
 
             .nav{
-                position: absolute;
+                position: fixed;
             }
           table{
             width: 90%;
-            margin: 60px auto;
+            margin: 120px auto;
+            left:20px;
           }
         thead {
           display: none;

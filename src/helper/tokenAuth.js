@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import db from '../databaseTables/dbconnect';
+import db from '../controllers/databaseTables/dbconnect';
 import dotenv from 'dotenv';
 
 dotenv.config();
