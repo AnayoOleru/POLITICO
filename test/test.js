@@ -16,6 +16,9 @@ describe('App.js', () => {
   let userToken;
 
   before(async () => {
+    /* before any test will run, login as an admin, 
+    get the admin token and save it to a variable, 
+    use it to access other protective route**/
     const res = await chai.request(app)
       .post('/api/v1/auth/login')
       .send({
