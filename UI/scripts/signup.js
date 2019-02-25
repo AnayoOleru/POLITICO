@@ -47,9 +47,7 @@ function addPost(e){
         console.log(res.user);
         if(!responseStatus){
             result.innerHTML = res.error;
-            // setTimeout(function() {
-            //     result.innerHTML = "";
-            //   }, 7000);
+            result.style.color="red";
         }else{
 
         window.localStorage.setItem('token', res.data[0].token);

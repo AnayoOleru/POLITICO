@@ -35,9 +35,29 @@ const badSignup3 ={
     password: ''
 };
 
+const badSignup4 ={
+    firstname: '',
+    lastname: '',
+    othername: '',
+    email: '',
+    phonenumber: '',
+    passportUrl: '',
+    password: ''
+};
+
+const badSignup5 ={
+    firstname: '    ',
+    lastname: '   ',
+    othername: '   ',
+    email: '   ',
+    phonenumber: '  ',
+    passportUrl: '  ',
+    password: '  '
+};
+
 const goodLogin ={
-    email: 'anayo_oleruoutlook.com',
-    password: '223356'
+    email: 'anayo_oleru@outlook.com',
+    password: 'munachi12345'
 };
 
 const badLogin ={
@@ -51,8 +71,8 @@ const badLogin2 ={
 };
 
 const badLogin3 ={
-    email: '',
-    password: ''
+    email: '     ',
+    password: '    '
 };
 
 const isEmail ={
@@ -61,38 +81,58 @@ const isEmail ={
 };
 
 const testParty ={
-    name: 'Action congress',
-    acronym: 'AC',
-    hqAddress: 'White House 22 Abuja',
-    logoUrl: 'apc.jpg'
+    name: 'Action congress Nigeria',
+    hqaddress: 'White House 22 Abuja',
+    logoUrl: 'https://ACN.jpg'
 };
 
 const badTestParty ={
-    name: '#$',
-    acronym: 'AC',
-    hqAddress: 'White House 22 Abuja',
-    logoUrl: 'apc'
+    name: '',
+    hqaddress: 'White House 22 Abuja',
+    logoUrl: 'https://ac.jpg'
 };
 
 const badTestParty2 ={
-    name: 'Action Congress',
-    acronym: 'AC',
-    hqAddress: '',
-    logoUrl: 'apc.jpeg'
+    name: 'Action congress',
+    hqaddress: '',
+    logoUrl: 'https://ac.jpg'
 };
 
 const badTestParty3 ={
-    name: 'Action Congress',
-    acronym: 'AC',
-    hqAddress: 'White House 22 Abuja',
+    name: 'Action congress',
+    hqaddress: 'White House 22 Abuja',
     logoUrl: ''
 };
+
 
 const badTestParty4 ={
     name: '',
     acronym: '',
-    hqAddress: '',
-    logoUrl: ''
+    hqaddress: '',
+};
+
+const badTestParty5 ={
+    name: '3344',
+    hqaddress: 'Abuja 24 house Abikoromi',
+    logoUrl: 'https://ac.jpg'
+};
+
+const badTestParty6 ={
+    name: 'Action congress',
+    hqaddress: 'Abuja 24 house Abikoromi',
+    logoUrl: 'ttc'
+};
+
+const badTestParty7={
+    name: 'john congress',
+    hqaddress: '```',
+    logoUrl: 'https://ac.jpg'
+};
+
+const badTestParty8={
+    name: 'Action congress',
+    hqaddress: '777',
+    logoUrl: 'https://ac.jpg'
 };
 
 const offices ={
@@ -108,6 +148,16 @@ const offices2 ={
 const offices3 ={
     type: 'Federal',
     name: ''
+};
+
+const offices4 ={
+    type: '',
+    name: ''
+};
+
+const offices5 ={
+    type: '8907',
+    name: '23456'
 };
 
 const vote1 = {
@@ -146,10 +196,54 @@ const candidate3 = {
     candidate: ""
 }
 
+const candidate4 = {
+    office: "2643e397-4cf7-4968-89d5-96059bfd0ea6",
+    party: "8356151d-acaf-40d6-9cd8-4207e386108e",
+    candidate: "ac0a889d-57d2-4477-805a-80cb22cf1b3c"
+}
+
+const goodVoteResult = {
+    created_by: "a5934256-ea1b-476c-af9a-b2ab4c5512b6",
+    office: "fd1648b9-32dd-402a-b2fe-98c9df1c585c",
+    candidate: "7c01b43d-e911-4a6f-8cc0-1d5c8c16501d",
+}
+// office not found
+const badVoteResult1 = {
+    office: " ",
+    candidate: "ac0a889d-57d2-4477-805a-80cb22cf1b3c",
+    result: "23",
+}
+
+const badVoteResult2 = {
+    office: "2643e397-4cf7-4968-89d5-96059bfd0ea6",
+    candidate: "",
+    result: "23",
+}
+
+const badVoteResult3 = {
+    office: "2643e397-4cf7-4968-89d5-96059bfd0ea6",
+    candidate: "ac0a889d-57d2-4477-805a-80cb22cf1b3c",
+    result: "",
+}
+
+const badVoteResult4 = {
+    created_by: "",
+    office: "",
+    candidate: "",
+}
+
+const badVoteResult5 = {
+    created_by: "6e2d   c601-8990-4de  3-af32-71918b   87a363     ",
+    office: "2643e397-   4cf7-4968-89d5-  96059bfd0ea6           ",
+    candidate: "ac0a889d-   57d2-4477-805a-  80cb22cf1b3c      ",
+}
+
 
 export {
-    goodSignup, goodLogin, badSignup, badSignup2, badSignup3, badLogin, badLogin2, badLogin3, isEmail, testParty, badTestParty,
-    badTestParty2, badTestParty3, badTestParty4, offices, offices2, offices3,
-    vote1, vote2, vote3, candidate1, candidate2, candidate3
+    goodSignup, goodLogin, badSignup, badSignup2, badSignup3, badSignup4,badSignup5, badLogin, badLogin2, badLogin3, isEmail, testParty, badTestParty,
+    badTestParty2, badTestParty3, badTestParty4, badTestParty5, badTestParty6, badTestParty7, badTestParty8, offices, offices2, offices3, offices4, offices5, 
+    vote1, vote2, vote3, candidate1, candidate2, candidate3, goodVoteResult, badVoteResult1, badVoteResult2, badVoteResult3, badVoteResult4, badVoteResult5,
+    candidate4
+
 };
 

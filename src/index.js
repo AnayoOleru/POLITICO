@@ -8,7 +8,7 @@ import votesCtr from './controllers/votesCtr';
 import token from './helper/tokenAuth';
 import verifyAdmin from './helper/verifyAdmin';
 import verifyId from './helper/userAuth';
-import verifyVoter from './middlewares/voteValidations';
+
 import path from 'path';
 import bodyParser from 'body-parser';
 

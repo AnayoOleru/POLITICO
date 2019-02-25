@@ -158,7 +158,7 @@ const userAuthHelper = {
   generateToken(userToken) {
     const appToken = jwt.sign(
       userToken,
-      process.env.SECRET, { expiresIn: '7d' }
+      process.env.SECRET, { expiresIn: '1d' }
     );
     return appToken;
   }

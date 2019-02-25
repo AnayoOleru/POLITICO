@@ -17,7 +17,7 @@ class Office{
   
 
   static async create(req, res) {
-    if(!req.body.type || !req.body.name){
+    if(!req.body.type && !req.body.name){
       return res.status(400).send({
         "status": 400,
         "error": "Inputs fields can't be left empty"
@@ -37,26 +37,19 @@ class Office{
           "error": "Name field is empty" 
       });
     }
-
-    if (!req.body.type || !req.body.name) {
-      return res.status(400).send({ 
-          "status": 400, 
-          "error": "Some values are missing" 
-      });
-    }
   
-  if (!userAuthHelper.isName(req.body.name)) {
+  if (!userAuthHelper.isName(req.body.name, req.body.type)) {
   return res.status(400).send({
     "status": 400,  
     "error": "Alphabets only"
 });
 }
-if (!userAuthHelper.isHigher(req.body.name, req.body.type)) {
-  return res.status(400).send({
-    "status": 400,  
-    "error": "Alphabets only"
-  })
-    };
+// if (!userAuthHelper.isHigher(req.body.name, req.body.type)) {
+//   return res.status(400).send({
+//     "status": 400,  
+//     "error": "Alphabets only"
+//   })
+//     };
 
     const check = `SELECT * FROM office WHERE name=$1`
       const { name } = req.body;
@@ -78,7 +71,6 @@ if (!userAuthHelper.isHigher(req.body.name, req.body.type)) {
       req.body.type,
       moment(new Date())
     ];
-console.log(values)
     try {
       // const result = await db.query(query);
       // if (result.row !== 0) {
@@ -95,7 +87,6 @@ console.log(values)
           "order": rows[0],
         }],
       });
-      console.log(error)
     } catch(error) {
       return res.status(500).send({
         "status": 400,
@@ -115,13 +106,11 @@ static async getAllOffices(req, res){
   const findAllQuery = 'SELECT * FROM office';
   try {
     const { rows, rowCount } = await db.query(findAllQuery);
-    console.log(rows);
     return res.status(200).send({ 
       "status": 200,
       "data": rows, rowCount
        });
   } catch(error) {
-    console.log(error);
     return res.status(400).send({
       "status": 400,
       "error":"Bad Request"
@@ -156,7 +145,6 @@ static async getAllOffices(req, res){
         "status": 200,
         "data": rows[0]});
     } catch(error) {
-      console.log(error);
       return res.status(400).send({
         "status": 400,
         "error":"Bad request. Check and try again"
@@ -188,10 +176,9 @@ static async getAllOffices(req, res){
         "error": "Office not found"
       });
     }
-console.log(officeid)
+
   let text2 = 'SELECT candidate, COUNT(candidate) FROM votes WHERE office = $1 GROUP BY candidate';
  let row = await db.query(text2, [officeid]);
- console.log(rows);
   const pollResult = [];
   for(let i = 0; i < row.rows.length; i++) {
     const singleResult = {
@@ -206,7 +193,7 @@ console.log(officeid)
     "status": 200,
     "data": pollResult 
   };
-  console.log(response);
+  // console.log(response);
   return res.status(200).send(response);
   } catch(error) {
     return res.status(500).send({

@@ -23,12 +23,12 @@ const TokenAuth = {
     });
     }
     try {
-      console.log(process.env.SECRET)
+      // console.log(process.env.SECRET)
       const decoded = jwt.verify(token, process.env.SECRET);
-      console.log('2323')
+      // console.log('2323')
       const text = 'SELECT * FROM users WHERE id = $1';
       const { rows } = await db.query(text, [decoded.id]);
-      console.log(rows);
+      // console.log(rows);
       if(!rows) {
         return res.status(400).send({
             "status": 400, 
@@ -38,7 +38,7 @@ const TokenAuth = {
       req.user = { id: decoded.id, isAdmin: decoded.isAdmin };
       next();
     } catch(error) {
-      console.log(error)
+      // console.log(error)
       return res.status(500).send({
         "status": 500, 
         "error": "sorry something went wrong, go back and check" 

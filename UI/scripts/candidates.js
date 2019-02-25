@@ -10,7 +10,7 @@ function verifyToken(){
         window.location.href = '/views/sign-in.html';
     }
     // check if token has expired
-    if(payload.iat >= payload.exp){
+    if(payload.exp >= payload.iat){
         console.log("Token had expired!")
         window.location.href = '/views/401.html';
         setTimeout(function(){
@@ -52,6 +52,7 @@ function getAllCandidates(){
                 result +=
                 
             `
+            <div class="row">
             <div class="col-1-of-3">
                         <div class="card">
                 <div class="card__side card__side--front">
@@ -75,10 +76,18 @@ function getAllCandidates(){
                 </div>
                     </div>
                         </div>
+                        </div>
                 `
+                username =
+                `<li><a href="#" class="active">${payload.userName} ${payload.lastName}</</a></li>`
+
+                nameside =
+                `<span>${payload.userName} ${payload.lastName}</span>`
             });
             
        document.getElementById('candidatescard').innerHTML = result;
+       document.getElementById('username').innerHTML = username;
+       document.getElementById('nameside').innerHTML = nameside;
         
     })        
 }

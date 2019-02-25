@@ -16,7 +16,7 @@ class Party{
    * @returns {array} - returns all key value pairs as object in array
    */
   static async create(req, res) {
-    if(!req.body.name || !req.body.hqaddress || !req.body.logoUrl){
+    if(!req.body.name && !req.body.hqaddress && !req.body.logoUrl){
       return res.status(400).send({
         "status": 400,
         "error": "Inputs fields can't be left empty"
@@ -52,12 +52,12 @@ if (!userAuthHelper.isName(req.body.name)) {
     "error": "Alphabets only"
 });
 }
-if (!userAuthHelper.isHigher(req.body.name, req.body.hqaddress)) {
-  return res.status(400).send({
-    "status": 400,  
-    "error": "Alphabets only"
-  })
-    };
+// if (!userAuthHelper.isHigher(req.body.name, req.body.hqaddress)) {
+//   return res.status(400).send({
+//     "status": 400,  
+//     "error": "Alphabets only"
+//   })
+//     };
     if (!userAuthHelper.isURL(req.body.logoUrl)) {
       return res.status(400).send({
         "status": 400,  
@@ -112,7 +112,6 @@ if (!userAuthHelper.isHigher(req.body.name, req.body.hqaddress)) {
    */
   static async getAParty(req, res) {
     const { id } = req.params;
-    console.log(req.params)
     if (!userAuthHelper.isUUID(id)) {
       return res.status(400).send({
         "status": 400,  
@@ -129,15 +128,18 @@ if (!userAuthHelper.isHigher(req.body.name, req.body.hqaddress)) {
       // if(req.body.params !== rows[0].id){
       //   return res.status(404).send({"error": "Your id is wrong"});
       // }
-      console.log(rows[0].id)
-      return res.status(200).send(rows[0]);
+      return res.status(200).send({
+        "status": 201,
+        "data": [{
+          "order": rows[0],
+        }],
+      });
     } catch(error) {
-      console.log(error)
       return res.status(400).send(error);
     }
   }
   /**
-   * Get All perties(users)
+   * Get All parties(users)
    * @param {uuid} id
    * @param {Object} res - request object
    * @returns {array} - returns all key value pairs as object in array
@@ -157,7 +159,7 @@ if (!userAuthHelper.isHigher(req.body.name, req.body.hqaddress)) {
        "data": rows, rowCount 
       });
     } catch(error) {
-      console.log(error)
+      // console.log(error)
       return res.status(400).send(error);
     }
   }
@@ -185,7 +187,7 @@ if (!userAuthHelper.isHigher(req.body.name, req.body.hqaddress)) {
       if(!rows[0]) {
         return res.status(404).send({
           "status": 404,
-          "message": "Party not found"
+          "error": "Party not found"
         });
       }
       const values = [
@@ -221,7 +223,7 @@ if (!userAuthHelper.isHigher(req.body.name, req.body.hqaddress)) {
         "data": "deleted" 
       });
     } catch(error) {
-      console.log(error);
+      // console.log(error);
       return res.status(400).send({
         "error": "Oops, something wrong happened. Check and try again"
       });

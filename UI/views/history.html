@@ -14,7 +14,7 @@
         <div id="mySidenav" class="sidenav">
                 <a href="#" class="closebtn" onclick="closeNav()"><i class="fa fa-chevron-circle-right"></i></a>
                 <img style="width: 80px; padding-left: 30px;" src="../images/userimg.png">
-                <h1 style="padding-left: 30px; color: #ffffff;">User</h1>
+                <h1 style="padding-left: 30px; color: #ffffff; font-size:20px;" id="nameside"></h1>
                 <a href="index.html"><span>Home</span></a>
                 <a href="parties.html"><i class="far fa-handshake"></i><span>Parties</span></a>
                 <a href="candidates.html"><i class="fas fa-users"></i><span>Candidates</span></a>
@@ -26,8 +26,8 @@
     
             <!-- <a class="logo" href="index.html">POLITICO</a> -->
                         <!-- <div class="logo">POLITICO</div> -->
-                    <ul id="username"> 
-                        <!-- <li><a href="#" class="active">Username</a></li> -->
+                    <ul id="username" style="font-size:20px;"> 
+                        
                     </ul>
             </div>
 
@@ -40,13 +40,12 @@
           </div>
           <div class="nav2">
           <span style="font-size:30px;cursor:pointer;height: 30px;" class="openbutton2" onclick="openNav2()"><i class="fas fa-align-justify"></i></span>
-  
-          <!-- <a class="logo" href="index.html">POLITICO</a> -->
-                      <!-- <div class="logo">POLITICO</div> -->
           </div>
 
         <table id="t01">
-                        <caption class="header"><b>Results</b></caption><br>
+                        <caption class="header" id="officename">
+                          <!-- <b>Results</b> -->
+                        </caption><br>
                         <thead>
                           <tr id="header">
                             <th style="font-size:bold; font-size: 30px;">Office</th>

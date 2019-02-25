@@ -18,7 +18,7 @@ class Votes{
   static async votes(req, res) {
 
     // const { created_by, office, candidate } = req.body;
-    if (!req.body.created_by  || !req.body.office || !req.body.candidate) {
+    if (!req.body.created_by  && !req.body.office && !req.body.candidate) {
       return res.status(400).send({ 
           "status": 400, 
           "error": "Some values are missing" 
@@ -45,7 +45,7 @@ class Votes{
       req.body.candidate,
       req.body.candidateName
     ];
-    console.log(values)
+    // console.log(values)
 
     try {
       const { rows } = await db.query(createQuery, values);
@@ -61,7 +61,7 @@ class Votes{
         }],
       });
     } catch(error) {
-        console.log(error)
+        // console.log(error)
       return res.status(400).send({
         "status": 400,
         "error": [{

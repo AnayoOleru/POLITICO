@@ -13,21 +13,15 @@ class Candidates{
    * @returns {array} - returns all key value pairs as object in array
    */
   static async register(req, res) {
-    console.log("ggggg")
-    if( !req.body.office || !req.body.party ){
+    if( !req.body.office && !req.body.party ){
       return res.status(400).send({ 
         "status": 400, 
-        "error": [{
-            "message": "Some values are missing",
-            "office": "office's id",
-            "party": "party's id",
-            "candidate": "the user id you wants to register" 
-    }]
+        "error": "Some values are missing"
 })
     }
     if(!req.body.candidate){
       return res.status(400).send({
-        "data":"null"
+        "error":"candidate field can't be empty"
       })
     }
     const createQuery = `INSERT INTO
@@ -43,7 +37,6 @@ class Candidates{
       req.body.candidate,
       req.body.candidateName
     ];
-    console.log(values)
 
     try {
       const { rows } = await db.query(createQuery, values);
@@ -58,7 +51,6 @@ class Candidates{
         }],
       });
     } catch(error) {
-        console.log(error)
       return res.status(400).send({
         "status": 400,
         "error": "You can't register this user as a candidate twice"
@@ -78,7 +70,6 @@ class Candidates{
        "data": rows, rowCount 
       });
     } catch(error) {
-      console.log(error)
       return res.status(400).send(error);
     }
   }

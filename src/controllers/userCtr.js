@@ -87,7 +87,7 @@ if(!req.body.passportUrl){
       hashPassword,
       moment(new Date())
     ];
-    console.log(values);
+    // console.log(values);
 
     try {
       const { rows } = await db.query(createQuery, values);
@@ -103,7 +103,7 @@ if(!req.body.passportUrl){
         }],
       });
     } catch(error) {
-      console.log(error);
+      // console.log(error);
       if (error.routine === '_bt_check_unique') {
         
         return res.status(409).send({ 
@@ -153,15 +153,15 @@ if(!req.body.passportUrl){
       if(!userAuthHelper.comparePassword(rows[0].password, req.body.password)) {
         return res.status(400).send({
           "status": 400, 
-          "error": "The credentials you provided is incorrect" 
+          "error": "password is incorrect" 
         });
       }
       const userToken = { id: rows[0].id,  isAdmin: rows[0].isadmin, userName: rows[0].firstname, lastName: rows[0].lastname}
 
       const token = userAuthHelper.generateToken(userToken);
 
-      console.log(token);
-      return res.status(200).send({
+      // console.log(token);
+      return res.status(201).send({
         "status": 201,
         "data": [{
           "token": token,
@@ -169,7 +169,7 @@ if(!req.body.passportUrl){
         }], 
       })
     } catch(error) {
-      console.log(error)
+      // console.log(error)
       return res.status(404).send({
         "status": 404,
         "error": error
@@ -183,41 +183,6 @@ if(!req.body.passportUrl){
    * @returns {object} user object 
    */
   async signout(req, res) {
-    
-    const text = 'SELECT * FROM users WHERE email = $1';
-    try {
-      const { rows } = await db.query(text, [req.body.email]);
-      if (!rows[0]) {
-        return res.status(400).send({
-          "status": 400,
-          "error": "The credentials you provided is incorrect"
-        });
-      }
-      if(!userAuthHelper.comparePassword(rows[0].password, req.body.password)) {
-        return res.status(400).send({
-          "status": 400, 
-          "error": "The credentials you provided is incorrect" 
-        });
-      }
-      const userToken = { id: rows[0].id,  isAdmin: rows[0].isadmin, userName: rows[0].firstname, lastName: rows[0].lastname}
-
-      const token = userAuthHelper.generateToken(userToken);
-
-      console.log(token);
-      return res.status(200).send({
-        "status": 201,
-        "data": [{
-          "token": token,
-          "user": rows[0],
-        }], 
-      })
-    } catch(error) {
-      console.log(error)
-      return res.status(404).send({
-        "status": 404,
-        "error": error
-      })
-    }
   },
 
   /**
@@ -232,7 +197,7 @@ if(!req.body.passportUrl){
        "data": rows, rowCount 
       });
     } catch(error) {
-      console.log(error)
+      // console.log(error)
       return res.status(400).send(error);
     }
   }

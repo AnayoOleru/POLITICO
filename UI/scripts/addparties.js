@@ -5,8 +5,17 @@ function verifyToken(){
     if(!token){
         window.location.href = '/views/sign-in.html';
     }
+    // check if user is not an admin 
     if(payload.isAdmin == false){
         window.location.href = '/views/sign-in.html';
+    }
+    // check if token has expired
+    if(payload.exp >= payload.iat){
+        console.log("Token had expired!")
+        window.location.href = '/views/401.html';
+        setTimeout(function(){
+            window.location.href = '/views/sign-in.html'; 
+        }, 30000);
     }
     
 }
@@ -143,8 +152,16 @@ function getParties(){
                     </div>
                 </div>
             </div> `
+
+            username =
+                `<li><a href="#" class="active">${payload.userName} ${payload.lastName}</a></li>`
+
+                nameside =
+                `<span>${payload.userName} ${payload.lastName}</span>`
             });
         document.getElementById('partyResult').innerHTML = result;
+        document.getElementById('username').innerHTML = username;
+        document.getElementById('nameside').innerHTML = nameside;
         
     })  
 }

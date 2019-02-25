@@ -1,13 +1,23 @@
+// import { promises } from "fs";
+
 let token = window.localStorage.getItem('token');
 let payload = JSON.parse(window.atob(token.split('.')[1]));
 function verifyToken(){
     if(!token){
         window.location.href = '/views/sign-in.html';
     }
+    // only admin can acess this page
     if(payload.isAdmin == false){
         window.location.href = '/views/sign-in.html';
     }
     // check if token has expired
+    if(payload.exp >= payload.iat){
+        console.log("Token had expired!")
+        window.location.href = '/views/401.html';
+        setTimeout(function(){
+            window.location.href = '/views/sign-in.html'; 
+        }, 30000);
+    }
 }
 
 
@@ -22,9 +32,11 @@ function closeNav() {
     sideNav.style.width = "0";
 }
 
-// alert('connected!');
-function getAllUsers(){
-    fetch('https://trustpolitico.herokuapp.com/api/v1/users', {
+
+function getAll(){
+    
+Promise.all([
+    fetch("https://trustpolitico.herokuapp.com/api/v1/users", {
         method: 'GET',
         headers: {
             'Accept': 'application/json, text/plain, */*',
@@ -32,7 +44,7 @@ function getAllUsers(){
             'x-access-token': token
         },
     })
-        .then((res) => res.json())
+    .then((res) => res.json())
         .then((data) => {
             console.log(data);
             let result = '';
@@ -40,16 +52,20 @@ function getAllUsers(){
                 result +=
                 `
                 <option id=${user.id}>${user.firstname} ${user.lastname}</option> `
+            
+                username =
+                `<li><a href="#" class="active">${payload.userName} ${payload.lastName}</a></li>`
+
+                nameside =
+                `<span>${payload.userName} ${payload.lastName}</span>`
+
             });
 
         document.getElementById('users').innerHTML = result;
-    })
-        
-}
-
-
-function getAllParties(){
-    fetch('https://trustpolitico.herokuapp.com/api/v1/parties', {
+        document.getElementById('username').innerHTML = username;
+        document.getElementById('nameside').innerHTML = nameside;
+    }),
+    fetch("https://trustpolitico.herokuapp.com/api/v1/parties", {
         method: 'GET',
         headers: {
             'Accept': 'application/json, text/plain, */*',
@@ -57,7 +73,7 @@ function getAllParties(){
             'x-access-token': token
         },
     })
-        .then((res) => res.json())
+    .then((res) => res.json())
         .then((data) => {
             console.log(data);
             let result = '';
@@ -67,14 +83,8 @@ function getAllParties(){
                 <option id=${party.id}>${party.name}</option> `
             });
         document.getElementById('parties').innerHTML = result;
-    })
-    
-
-        
-}
-
-function getAllOffice(){
-    fetch('https://trustpolitico.herokuapp.com/api/v1/offices', {
+    }),
+    fetch("https://trustpolitico.herokuapp.com/api/v1/offices", {
         method: 'GET',
         headers: {
             'Accept': 'application/json, text/plain, */*',
@@ -82,21 +92,106 @@ function getAllOffice(){
             'x-access-token': token
         },
     })
-        .then((res) => res.json())
-        .then((data) => {
-            console.log(data);
-            let result = '';
-            data.data.forEach((office) => {
-                result +=
-                `
-                <option id=${office.id}>${office.name}</option> `
-            });
-        document.getElementById('offices').innerHTML = result;
-    })
+    .then((res) => res.json())
+    .then((data) => {
+        console.log(data);
+        let result = '';
+        data.data.forEach((office) => {
+            result +=
+            `
+            <option id=${office.id}>${office.name}</option> `
+        });
+    document.getElementById('offices').innerHTML = result;
+        })
+    ]);
+}
+getAll();
+
+
+// alert('connected!');
+// function getAllUsers(){
+//     fetch('http://localhost:3000/api/v1/users', {
+//         method: 'GET',
+//         headers: {
+//             'Accept': 'application/json, text/plain, */*',
+//             'Content-type': 'application/json',
+//             'x-access-token': token
+//         },
+//     })
+//         .then((res) => res.json())
+//         .then((data) => {
+//             console.log(data);
+//             let result = '';
+//             data.data.forEach((user) => {
+//                 result +=
+//                 `
+//                 <option id=${user.id}>${user.firstname} ${user.lastname}</option> `
+            
+//                 username =
+//                 `<li><a href="#" class="active">${payload.userName} ${payload.lastName}</a></li>`
+
+//                 nameside =
+//                 `<span>${payload.userName} ${payload.lastName}</span>`
+
+//             });
+
+//         document.getElementById('users').innerHTML = result;
+//         document.getElementById('username').innerHTML = username;
+//         document.getElementById('nameside').innerHTML = nameside;
+//     })
+        
+// }
+
+
+// function getAllParties(){
+//     fetch('http://localhost:3000/api/v1/parties', {
+//         method: 'GET',
+//         headers: {
+//             'Accept': 'application/json, text/plain, */*',
+//             'Content-type': 'application/json',
+//             'x-access-token': token
+//         },
+//     })
+//         .then((res) => res.json())
+//         .then((data) => {
+//             console.log(data);
+//             let result = '';
+//             data.data.forEach((party) => {
+//                 result +=
+//                 `
+//                 <option id=${party.id}>${party.name}</option> `
+//             });
+//         document.getElementById('parties').innerHTML = result;
+//     })
     
 
         
-};
+// }
+
+// function getAllOffice(){
+//     fetch('http://localhost:3000/api/v1/offices', {
+//         method: 'GET',
+//         headers: {
+//             'Accept': 'application/json, text/plain, */*',
+//             'Content-type': 'application/json',
+//             'x-access-token': token
+//         },
+//     })
+//         .then((res) => res.json())
+//         .then((data) => {
+//             console.log(data);
+//             let result = '';
+//             data.data.forEach((office) => {
+//                 result +=
+//                 `
+//                 <option id=${office.id}>${office.name}</option> `
+//             });
+//         document.getElementById('offices').innerHTML = result;
+//     })
+    
+
+        
+// };
 
 
 document.getElementById('regBtn').addEventListener('click', register);
@@ -159,8 +254,6 @@ function register(e){
     })
 };
 
-getAllUsers()
-getAllParties()
-getAllOffice()
-// register()
-
+// getAllUsers()
+// getAllParties()
+// getAllOffice()
