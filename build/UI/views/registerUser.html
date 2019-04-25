@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>POLITICO | ADMIN</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="../styles/registerUsers.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="icon" type="image/ico" href="../images/pogo.png"/>
+    <meta name="Description" content="Politico - Builds trust through transparency">
+</head>
+<body onload= "verifyToken()">
+        <div id="mySidenav" class="sidenav">
+                <a href="#" class="closebtn" onclick="closeNav()"><i class="fa fa-chevron-circle-right"></i></a>
+                <img style="width: 80px; padding-left: 30px;" src="../images/userimg.png">
+                <h1 style="padding-left: 30px; color: #ffffff;" id="nameside">   </h1>
+                <a href="index.html"><span>Home</span></a>
+                <a href="addparties.html"><i class="far fa-handshake"></i><span>Parties</span></a>
+                <a href="govOffice.html"><i class="fas fa-building"></i><span>Office</span></a>
+                <a class="active" href="registerUser.html"><i class="fas fa-user-plus"></i><span>Register</span></a>
+                <a href="#"><i class="fas fa-sign-out-alt"></i><span>Sign out</span></a>
+            </div>
+            <div class="nav">
+            <span style="font-size:30px;cursor:pointer;height: 30px;" class="openbutton" onclick="openNav()"><i class="fas fa-align-justify"></i></span>
+    
+                    <!-- <div class="logo">POLITICO</div> -->
+                    <!-- <a class="logo" href="index.html">POLITICO</a> -->
+                    <ul id="username"> 
+                        
+                    </ul>
+            </div> 
+
+       
+
+
+            <main style="background-color:#ffffff">
+                <section class="section-cards">
+                    <div class="text-cards">
+                        <h1 class="heading-primary">
+                            Register Users
+                        </h1>
+                    </div>
+                    <div class="register" id="userRegister">
+                        <form>
+                            
+                            <select id="users">
+                            
+                            </select>
+                            
+                            <select id="parties">
+                            
+                            </select>
+
+                            <select id="offices">
+                            
+                            </select>
+                            <br>
+                            <div id="result"></div>
+                            <br>
+                            <input id="regBtn" type="submit" value="Register">
+                        </form>
+                        <div id="result"></div>
+                        </div>
+                   
+        
+                </section>
+        
+            </main>
+            <!-- <script src="../scripts/addparties.js"></script> -->
+            <script src="../scripts/register.js"></script>      
+</body>
+</html>

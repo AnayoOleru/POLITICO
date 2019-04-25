@@ -1,5 +1,6 @@
 // import { json, urlencoded } from 'body-parser';
 import express from 'express';
+import cors from 'cors';
 import Office from './controllers/officeCtr';
 import userCtr from './controllers/userCtr';
 import partyCtr from './controllers/partyCtr';
@@ -14,6 +15,8 @@ import bodyParser from 'body-parser';
 
 
 const app = express();
+
+app.use(cors());
 
 app.use('*', (req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
