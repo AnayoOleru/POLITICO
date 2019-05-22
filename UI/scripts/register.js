@@ -11,13 +11,6 @@ function verifyToken(){
         window.location.href = '/views/sign-in.html';
     }
     // check if token has expired
-    if(payload.exp >= payload.iat){
-        console.log("Token had expired!")
-        window.location.href = '/views/401.html';
-        setTimeout(function(){
-            window.location.href = '/views/sign-in.html'; 
-        }, 30000);
-    }
 }
 
 
@@ -52,12 +45,6 @@ Promise.all([
                 result +=
                 `
                 <option id=${user.id}>${user.firstname} ${user.lastname}</option> `
-            
-                username =
-                `<li><a href="#" class="active">${payload.userName} ${payload.lastName}</a></li>`
-
-                nameside =
-                `<span>${payload.userName} ${payload.lastName}</span>`
 
             });
 

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>POLITICO | Candidates</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="../styles/candidates.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="../styles/candidatescard.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="../styles/queriesCan.css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="icon" type="image/ico" href="../images/pogo.png"/>
+    <meta name="Description" content="Politico - Builds trust through transparency">
+</head>
+<body onload= "verifyToken()">
+        <div id="mySidenav" class="sidenav">
+                <a href="#" class="closebtn" onclick="closeNav()"><i class="fa fa-chevron-circle-right"></i></a>
+                <img style="width: 80px; padding-left: 30px;" src="../images/userimg.png">
+                <h1 style="padding-left: 30px; color: #ffffff;" id="nameside"></h1>
+                <a href="index.html"><span>Home</span></a>
+                <a href="parties.html"><i class="far fa-handshake"></i><span>Parties</span></a>
+                <a class="active" href="candidates.html"><i class="fas fa-users"></i><span>Candidates</span></a>
+                <a href="history.html"><i class="fas fa-box-open"></i><span>Results</span></a>
+                <a href="#"><i class="fas fa-sign-out-alt"></i><span>Sign out</span></a>
+            </div>
+            <div class="nav">
+            <span style="font-size:30px;cursor:pointer;height: 30px;" class="openbutton" onclick="openNav()"><i class="fas fa-align-justify"></i></span>
+    
+                    <!-- <div class="logo">POLITICO</div> -->
+                    <!-- <a class="logo" href="index.html" style="width:5x"><img src="../images/pogo.png"></a> -->
+                    <ul class="navText" id="username"> 
+                        
+                    </ul>
+            </div>
+                                    <main style="background-color:#ffffff">
+                                        <section class="section-cards" id="candidatescard">
+                                            <div class="text-cards">
+                                                <h1 class="heading-primary">
+                                                    Candidates
+                                                </h1>
+                                            </div>
+                                            <!-- <div class="row" id="candidatescard">
+                                                    
+                                                </div> -->
+                                        </section>
+                                
+                                    </main>
+                                
+
+
+                
+            <script src="../scripts/candidates.js"></script>
+</body>
+</html>

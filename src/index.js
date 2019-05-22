@@ -1,6 +1,7 @@
 // import { json, urlencoded } from 'body-parser';
 import express from 'express';
 import cors from 'cors';
+import path from 'path';
 import Office from './controllers/officeCtr';
 import userCtr from './controllers/userCtr';
 import partyCtr from './controllers/partyCtr';
@@ -9,8 +10,8 @@ import votesCtr from './controllers/votesCtr';
 import token from './helper/tokenAuth';
 import verifyAdmin from './helper/verifyAdmin';
 import verifyId from './helper/userAuth';
+import allowCors from './helper/allowCors';
 
-import path from 'path';
 import bodyParser from 'body-parser';
 
 
@@ -26,139 +27,141 @@ app.use('*', (req, res, next) => {
 });
 
 app.use(express.static(path.join(__dirname)));
-app.use("/styles", express.static(__dirname + '../../UI/styles'));
-app.use("/images", express.static(__dirname + '../../UI/images'));
-app.use("/scripts", express.static(__dirname + '../../UI/scripts'));
-app.use("/views", express.static(__dirname + '../../UI/views'));
+app.use('/styles', express.static(`${__dirname  }../../UI/styles`));
+app.use('/images', express.static(`${__dirname  }../../UI/images`));
+app.use('/scripts', express.static(`${__dirname  }../../UI/scripts`));
+app.use('/views', express.static(`${__dirname  }../../UI/views`));
 
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-  extended: true
+  extended: true,
 }));
 
-app.use(express.json())
+app.use(express.json());
 const port = process.env.PORT || 3000;
 
 // homepage
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '../../UI/views/index.html'));
 });
 
 app.get('/api/v1', (req, res) => res.status(200).send({
-  "status": 200,
-  "message": 'Welcome to POLITICO'
+  status: 200,
+  'message': 'Welcome to POLITICO',
 }));
 // admin: create, edit
 app.post(
-  '/api/v1/parties', 
-  token.verifyToken, 
-  verifyAdmin.verifyIsAdmin, 
-  partyCtr.create
-  );
+  '/api/v1/parties',
+  token.verifyToken,
+  verifyAdmin.verifyIsAdmin,
+  partyCtr.create,
+);
 
 app.patch(
-  '/api/v1/parties/:id/name', 
-  token.verifyToken, 
-  verifyAdmin.verifyIsAdmin, 
-  partyCtr.update
-  );
+  '/api/v1/parties/:id/name',
+  token.verifyToken,
+  verifyAdmin.verifyIsAdmin,
+  partyCtr.update,
+);
 
 app.delete(
-  '/api/v1/parties/:id', 
-  token.verifyToken, 
-  verifyAdmin.verifyIsAdmin, 
-  partyCtr.delete
-  );
+  '/api/v1/parties/:id',
+  token.verifyToken,
+  verifyAdmin.verifyIsAdmin,
+  partyCtr.delete,
+);
 
 app.post(
-  '/api/v1/offices', 
-  token.verifyToken, 
-  verifyAdmin.verifyIsAdmin, 
-  Office.create
-  );
+  '/api/v1/offices',
+  token.verifyToken,
+  verifyAdmin.verifyIsAdmin,
+  Office.create,
+);
 
 app.post(
-  '/api/v1/office/:userid/register', 
-  token.verifyToken, 
-  verifyAdmin.verifyIsAdmin, 
-  verifyId.validateUserId, 
-  candidateCtr.register
-  );
+  '/api/v1/office/:userid/register',
+  token.verifyToken,
+  verifyAdmin.verifyIsAdmin,
+  verifyId.validateUserId,
+  candidateCtr.register,
+);
 
-  app.get(
-    '/api/v1/users', 
-    token.verifyToken, 
-    verifyAdmin.verifyIsAdmin, 
-    verifyId.validateUserId,
-    userCtr.getAllUsers
-    );
+app.get(
+  '/api/v1/users',
+  token.verifyToken,
+  verifyAdmin.verifyIsAdmin,
+  verifyId.validateUserId,
+  userCtr.getAllUsers,
+);
 
 
 // user
 app.get(
-  '/api/v1/parties', 
-  token.verifyToken, 
-  partyCtr.getParties
-  );
+  '/api/v1/parties',
+  token.verifyToken,
+  partyCtr.getParties,
+);
 
 app.get(
-  '/api/v1/parties/:id', 
-  token.verifyToken, 
-  partyCtr.getAParty
-  );
+  '/api/v1/parties/:id',
+  token.verifyToken,
+  partyCtr.getAParty,
+);
 
 app.get(
-  '/api/v1/offices', 
-  token.verifyToken, 
-  Office.getAllOffices
-  );
+  '/api/v1/offices',
+  allowCors.allowCors,
+  token.verifyToken,
+  Office.getAllOffices,
+);
 
 app.get(
-  '/api/v1/offices/:id', 
-  token.verifyToken, 
-  Office.getOneOffice
-  );
+  '/api/v1/offices/:id',
+  token.verifyToken,
+  Office.getOneOffice,
+);
 
 app.post(
-  '/api/v1/votes', 
-  token.verifyToken, 
-  votesCtr.votes
-  );
+  '/api/v1/votes',
+  token.verifyToken,
+  votesCtr.votes,
+);
 
 app.get(
-  '/api/v1/office/:officeid/result', 
-  token.verifyToken, 
-  Office.officeResult
-  );
+  '/api/v1/office/:officeid/result',
+  token.verifyToken,
+  Office.officeResult,
+);
 
-  app.get(
-    '/api/v1/candidates', 
-    token.verifyToken, 
-    candidateCtr.getAllCandidates
-    );
+app.get(
+  '/api/v1/candidates',
+  allowCors.allowCors,
+  token.verifyToken,
+  candidateCtr.getAllCandidates,
+);
 
 // user login
 app.post(
-  '/api/v1/auth/signup', 
-  userCtr.createUser
-  );
+  '/api/v1/auth/signup',
+  userCtr.createUser,
+);
 
 app.post(
-  '/api/v1/auth/login', 
-  userCtr.login
-  );
+  '/api/v1/auth/login',
+  userCtr.login,
+);
 
-  // user/admin logout
-  app.post(
-    '/api/v1/auth/signout',
-    token.verifyToken,
-    userCtr.signout
-  )
+// user/admin logout
+app.post(
+  '/api/v1/auth/signout',
+  token.verifyToken,
+  userCtr.signout,
+);
 
 app.get('/', (req, res) => res.status(200).send({
-  "status": 200,
-  "message": 'Welcome to POLITICO'
+  'status': 200,
+  message: 'Welcome to POLITICO',
 }));
 
 // Handle 404: send an 404 error page
@@ -171,12 +174,12 @@ app.get('/', (req, res) => res.status(200).send({
 //   res.status(500).sendFile(path.join(__dirname + '../../UI/views/500.html'));
 // });
 
-app.all('*', (req, res) =>{
+app.all('*', (req, res) => {
   res.status(404).send({
-    "status": 404,
-    "error": "Resource not found on the server" 
-  })
-})
+    'status': 404,
+    'error': 'Resource not found on the server',
+  });
+});
 
 app.listen(port, () => {
   console.log(`app is running on port ${port}`);

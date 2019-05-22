@@ -12,6 +12,7 @@ class Candidates {
    * @returns {array} - returns all key value pairs as object in array
    */
   static async register(req, res) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
     if (!req.body.office && !req.body.party) {
       return res.status(400).send({
         status: 400,
@@ -61,6 +62,7 @@ class Candidates {
    * Get all Candidates
    */
   static async getAllCandidates(res) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
     const findAllQuery = 'SELECT * FROM candidates';
     try {
       const { rows, rowCount } = await db.query(findAllQuery);
