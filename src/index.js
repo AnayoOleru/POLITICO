@@ -11,7 +11,6 @@ import votesCtr from './controllers/votesCtr';
 import token from './helper/tokenAuth';
 import verifyAdmin from './helper/verifyAdmin';
 import verifyId from './helper/userAuth';
-import allowCors from './helper/allowCors';
 
 
 const app = express();
@@ -110,7 +109,6 @@ app.get(
 
 app.get(
   '/api/v1/offices',
-  allowCors.allowCors,
   token.verifyToken,
   Office.getAllOffices,
 );
@@ -135,7 +133,6 @@ app.get(
 
 app.get(
   '/api/v1/candidates',
-  allowCors.allowCors,
   token.verifyToken,
   candidateCtr.getAllCandidates,
 );
