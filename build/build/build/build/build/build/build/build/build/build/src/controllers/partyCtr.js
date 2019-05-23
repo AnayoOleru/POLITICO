@@ -1,83 +1,58 @@
 'use strict';
 
-var _regenerator = require("babel-runtime/regenerator");
-
-var _regenerator2 = _interopRequireDefault2(_regenerator);
-
-function _interopRequireDefault2(obj) {
-  return obj && obj.__esModule ? obj : { default: obj };
-}
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _createClass = function () {
-  function defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
-    }
-  }return function (Constructor, protoProps, staticProps) {
-    if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
-  };
-}();
+var _regenerator = require('babel-runtime/regenerator');
 
-var _uuid = require('uuid');
+var _regenerator2 = _interopRequireDefault(_regenerator);
 
-var _uuid2 = _interopRequireDefault(_uuid);
+var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
+
+var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _v = require('uuid/v4');
+
+var _v2 = _interopRequireDefault(_v);
+
+var _moment = require('moment');
+
+var _moment2 = _interopRequireDefault(_moment);
 
 var _partydb = require('../db/partydb');
 
 var _partydb2 = _interopRequireDefault(_partydb);
 
-var _party = require('../models/party');
-
-var _party2 = _interopRequireDefault(_party);
-
-var _dbconnect = require('../../databaseTables/dbconnect');
+var _dbconnect = require('../controllers/databaseTables/dbconnect');
 
 var _dbconnect2 = _interopRequireDefault(_dbconnect);
+
+var _userAuth = require('../helper/userAuth');
+
+var _userAuth2 = _interopRequireDefault(_userAuth);
 
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : { default: obj };
 }
 
-function _asyncToGenerator(fn) {
-  return function () {
-    var gen = fn.apply(this, arguments);return new Promise(function (resolve, reject) {
-      function step(key, arg) {
-        try {
-          var info = gen[key](arg);var value = info.value;
-        } catch (error) {
-          reject(error);return;
-        }if (info.done) {
-          resolve(value);
-        } else {
-          return Promise.resolve(value).then(function (value) {
-            step("next", value);
-          }, function (err) {
-            step("throw", err);
-          });
-        }
-      }return step("next");
-    });
-  };
-}
+// const partyModel = new PartyModel()
 
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-var partyModel = new _party2.default();
-
+// import PartyModel from '../models/party';
 var Party = function () {
   function Party() {
-    _classCallCheck(this, Party);
+    (0, _classCallCheck3.default)(this, Party);
   }
 
-  _createClass(Party, null, [{
+  (0, _createClass3.default)(Party, null, [{
     key: 'create',
 
     /**
@@ -86,52 +61,118 @@ var Party = function () {
      * @param {Object} res - request object
      * @returns {array} - returns all key value pairs as object in array
      */
-    // static createParty(req, res) {
-    //   const {
-    //     name,
-    //     hqaddress,
-    //     logoURL
-    //   } = req.body;
-    //   partyDb.push({
-    //     id: uuid.v4(),
-    //     name,
-    //     hqaddress,
-    //     logoURL
-    //   });
-    //   return res.status(201).json({
-    //     "status": 201,
-    //     "data": partyDb
-    //   });
-    // }
-
     value: function () {
-      var _ref = _asyncToGenerator( /*#__PURE__*/_regenerator2.default.mark(function _callee(req, res) {
-        var isAdmin, createQuery, values, _ref2, rows;
+      var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(req, res) {
+        var check, name, result, createQuery, values, _ref2, rows;
 
         return _regenerator2.default.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                isAdmin = req.user.isAdmin;
-
-                if (!isAdmin) {
-                  _context.next = 3;
+                if (!(!req.body.name && !req.body.hqaddress && !req.body.logoUrl)) {
+                  _context.next = 2;
                   break;
                 }
 
-                return _context.abrupt('return', res.status(403).json({
-                  status: 403,
-                  message: "Access denied, you don't have the required credentials to access this route"
+                return _context.abrupt('return', res.status(400).send({
+                  "status": 400,
+                  "error": "Inputs fields can't be left empty"
                 }));
 
-              case 3:
-                createQuery = 'INSERT INTO\n      party(id, name, type, created_date)\n      VALUES($1, $2, $3, $4)\n      returning *';
-                values = [uuidv4(), req.body.name, req.body.type, moment(new Date())];
-                _context.prev = 5;
-                _context.next = 8;
-                return _dbconnect2.default.query(createQuery, values);
+              case 2:
+                if (req.body.logoUrl) {
+                  _context.next = 4;
+                  break;
+                }
+
+                return _context.abrupt('return', res.status(400).send({
+                  "status": 400,
+                  "error": "Logo field is empty"
+                }));
+
+              case 4:
+                if (req.body.name) {
+                  _context.next = 6;
+                  break;
+                }
+
+                return _context.abrupt('return', res.status(400).send({
+                  "status": 400,
+                  "error": "Party field is empty"
+                }));
+
+              case 6:
+                if (req.body.hqaddress) {
+                  _context.next = 8;
+                  break;
+                }
+
+                return _context.abrupt('return', res.status(400).send({
+                  "status": 400,
+                  "error": "Address field is empty"
+                }));
 
               case 8:
+                if (_userAuth2.default.isAddress(req.body.hqaddress)) {
+                  _context.next = 10;
+                  break;
+                }
+
+                return _context.abrupt('return', res.status(400).send({
+                  "status": 400,
+                  "error": "Please enter a valid address"
+                }));
+
+              case 10:
+                if (_userAuth2.default.isName(req.body.name)) {
+                  _context.next = 12;
+                  break;
+                }
+
+                return _context.abrupt('return', res.status(400).send({
+                  "status": 400,
+                  "error": "Alphabets only"
+                }));
+
+              case 12:
+                if (_userAuth2.default.isURL(req.body.logoUrl)) {
+                  _context.next = 14;
+                  break;
+                }
+
+                return _context.abrupt('return', res.status(400).send({
+                  "status": 400,
+                  "error": "Incorrect URL. Use https://"
+                }));
+
+              case 14:
+                ;
+                check = 'SELECT * FROM party WHERE name=$1';
+                name = req.body.name;
+                _context.next = 19;
+                return _dbconnect2.default.query(check, [name]);
+
+              case 19:
+                result = _context.sent;
+
+                if (!(result.rowCount !== 0)) {
+                  _context.next = 22;
+                  break;
+                }
+
+                return _context.abrupt('return', res.status(400).send({
+                  "status": 400,
+                  "error": "Party already exist"
+                }));
+
+              case 22:
+                createQuery = 'INSERT INTO\n      party(id, name, hqaddress, logoUrl, created_date)\n      VALUES($1, $2, $3, $4, $5)\n      returning *';
+                values = [(0, _v2.default)(), req.body.name, req.body.hqaddress, req.body.logoUrl, (0, _moment2.default)(new Date())];
+                _context.prev = 24;
+                _context.next = 27;
+                return _dbconnect2.default.query(createQuery, values);
+
+              case 27:
                 _ref2 = _context.sent;
                 rows = _ref2.rows;
                 return _context.abrupt('return', res.status(201).send({
@@ -142,20 +183,20 @@ var Party = function () {
                   }]
                 }));
 
-              case 13:
-                _context.prev = 13;
-                _context.t0 = _context['catch'](5);
+              case 32:
+                _context.prev = 32;
+                _context.t0 = _context['catch'](24);
                 return _context.abrupt('return', res.status(400).send({
                   "status": 400,
                   "data": _context.t0
                 }));
 
-              case 16:
+              case 35:
               case 'end':
                 return _context.stop();
             }
           }
-        }, _callee, this, [[5, 13]]);
+        }, _callee, this, [[24, 32]]);
       }));
 
       function create(_x, _x2) {
@@ -166,196 +207,277 @@ var Party = function () {
     }()
 
     /**
-     * 
+     * Get a specific party(users)
      * @param {uuid} id
      * @param {Object} res - request object
      * @returns {array} - returns specific party
      */
 
   }, {
-    key: 'getPartyById',
-    value: function getPartyById(req, res) {
-      var partyId = req.params.partyId;
-
-      var partyObject = void 0;
-      _partydb2.default.forEach(function (party) {
-
-        if (party.id === Number(partyId)) {
-          partyObject = party;
-        }
-      });
-      return res.status(200).json({
-        "status": 200,
-        "data": partyObject
-      });
-    }
-    /**
-     * 
-     * @param {uuid} id
-     * @param {Object} res - request object
-     * @returns {array} - returns all key value pairs as object in array
-     */
-
-  }, {
-    key: 'getParties',
-    value: function getParties(req, res) {
-      return res.status(200).json({
-        "status": 200,
-        "data": _partydb2.default
-      });
-    }
-    /**
-       * 
-       * @param {object} req 
-       * @param {object} res 
-       * @returns {object} updated party
-       */
-    // static update(req, res) {
-    //   let partyObject;
-
-    //   const party = partyModel.findOne(req.params.id);
-    //   console.log(party);
-    //   if (!party) {
-    //     return res.status(404).send({
-    //       "status": 404,
-    //       "error": "party not found"
-    //     });
-    //   }
-    //   party.name = req.body.name
-    //   // const updatedParty = PartyModel.update(req.params.id, req.body)
-    //   return res.status(200).send(party);
-    // }
-
-  }, {
-    key: 'update',
+    key: 'getAParty',
     value: function () {
-      var _ref3 = _asyncToGenerator( /*#__PURE__*/_regenerator2.default.mark(function _callee2(req, res) {
-        var findOneQuery, updateOneQuery, _ref4, rows, values, response;
+      var _ref3 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2(req, res) {
+        var id, text, _ref4, rows;
 
         return _regenerator2.default.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                findOneQuery = 'SELECT * FROM party WHERE id=$1';
-                updateOneQuery = 'UPDATE party\n      SET name=$1,type=$2, modified_date=$3\n      WHERE id=$4 returning *';
-                _context2.prev = 2;
-                _context2.next = 5;
-                return _dbconnect2.default.query(findOneQuery, [req.params.id, req.user.id]);
+                id = req.params.id;
 
-              case 5:
+                if (_userAuth2.default.isUUID(id)) {
+                  _context2.next = 3;
+                  break;
+                }
+
+                return _context2.abrupt('return', res.status(400).send({
+                  "status": 400,
+                  "error": "The user ID used is invalid"
+                }));
+
+              case 3:
+                text = 'SELECT * FROM party WHERE id = $1';
+                _context2.prev = 4;
+                _context2.next = 7;
+                return _dbconnect2.default.query(text, [id]);
+
+              case 7:
                 _ref4 = _context2.sent;
                 rows = _ref4.rows;
 
                 if (rows[0]) {
-                  _context2.next = 9;
+                  _context2.next = 11;
                   break;
                 }
 
-                return _context2.abrupt('return', res.status(404).send({ 'message': 'Party not found' }));
+                return _context2.abrupt('return', res.status(404).send({ "error": "Party not found" }));
 
-              case 9:
-                values = [req.body.name || rows[0].name, req.body.type || rows[0].type, moment(new Date()), req.params.id];
-                _context2.next = 12;
-                return _dbconnect2.default.query(updateOneQuery, values);
+              case 11:
+                return _context2.abrupt('return', res.status(200).send({
+                  "status": 201,
+                  "data": [{
+                    "order": rows[0]
+                  }]
+                }));
 
-              case 12:
-                response = _context2.sent;
-                return _context2.abrupt('return', res.status(200).send(response.rows[0]));
-
-              case 16:
-                _context2.prev = 16;
-                _context2.t0 = _context2['catch'](2);
+              case 14:
+                _context2.prev = 14;
+                _context2.t0 = _context2['catch'](4);
                 return _context2.abrupt('return', res.status(400).send(_context2.t0));
 
-              case 19:
+              case 17:
               case 'end':
                 return _context2.stop();
             }
           }
-        }, _callee2, this, [[2, 16]]);
+        }, _callee2, this, [[4, 14]]);
       }));
 
-      function update(_x3, _x4) {
+      function getAParty(_x3, _x4) {
         return _ref3.apply(this, arguments);
       }
 
-      return update;
+      return getAParty;
     }()
     /**
-     * 
-     * @param {object} req 
-     * @param {object} res 
-     * @returns {void} return code 204 
+     * Get All parties(users)
+     * @param {uuid} id
+     * @param {Object} res - request object
+     * @returns {array} - returns all key value pairs as object in array
      */
-    // static delete(req, res) {
-    //   const party = partyModel.findOne(req.params.id);
-    //   if (!party) {
-    //     return res.status(404).send({
-    //       "status": 404,
-    //       "error": "party not found"
-    //     });
-    //   }
-    //   const ref = partyModel.delete(req.params.id);
-    //   return res.status(200).send({
+    // static getParties(req, res)  {
+    //   return res.status(200).json({
     //     "status": 200,
-    //     "message": "Party had been deleted",
-    //     "data": party
+    //     "data": partyDb
     //   });
     // }
 
-
   }, {
-    key: 'delete',
+    key: 'getParties',
     value: function () {
-      var _ref5 = _asyncToGenerator( /*#__PURE__*/_regenerator2.default.mark(function _callee3(req, res) {
-        var deleteQuery, _ref6, rows;
+      var _ref5 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3(req, res) {
+        var findAllQuery, _ref6, rows, rowCount;
 
         return _regenerator2.default.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                deleteQuery = 'DELETE FROM party WHERE id=$1 returning *';
+                findAllQuery = 'SELECT * FROM party';
                 _context3.prev = 1;
                 _context3.next = 4;
-                return _dbconnect2.default.query(deleteQuery, req.params.id);
+                return _dbconnect2.default.query(findAllQuery);
 
               case 4:
                 _ref6 = _context3.sent;
                 rows = _ref6.rows;
+                rowCount = _ref6.rowCount;
+                return _context3.abrupt('return', res.status(200).send({
+                  "status": 200,
+                  "data": rows, rowCount: rowCount
+                }));
 
-                if (rows[0]) {
-                  _context3.next = 8;
-                  break;
-                }
-
-                return _context3.abrupt('return', res.status(404).send({ 'message': 'party not found' }));
-
-              case 8:
-                return _context3.abrupt('return', res.status(204).send({ 'message': 'deleted' }));
-
-              case 11:
-                _context3.prev = 11;
+              case 10:
+                _context3.prev = 10;
                 _context3.t0 = _context3['catch'](1);
                 return _context3.abrupt('return', res.status(400).send(_context3.t0));
 
-              case 14:
+              case 13:
               case 'end':
                 return _context3.stop();
             }
           }
-        }, _callee3, this, [[1, 11]]);
+        }, _callee3, this, [[1, 10]]);
       }));
 
-      function _delete(_x5, _x6) {
+      function getParties(_x5, _x6) {
         return _ref5.apply(this, arguments);
+      }
+
+      return getParties;
+    }()
+    /**
+       * Edit a specific party(admin)
+       * @param {object} req 
+       * @param {object} res 
+       * @returns {object} updated party
+       */
+
+  }, {
+    key: 'update',
+    value: function () {
+      var _ref7 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee4(req, res) {
+        var findOneQuery, updateOneQuery, _ref8, rows, values, response;
+
+        return _regenerator2.default.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                if (req.body.name) {
+                  _context4.next = 2;
+                  break;
+                }
+
+                return _context4.abrupt('return', res.status(400).send({
+                  "status": 400,
+                  "error": "Input field can't be left empty"
+                }));
+
+              case 2:
+                findOneQuery = 'SELECT * FROM party WHERE id=$1';
+                updateOneQuery = 'UPDATE party\n      SET name=$1 \n      WHERE id=$2 returning *';
+                _context4.prev = 4;
+                _context4.next = 7;
+                return _dbconnect2.default.query(findOneQuery, [req.params.id]);
+
+              case 7:
+                _ref8 = _context4.sent;
+                rows = _ref8.rows;
+
+                if (rows[0]) {
+                  _context4.next = 11;
+                  break;
+                }
+
+                return _context4.abrupt('return', res.status(404).send({
+                  "status": 404,
+                  "error": "Party not found"
+                }));
+
+              case 11:
+                values = [req.body.name || rows[0].name, req.params.id];
+                _context4.next = 14;
+                return _dbconnect2.default.query(updateOneQuery, values);
+
+              case 14:
+                response = _context4.sent;
+                return _context4.abrupt('return', res.status(200).send(response.rows[0]));
+
+              case 18:
+                _context4.prev = 18;
+                _context4.t0 = _context4['catch'](4);
+                return _context4.abrupt('return', res.status(400).send({
+                  "error": "Oops, something wrong happened. Check and try again"
+                }));
+
+              case 21:
+              case 'end':
+                return _context4.stop();
+            }
+          }
+        }, _callee4, this, [[4, 18]]);
+      }));
+
+      function update(_x7, _x8) {
+        return _ref7.apply(this, arguments);
+      }
+
+      return update;
+    }()
+    /**
+     * Delete party(admin)
+     * @param {object} req 
+     * @param {object} res 
+     * @returns {void} return code 204 
+     */
+
+  }, {
+    key: 'delete',
+    value: function () {
+      var _ref9 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee5(req, res) {
+        var deleteQuery, _ref10, rows;
+
+        return _regenerator2.default.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                deleteQuery = 'DELETE FROM party WHERE id=$1 returning *';
+                _context5.prev = 1;
+                _context5.next = 4;
+                return _dbconnect2.default.query(deleteQuery, [req.params.id]);
+
+              case 4:
+                _ref10 = _context5.sent;
+                rows = _ref10.rows;
+
+                if (rows[0]) {
+                  _context5.next = 8;
+                  break;
+                }
+
+                return _context5.abrupt('return', res.status(404).send({
+                  "error": 404,
+                  "message": "party not found"
+                }));
+
+              case 8:
+                return _context5.abrupt('return', res.status(410).send({
+                  "data": "deleted"
+                }));
+
+              case 11:
+                _context5.prev = 11;
+                _context5.t0 = _context5['catch'](1);
+                return _context5.abrupt('return', res.status(400).send({
+                  "error": "Oops, something wrong happened. Check and try again"
+                }));
+
+              case 14:
+              case 'end':
+                return _context5.stop();
+            }
+          }
+        }, _callee5, this, [[1, 11]]);
+      }));
+
+      function _delete(_x9, _x10) {
+        return _ref9.apply(this, arguments);
       }
 
       return _delete;
     }()
   }]);
-
   return Party;
 }();
 
 exports.default = Party;
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb250cm9sbGVycy9wYXJ0eUN0ci5qcyJdLCJuYW1lcyI6WyJwYXJ0eU1vZGVsIiwiUGFydHlNb2RlbCIsIlBhcnR5IiwicmVxIiwicmVzIiwiaXNBZG1pbiIsInN0YXR1cyIsIm1lc3NhZ2UiLCJjcmVhdGVRdWVyeSIsInZhbHVlcyIsIm1vbWVudCIsInJvd3MiLCJkYiIsInBhcnR5T2JqZWN0IiwicGFydHlEYiIsInBhcnR5IiwiTnVtYmVyIiwiZmluZE9uZVF1ZXJ5IiwidXBkYXRlT25lUXVlcnkiLCJyZXNwb25zZSIsImRlbGV0ZVF1ZXJ5Il0sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFDQSxJQUFBLFFBQUEsUUFBQSxNQUFBLENBQUE7Ozs7QUFDQSxJQUFBLFdBQUEsUUFBQSxlQUFBLENBQUE7Ozs7QUFDQSxJQUFBLFNBQUEsUUFBQSxpQkFBQSxDQUFBOzs7O0FBQ0EsSUFBQSxhQUFBLFFBQUEsZ0NBQUEsQ0FBQTs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBRUEsSUFBTUEsYUFBYSxJQUFJQyxRQUF2QixPQUFtQixFQUFuQjs7SUFFTUMsUTs7Ozs7Ozs7QUFDSjs7Ozs7O0FBTUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTs7OzZGQUVvQkMsRyxFQUFLQyxHOzs7Ozs7O0FBQ2ZDLDBCQUFZRixJQUFBQSxJQUFBQSxDQUFaRSxPQUFBQTs7cUJBQ0FBLE87Ozs7O2lEQUNLLElBQUEsTUFBQSxDQUFBLEdBQUEsRUFBQSxJQUFBLENBQXFCO0FBQzFCQywwQkFEMEIsR0FBQTtBQUUxQkMsMkJBQVM7QUFGaUIsaUJBQXJCLEM7OztBQUtQQyw4QkFBQUEseUdBQUFBO0FBSUFDLHlCQUFTLENBQUEsUUFBQSxFQUViTixJQUFBQSxJQUFBQSxDQUZhLElBQUEsRUFHYkEsSUFBQUEsSUFBQUEs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Q0E7QUFDQTs7Ozs7OytGQUdvQkQsRyxFQUFLQyxHOzs7Ozs7O0FBQ2pCZ0IsOEJBQUFBLDJDQUFBQTs7O3VCQUVtQlIsWUFBQUEsT0FBQUEsQ0FBQUEsS0FBQUEsQ0FBQUEsV0FBQUEsRUFBc0JULElBQUFBLE1BQUFBLENBQXRCUyxFQUFBQSxDOzs7O0FBQWZELHVCLE1BQUFBLElBQUFBOztvQkFDSkEsS0FBQUEsQ0FBQUEsQzs7Ozs7a0RBQ0tQLElBQUFBLE1BQUFBLENBQUFBLEdBQUFBLEVBQUFBLElBQUFBLENBQXFCLEVBQUMsV0FBdEJBLGlCQUFxQixFQUFyQkEsQzs7O2tEQUVGQSxJQUFBQSxNQUFBQSxDQUFBQSxHQUFBQSxFQUFBQSxJQUFBQSxDQUFxQixFQUFFLFdBQXZCQSxTQUFxQixFQUFyQkEsQzs7Ozs7a0RBRUFBLElBQUFBLE1BQUFBLENBQUFBLEdBQUFBLEVBQUFBLElBQUFBLENBQUFBLFVBQUFBLEVBQUFBLEM7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztrQkFLRUYsSyIsInNvdXJjZXNDb250ZW50IjpbIlxyXG5pbXBvcnQgdXVpZCBmcm9tICd1dWlkJztcclxuaW1wb3J0IHBhcnR5RGIgZnJvbSAnLi4vZGIvcGFydHlkYic7XHJcbmltcG9ydCBQYXJ0eU1vZGVsIGZyb20gJy4uL21vZGVscy9wYXJ0eSc7XHJcbmltcG9ydCBkYiBmcm9tICcuLi8uLi9kYXRhYmFzZVRhYmxlcy9kYmNvbm5lY3QnO1xyXG5cclxuY29uc3QgcGFydHlNb2RlbCA9IG5ldyBQYXJ0eU1vZGVsKClcclxuXHJcbmNsYXNzIFBhcnR5e1xyXG4gIC8qKlxyXG4gICAqIFxyXG4gICAqIEBwYXJhbSB7VmFsdWVzfSByZXEgLSByZXF1ZXN0IHZhbHVlcyBpbnRvIGtleXMgXHJcbiAgICogQHBhcmFtIHtPYmplY3R9IHJlcyAtIHJlcXVlc3Qgb2JqZWN0XHJcbiAgICogQHJldHVybnMge2FycmF5fSAtIHJldHVybnMgYWxsIGtleSB2YWx1ZSBwYWlycyBhcyBvYmplY3QgaW4gYXJyYXlcclxuICAgKi9cclxuICAvLyBzdGF0aWMgY3JlYXRlUGFydHkocmVxLCByZXMpIHtcclxuICAvLyAgIGNvbnN0IHtcclxuICAvLyAgICAgbmFtZSxcclxuICAvLyAgICAgaHFhZGRyZXNzLFxyXG4gIC8vICAgICBsb2dvVVJMXHJcbiAgLy8gICB9ID0gcmVxLmJvZHk7XHJcbiAgLy8gICBwYXJ0eURiLnB1c2goe1xyXG4gIC8vICAgICBpZDogdXVpZC52NCgpLFxyXG4gIC8vICAgICBuYW1lLFxyXG4gIC8vICAgICBocWFkZHJlc3MsXHJcbiAgLy8gICAgIGxvZ29VUkxcclxuICAvLyAgIH0pO1xyXG4gIC8vICAgcmV0dXJuIHJlcy5zdGF0dXMoMjAxKS5qc29uKHtcclxuICAvLyAgICAgXCJzdGF0dXNcIjogMjAxLFxyXG4gIC8vICAgICBcImRhdGFcIjogcGFydHlEYlxyXG4gIC8vICAgfSk7XHJcbiAgLy8gfVxyXG5cclxuICBzdGF0aWMgYXN5bmMgY3JlYXRlKHJlcSwgcmVzKSB7XHJcbiAgICBjb25zdCB7IGlzQWRtaW4gfSA9IHJlcS51c2VyO1xyXG4gICAgICAgIGlmIChpc0FkbWluKSB7XHJcbiAgICAgICAgICByZXR1cm4gcmVzLnN0YXR1cyg0MDMpLmpzb24oe1xyXG4gICAgICAgICAgICBzdGF0dXM6IDQwMyxcclxuICAgICAgICAgICAgbWVzc2FnZTogXCJBY2Nlc3MgZGVuaWVkLCB5b3UgZG9uJ3QgaGF2ZSB0aGUgcmVxdWlyZWQgY3JlZGVudGlhbHMgdG8gYWNjZXNzIHRoaXMgcm91dGVcIixcclxuICAgICAgICAgIH0pO1xyXG4gICAgICAgIH1cclxuICAgIGNvbnN0IGNyZWF0ZVF1ZXJ5ID0gYElOU0VSVCBJTlRPXHJcbiAgICAgIHBhcnR5KGlkLCBuYW1lLCB0eXBlLCBjcmVhdGVkX2RhdGUpXHJcbiAgICAgIFZBTFVFUygkMSwgJDIsICQzLCAkNClcclxuICAgICAgcmV0dXJuaW5nICpgO1xyXG4gICAgY29uc3QgdmFsdWVzID0gW1xyXG4gICAgICB1dWlkdjQoKSxcclxuICAgICAgcmVxLmJvZHkubmFtZSxcclxuICAgICAgcmVxLmJvZHkudHlwZSxcclxuICAgICAgbW9tZW50KG5ldyBEYXRlKCkpXHJcbiAgICBdO1xyXG5cclxuICAgIHRyeSB7XHJcbiAgICAgIGNvbnN0IHsgcm93cyB9ID0gYXdhaXQgZGIucXVlcnkoY3JlYXRlUXVlcnksIHZhbHVlcyk7XHJcbiAgICAgIHJldHVybiByZXMuc3RhdHVzKDIwMSkuc2VuZCh7XHJcbiAgICAgICAgXCJzdGF0dXNcIjogMjAxLFxyXG4gICAgICAgIFwiZGF0YVwiOiBbe1xyXG4gICAgICAgICAgXCJtZXNzYWdlXCI6IFwicGFydHkgY3JlYXRlZFwiLFxyXG4gICAgICAgICAgXCJvcmRlclwiOiByb3dzWzBdLFxyXG4gICAgICAgIH1dLFxyXG4gICAgICB9KTtcclxuICAgIH0gY2F0Y2goZXJyb3IpIHtcclxuICAgICAgcmV0dXJuIHJlcy5zdGF0dXMoNDAwKS5zZW5kKHtcclxuICAgICAgICBcInN0YXR1c1wiOiA0MDAsXHJcbiAgICAgICAgXCJkYXRhXCI6IGVycm9yXHJcbiAgICAgIH0pO1xyXG4gICAgfVxyXG4gIH1cclxuXHJcbiAgLyoqXHJcbiAgICogXHJcbiAgICogQHBhcmFtIHt1dWlkfSBpZFxyXG4gICAqIEBwYXJhbSB7T2JqZWN0fSByZXMgLSByZXF1ZXN0IG9iamVjdFxyXG4gICAqIEByZXR1cm5zIHthcnJheX0gLSByZXR1cm5zIHNwZWNpZmljIHBhcnR5XHJcbiAgICovXHJcbiAgc3RhdGljIGdldFBhcnR5QnlJZChyZXEsIHJlcykge1xyXG4gICAgY29uc3QgeyBwYXJ0eUlkIH0gPSByZXEucGFyYW1zO1xyXG4gICAgbGV0IHBhcnR5T2JqZWN0O1xyXG4gICAgcGFydHlEYi5mb3JFYWNoKChwYXJ0eSkgPT4ge1xyXG4gICAgICBcclxuICAgICAgaWYocGFydHkuaWQgPT09IE51bWJlcihwYXJ0eUlkKSkge1xyXG4gICAgICAgIHBhcnR5T2JqZWN0ID0gcGFydHk7XHJcbiAgICAgIH1cclxuICAgIH0pO1xyXG4gICAgcmV0dXJuIHJlcy5zdGF0dXMoMjAwKS5qc29uKHtcclxuICAgICAgXCJzdGF0dXNcIjogMjAwLFxyXG4gICAgICBcImRhdGFcIjogcGFydHlPYmplY3RcclxuICAgIH0pO1xyXG4gIH1cclxuICAvKipcclxuICAgKiBcclxuICAgKiBAcGFyYW0ge3V1aWR9IGlkXHJcbiAgICogQHBhcmFtIHtPYmplY3R9IHJlcyAtIHJlcXVlc3Qgb2JqZWN0XHJcbiAgICogQHJldHVybnMge2FycmF5fSAtIHJldHVybnMgYWxsIGtleSB2YWx1ZSBwYWlycyBhcyBvYmplY3QgaW4gYXJyYXlcclxuICAgKi9cclxuICBzdGF0aWMgZ2V0UGFydGllcyhyZXEsIHJlcykgIHtcclxuICAgIHJldHVybiByZXMuc3RhdHVzKDIwMCkuanNvbih7XHJcbiAgICAgIFwic3RhdHVzXCI6IDIwMCxcclxuICAgICAgXCJkYXRhXCI6IHBhcnR5RGJcclxuICAgIH0pO1xyXG4gIH1cclxuLyoqXHJcbiAgICogXHJcbiAgICogQHBhcmFtIHtvYmplY3R9IHJlcSBcclxuICAgKiBAcGFyYW0ge29iamVjdH0gcmVzIFxyXG4gICAqIEByZXR1cm5zIHtvYmplY3R9IHVwZGF0ZWQgcGFydHlcclxuICAgKi9cclxuICAvLyBzdGF0aWMgdXBkYXRlKHJlcSwgcmVzKSB7XHJcbiAgLy8gICBsZXQgcGFydHlPYmplY3Q7XHJcblxyXG4gIC8vICAgY29uc3QgcGFydHkgPSBwYXJ0eU1vZGVsLmZpbmRPbmUocmVxLnBhcmFtcy5pZCk7XHJcbiAgLy8gICBjb25zb2xlLmxvZyhwYXJ0eSk7XHJcbiAgLy8gICBpZiAoIXBhcnR5KSB7XHJcbiAgLy8gICAgIHJldHVybiByZXMuc3RhdHVzKDQwNCkuc2VuZCh7XHJcbiAgLy8gICAgICAgXCJzdGF0dXNcIjogNDA0LFxyXG4gIC8vICAgICAgIFwiZXJyb3JcIjogXCJwYXJ0eSBub3QgZm91bmRcIlxyXG4gIC8vICAgICB9KTtcclxuICAvLyAgIH1cclxuICAvLyAgIHBhcnR5Lm5hbWUgPSByZXEuYm9keS5uYW1lXHJcbiAgLy8gICAvLyBjb25zdCB1cGRhdGVkUGFydHkgPSBQYXJ0eU1vZGVsLnVwZGF0ZShyZXEucGFyYW1zLmlkLCByZXEuYm9keSlcclxuICAvLyAgIHJldHVybiByZXMuc3RhdHVzKDIwMCkuc2VuZChwYXJ0eSk7XHJcbiAgLy8gfVxyXG5cclxuICBzdGF0aWMgYXN5bmMgdXBkYXRlKHJlcSwgcmVzKSB7XHJcbiAgICBjb25zdCBmaW5kT25lUXVlcnkgPSAnU0VMRUNUICogRlJPTSBwYXJ0eSBXSEVSRSBpZD0kMSc7XHJcbiAgICBjb25zdCB1cGRhdGVPbmVRdWVyeSA9YFVQREFURSBwYXJ0eVxyXG4gICAgICBTRVQgbmFtZT0kMSx0eXBlPSQyLCBtb2RpZmllZF9kYXRlPSQzXHJcbiAgICAgIFdIRVJFIGlkPSQ0IHJldHVybmluZyAqYDtcclxuICAgIHRyeSB7XHJcbiAgICAgIGNvbnN0IHsgcm93cyB9ID0gYXdhaXQgZGIucXVlcnkoZmluZE9uZVF1ZXJ5LCBbcmVxLnBhcmFtcy5pZCwgcmVxLnVzZXIuaWRdKTtcclxuICAgICAgaWYoIXJvd3NbMF0pIHtcclxuICAgICAgICByZXR1cm4gcmVzLnN0YXR1cyg0MDQpLnNlbmQoeydtZXNzYWdlJzogJ1BhcnR5IG5vdCBmb3VuZCd9KTtcclxuICAgICAgfVxyXG4gICAgICBjb25zdCB2YWx1ZXMgPSBbXHJcbiAgICAgICAgcmVxLmJvZHkubmFtZSB8fCByb3dzWzBdLm5hbWUsXHJcbiAgICAgICAgcmVxLmJvZHkudHlwZSB8fCByb3dzWzBdLnR5cGUsXHJcbiAgICAgICAgbW9tZW50KG5ldyBEYXRlKCkpLFxyXG4gICAgICAgIHJlcS5wYXJhbXMuaWQsXHJcbiAgICAgIF07XHJcbiAgICAgIGNvbnN0IHJlc3BvbnNlID0gYXdhaXQgZGIucXVlcnkodXBkYXRlT25lUXVlcnksIHZhbHVlcyk7XHJcbiAgICAgIHJldHVybiByZXMuc3RhdHVzKDIwMCkuc2VuZChyZXNwb25zZS5yb3dzWzBdKTtcclxuICAgIH0gY2F0Y2goZXJyKSB7XHJcbiAgICAgIHJldHVybiByZXMuc3RhdHVzKDQwMCkuc2VuZChlcnIpO1xyXG4gICAgfVxyXG4gIH1cclxuICAvKipcclxuICAgKiBcclxuICAgKiBAcGFyYW0ge29iamVjdH0gcmVxIFxyXG4gICAqIEBwYXJhbSB7b2JqZWN0fSByZXMgXHJcbiAgICogQHJldHVybnMge3ZvaWR9IHJldHVybiBjb2RlIDIwNCBcclxuICAgKi9cclxuICAvLyBzdGF0aWMgZGVsZXRlKHJlcSwgcmVzKSB7XHJcbiAgLy8gICBjb25zdCBwYXJ0eSA9IHBhcnR5TW9kZWwuZmluZE9uZShyZXEucGFyYW1zLmlkKTtcclxuICAvLyAgIGlmICghcGFydHkpIHtcclxuICAvLyAgICAgcmV0dXJuIHJlcy5zdGF0dXMoNDA0KS5zZW5kKHtcclxuICAvLyAgICAgICBcInN0YXR1c1wiOiA0MDQsXHJcbiAgLy8gICAgICAgXCJlcnJvclwiOiBcInBhcnR5IG5vdCBmb3VuZFwiXHJcbiAgLy8gICAgIH0pO1xyXG4gIC8vICAgfVxyXG4gIC8vICAgY29uc3QgcmVmID0gcGFydHlNb2RlbC5kZWxldGUocmVxLnBhcmFtcy5pZCk7XHJcbiAgLy8gICByZXR1cm4gcmVzLnN0YXR1cygyMDApLnNlbmQoe1xyXG4gIC8vICAgICBcInN0YXR1c1wiOiAyMDAsXHJcbiAgLy8gICAgIFwibWVzc2FnZVwiOiBcIlBhcnR5IGhhZCBiZWVuIGRlbGV0ZWRcIixcclxuICAvLyAgICAgXCJkYXRhXCI6IHBhcnR5XHJcbiAgLy8gICB9KTtcclxuICAvLyB9XHJcblxyXG5cclxuICBzdGF0aWMgYXN5bmMgZGVsZXRlKHJlcSwgcmVzKSB7XHJcbiAgICBjb25zdCBkZWxldGVRdWVyeSA9ICdERUxFVEUgRlJPTSBwYXJ0eSBXSEVSRSBpZD0kMSByZXR1cm5pbmcgKic7XHJcbiAgICB0cnkge1xyXG4gICAgICBjb25zdCB7IHJvd3MgfSA9IGF3YWl0IGRiLnF1ZXJ5KGRlbGV0ZVF1ZXJ5LCByZXEucGFyYW1zLmlkKTtcclxuICAgICAgaWYoIXJvd3NbMF0pIHtcclxuICAgICAgICByZXR1cm4gcmVzLnN0YXR1cyg0MDQpLnNlbmQoeydtZXNzYWdlJzogJ3BhcnR5IG5vdCBmb3VuZCd9KTtcclxuICAgICAgfVxyXG4gICAgICByZXR1cm4gcmVzLnN0YXR1cygyMDQpLnNlbmQoeyAnbWVzc2FnZSc6ICdkZWxldGVkJyB9KTtcclxuICAgIH0gY2F0Y2goZXJyb3IpIHtcclxuICAgICAgcmV0dXJuIHJlcy5zdGF0dXMoNDAwKS5zZW5kKGVycm9yKTtcclxuICAgIH1cclxuICB9XHJcblxyXG59IFxyXG5leHBvcnQgZGVmYXVsdCBQYXJ0eTsiXX0=
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb250cm9sbGVycy9wYXJ0eUN0ci5qcyJdLCJuYW1lcyI6WyJQYXJ0eSIsInJlcSIsInJlcyIsImxvZ29VcmwiLCJuYW1lIiwiaHFhZGRyZXNzIiwidXNlckF1dGhIZWxwZXIiLCJjaGVjayIsInJlc3VsdCIsImRiIiwiY3JlYXRlUXVlcnkiLCJ2YWx1ZXMiLCJyb3dzIiwiaWQiLCJ0ZXh0IiwiZmluZEFsbFF1ZXJ5Iiwicm93Q291bnQiLCJmaW5kT25lUXVlcnkiLCJ1cGRhdGVPbmVRdWVyeSIsInJlc3BvbnNlIiwiZGVsZXRlUXVlcnkiXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFDQSxJQUFBLEtBQUEsUUFBQSxTQUFBLENBQUE7Ozs7QUFDQSxJQUFBLFVBQUEsUUFBQSxRQUFBLENBQUE7Ozs7QUFDQSxJQUFBLFdBQUEsUUFBQSxlQUFBLENBQUE7Ozs7QUFFQSxJQUFBLGFBQUEsUUFBQSx5Q0FBQSxDQUFBOzs7O0FBQ0EsSUFBQSxZQUFBLFFBQUEsb0JBQUEsQ0FBQTs7Ozs7Ozs7QUFFQTs7QUFKQTtJQU1NQSxROzs7Ozs7OztBQUNKOzs7Ozs7OzJHQU1vQkMsRyxFQUFLQyxHOzs7Ozs7O3NCQUNwQixDQUFDRCxJQUFBQSxJQUFBQSxDQUFELElBQUEsSUFBa0IsQ0FBQ0EsSUFBQUEsSUFBQUEsQ0FBbkIsU0FBQSxJQUF5QyxDQUFDQSxJQUFBQSxJQUFBQSxDQUFTRSxPOzs7OztpREFDN0MsSUFBQSxNQUFBLENBQUEsR0FBQSxFQUFBLElBQUEsQ0FBcUI7QUFDMUIsNEJBRDBCLEdBQUE7QUFFMUIsMkJBQVM7QUFGaUIsaUJBQXJCLEM7OztvQkFLTEYsSUFBQUEsSUFBQUEsQ0FBU0UsTzs7Ozs7aURBQ0osSUFBQSxNQUFBLENBQUEsR0FBQSxFQUFBLElBQUEsQ0FBcUI7QUFDMUIsNEJBRDBCLEdBQUE7QUFFMUIsMkJBQVM7QUFGaUIsaUJBQXJCLEM7OztvQkFLTEYsSUFBQUEsSUFBQUEsQ0FBU0csSTs7Ozs7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OztrREFLRixJQUFBLE1BQUEsQ0FBQSxHQUFBLEVBQUEsSUFBQSxDQUFxQjtBQUMxQiwwQkFBUTtBQURrQixpQkFBckIsQzs7Ozs7a0RBS0EsSUFBQSxNQUFBLENBQUEsR0FBQSxFQUFBLElBQUEsQ0FBcUI7QUFDMUIsMkJBQVM7QUFEaUIsaUJBQXJCLEM7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O2tCQU9FWixLIiwic291cmNlc0NvbnRlbnQiOlsiXG5pbXBvcnQgdXVpZHY0IGZyb20gJ3V1aWQvdjQnO1xuaW1wb3J0IG1vbWVudCBmcm9tICdtb21lbnQnO1xuaW1wb3J0IHBhcnR5RGIgZnJvbSAnLi4vZGIvcGFydHlkYic7XG4vLyBpbXBvcnQgUGFydHlNb2RlbCBmcm9tICcuLi9tb2RlbHMvcGFydHknO1xuaW1wb3J0IGRiIGZyb20gJy4uL2NvbnRyb2xsZXJzL2RhdGFiYXNlVGFibGVzL2RiY29ubmVjdCc7XG5pbXBvcnQgdXNlckF1dGhIZWxwZXIgZnJvbSAnLi4vaGVscGVyL3VzZXJBdXRoJztcblxuLy8gY29uc3QgcGFydHlNb2RlbCA9IG5ldyBQYXJ0eU1vZGVsKClcblxuY2xhc3MgUGFydHl7XG4gIC8qKlxuICAgKiBcbiAgICogQHBhcmFtIHtWYWx1ZXN9IHJlcSAtIHJlcXVlc3QgdmFsdWVzIGludG8ga2V5cyBcbiAgICogQHBhcmFtIHtPYmplY3R9IHJlcyAtIHJlcXVlc3Qgb2JqZWN0XG4gICAqIEByZXR1cm5zIHthcnJheX0gLSByZXR1cm5zIGFsbCBrZXkgdmFsdWUgcGFpcnMgYXMgb2JqZWN0IGluIGFycmF5XG4gICAqL1xuICBzdGF0aWMgYXN5bmMgY3JlYXRlKHJlcSwgcmVzKSB7XG4gICAgaWYoIXJlcS5ib2R5Lm5hbWUgJiYgIXJlcS5ib2R5LmhxYWRkcmVzcyAmJiAhcmVxLmJvZHkubG9nb1VybCl7XG4gICAgICByZXR1cm4gcmVzLnN0YXR1cyg0MDApLnNlbmQoe1xuICAgICAgICBcInN0YXR1c1wiOiA0MDAsXG4gICAgICAgIFwiZXJyb3JcIjogXCJJbnB1dHMgZmllbGRzIGNhbid0IGJlIGxlZnQgZW1wdHlcIlxuICAgICAgfSlcbiAgICB9XG4gICAgaWYoIXJlcS5ib2R5LmxvZ29Vcmwpe1xuICAgICAgcmV0dXJuIHJlcy5zdGF0dXMoNDAwKS5zZW5kKHsgXG4gICAgICAgIFwic3RhdHVzXCI6IDQwMCwgXG4gICAgICAgIFwiZXJyb3JcIjogXCJMb2dvIGZpZWxkIGlzIGVtcHR5XCIgXG4gICAgfSk7XG4gICAgfVxuICAgIGlmKCFyZXEuYm9keS5uYW1lKXtcbiAgICAgIHJldHVybiByZXMuc3RhdHVzKDQwMCkuc2VuZCh7XG4gICAgICAgIFwic3RhdHVzXCI6IDQwMCxcbiAgICAgICAgXCJlcnJvclwiOiBcIlBhcnR5IGZpZWxkIGlzIGVtcHR5XCJcbiAgICAgIH0pXG4gICAgfVxuICAgIGlmKCFyZXEuYm9keS5ocWFkZHJlc3Mpe1xuICAgICAgcmV0dXJuIHJlcy5zdGF0dXMoNDAwKS5zZW5kKHtcbiAgICAgICAgXCJzdGF0dXNcIjogNDAwLFxuICAgICAgICBcImVycm9yXCI6IFwiQWRkcmVzcyBmaWVsZCBpcyBlbXB0eVwiXG4gICAgICB9KVxuICAgIH1cbiAgICBpZiAoIXVzZXJBdXRoSGVscGVyLmlzQWRkcmVzcyhyZXEuYm9keS5ocWFkZHJlc3MpKSB7XG4gICAgICByZXR1cm4gcmVzLnN0YXR1cyg0MDApLnNlbmQoe1xuICAgICAgICBcInN0YXR1c1wiOiA0MDAsICBcbiAgICAgICAgXCJlcnJvclwiOiBcIlBsZWFzZSBlbnRlciBhIHZhbGlkIGFkZHJlc3NcIlxuICAgIH0pO1xufVxuaWYgKCF1c2VyQXV0aEhlbHBlci5pc05hbWUocmVxLmJvZHkubmFtZSkpIHtcbiAgcmV0dXJuIHJlcy5zdGF0dXMoNDAwKS5zZW5kKHtcbiAgICBcInN0YXR1c1wiOiA0MDAsICBcbiAgICBcImVycm9yXCI6IFwiQWxwaGFiZXRzIG9ubHlcIlxufSk7XG59XG4vLyBpZiAoIXVzZXJBdXRoSGVscGVyLmlzSGlnaGVyKHJlcS5ib2R5Lm5hbWUsIHJlcS5ib2R5LmhxYWRkcmVzcykpIHtcbi8vICAgcmV0dXJuIHJlcy5zdGF0dXMoNDAwKS5zZW5kKHtcbi8vICAgICBcInN0YXR1c1wiOiA0MDAsICBcbi8vICAgICBcImVycm9yXCI6IFwiQWxwaGFiZXRzIG9ubHlcIlxuLy8gICB9KVxuLy8gICAgIH07XG4gICAgaWYgKCF1c2VyQXV0aEhlbHBlci5pc1VSTChyZXEuYm9keS5sb2dvVXJsKSkge1xuICAgICAgcmV0dXJuIHJlcy5zdGF0dXMoNDAwKS5zZW5kKHtcbiAgICAgICAgXCJzdGF0dXNcIjogNDAwLCAgXG4gICAgICAgIFwiZXJyb3JcIjogXCJJbmNvcnJlY3QgVVJMLiBVc2UgaHR0cHM6Ly9cIlxuICAgICAgfSlcbiAgICAgICAgfTtcbiAgICAgIGNvbnN0IGNoZWNrID0gYFNFTEVDVCAqIEZST00gcGFydHkgV0hFUkUgbmFtZT0kMWBcbiAgICAgIGNvbnN0IHsgbmFtZSB9ID0gcmVxLmJvZHk7XG4gICAgICBjb25zdCByZXN1bHQgPSBhd2FpdCBkYi5xdWVyeShjaGVjaywgW25hbWVdKTtcbiAgICAgIGlmKHJlc3VsdC5yb3dDb3VudCAhPT0gMCl7XG4gICAgICAgIHJldHVybiByZXMuc3RhdHVzKDQwMCkuc2VuZCh7XG4gICAgICAgICAgXCJzdGF0dXNcIjo0MDAsXG4gICAgICAgICAgXCJlcnJvclwiOiBcIlBhcnR5IGFscmVhZHkgZXhpc3RcIlxuICAgICAgICB9KVxuICAgICAgfVxuICBcbiAgICBjb25zdCBjcmVhdGVRdWVyeSA9IGBJTlNFUlQgSU5UT1xuICAgICAgcGFydHkoaWQsIG5hbWUsIGhxYWRkcmVzcywgbG9nb1VybCwgY3JlYXRlZF9kYXRlKVxuICAgICAgVkFMVUVTKCQxLCAkMiwgJDMsICQ0LCAkNSlcbiAgICAgIHJldHVybmluZyAqYDtcbiAgICBjb25zdCB2YWx1ZXMgPSBbXG4gICAgICB1dWlkdjQoKSxcbiAgICAgIHJlcS5ib2R5Lm5hbWUsXG4gICAgICByZXEuYm9keS5ocWFkZHJlc3MsXG4gICAgICByZXEuYm9keS5sb2dvVXJsLFxuICAgICAgbW9tZW50KG5ldyBEYXRlKCkpXG4gICAgXTtcbiAgICBcblxuICAgIHRyeSB7XG4gICAgICBjb25zdCB7IHJvd3MgfSA9IGF3YWl0IGRiLnF1ZXJ5KGNyZWF0ZVF1ZXJ5LCB2YWx1ZXMpO1xuICAgICAgcmV0dXJuIHJlcy5zdGF0dXMoMjAxKS5zZW5kKHtcbiAgICAgICAgXCJzdGF0dXNcIjogMjAxLFxuICAgICAgICBcImRhdGFcIjogW3tcbiAgICAgICAgICBcIm1lc3NhZ2VcIjogXCJwYXJ0eSBjcmVhdGVkXCIsXG4gICAgICAgICAgXCJvcmRlclwiOiByb3dzWzBdLFxuICAgICAgICB9XSxcbiAgICAgIH0pO1xuICAgIH0gY2F0Y2goZXJyb3IpIHtcbiAgICAgIHJldHVybiByZXMuc3RhdHVzKDQwMCkuc2VuZCh7XG4gICAgICAgIFwic3RhdHVzXCI6IDQwMCxcbiAgICAgICAgXCJkYXRhXCI6IGVycm9yXG4gICAgICB9KTtcbiAgICB9XG4gIH1cblxuICAvKipcbiAgICogR2V0IGEgc3BlY2lmaWMgcGFydHkodXNlcnMpXG4gICAqIEBwYXJhbSB7dXVpZH0gaWRcbiAgICogQHBhcmFtIHtPYmplY3R9IHJlcyAtIHJlcXVlc3Qgb2JqZWN0XG4gICAqIEByZXR1cm5zIHthcnJheX0gLSByZXR1cm5zIHNwZWNpZmljIHBhcnR5XG4gICAqL1xuICBzdGF0aWMgYXN5bmMgZ2V0QVBhcnR5KHJlcSwgcmVzKSB7XG4gICAgY29uc3QgeyBpZCB9ID0gcmVxLnBhcmFtcztcbiAgICBpZiAoIXVzZXJBdXRoSGVscGVyLmlzVVVJRChpZCkpIHtcbiAgICAgIHJldHVybiByZXMuc3RhdHVzKDQwMCkuc2VuZCh7XG4gICAgICAgIFwic3RhdHVzXCI6IDQwMCwgIFxuICAgICAgICBcImVycm9yXCI6IFwiVGhlIHVzZXIgSUQgdXNlZCBpcyBpbnZhbGlkXCJcbiAgICB9KTtcbiAgICB9XG4gICAgY29uc3QgdGV4dCA9ICdTRUxFQ1QgKiBGUk9NIHBhcnR5IFdIRVJFIGlkID0gJDEnO1xuICAgIHRyeSB7XG4gICAgICBjb25zdCB7IHJvd3MgfSA9IGF3YWl0IGRiLnF1ZXJ5KHRleHQsIFtpZF0pO1xuICAgICAgLy8gY29uc29sZS5sb2cocGFydHlfaWQpO1xuICAgICAgaWYoIXJvd3NbMF0pIHtcbiAgICAgICAgcmV0dXJuIHJlcy5zdGF0dXMoNDA0KS5zZW5kKHtcImVycm9yXCI6IFwiUGFydHkgbm90IGZvdW5kXCJ9KTtcbiAgICAgIH1cbiAgICAgIC8vIGlmKHJlcS5ib2R5LnBhcmFtcyAhPT0gcm93c1swXS5pZCl7XG4gICAgICAvLyAgIHJldHVybiByZXMuc3RhdHVzKDQwNCkuc2VuZCh7XCJlcnJvclwiOiBcIllvdXIgaWQgaXMgd3JvbmdcIn0pO1xuICAgICAgLy8gfVxuICAgICAgcmV0dXJuIHJlcy5zdGF0dXMoMjAwKS5zZW5kKHtcbiAgICAgICAgXCJzdGF0dXNcIjogMjAxLFxuICAgICAgICBcImRhdGFcIjogW3tcbiAgICAgICAgICBcIm9yZGVyXCI6IHJvd3NbMF0sXG4gICAgICAgIH1dLFxuICAgICAgfSk7XG4gICAgfSBjYXRjaChlcnJvcikge1xuICAgICAgcmV0dXJuIHJlcy5zdGF0dXMoNDAwKS5zZW5kKGVycm9yKTtcbiAgICB9XG4gIH1cbiAgLyoqXG4gICAqIEdldCBBbGwgcGFydGllcyh1c2VycylcbiAgICogQHBhcmFtIHt1dWlkfSBpZFxuICAgKiBAcGFyYW0ge09iamVjdH0gcmVzIC0gcmVxdWVzdCBvYmplY3RcbiAgICogQHJldHVybnMge2FycmF5fSAtIHJldHVybnMgYWxsIGtleSB2YWx1ZSBwYWlycyBhcyBvYmplY3QgaW4gYXJyYXlcbiAgICovXG4gIC8vIHN0YXRpYyBnZXRQYXJ0aWVzKHJlcSwgcmVzKSAge1xuICAvLyAgIHJldHVybiByZXMuc3RhdHVzKDIwMCkuanNvbih7XG4gIC8vICAgICBcInN0YXR1c1wiOiAyMDAsXG4gIC8vICAgICBcImRhdGFcIjogcGFydHlEYlxuICAvLyAgIH0pO1xuICAvLyB9XG4gIHN0YXRpYyBhc3luYyBnZXRQYXJ0aWVzKHJlcSwgcmVzKSB7XG4gICAgY29uc3QgZmluZEFsbFF1ZXJ5ID0gJ1NFTEVDVCAqIEZST00gcGFydHknO1xuICAgIHRyeXtcbiAgICAgIGNvbnN0IHsgcm93cywgcm93Q291bnQgfSA9IGF3YWl0IGRiLnF1ZXJ5KGZpbmRBbGxRdWVyeSk7XG4gICAgICByZXR1cm4gcmVzLnN0YXR1cygyMDApLnNlbmQoe1xuICAgICAgICBcInN0YXR1c1wiOiAyMDAsXG4gICAgICAgXCJkYXRhXCI6IHJvd3MsIHJvd0NvdW50IFxuICAgICAgfSk7XG4gICAgfSBjYXRjaChlcnJvcikge1xuICAgICAgLy8gY29uc29sZS5sb2coZXJyb3IpXG4gICAgICByZXR1cm4gcmVzLnN0YXR1cyg0MDApLnNlbmQoZXJyb3IpO1xuICAgIH1cbiAgfVxuLyoqXG4gICAqIEVkaXQgYSBzcGVjaWZpYyBwYXJ0eShhZG1pbilcbiAgICogQHBhcmFtIHtvYmplY3R9IHJlcSBcbiAgICogQHBhcmFtIHtvYmplY3R9IHJlcyBcbiAgICogQHJldHVybnMge29iamVjdH0gdXBkYXRlZCBwYXJ0eVxuICAgKi9cbiAgc3RhdGljIGFzeW5jIHVwZGF0ZShyZXEsIHJlcykge1xuICAgIGlmKCFyZXEuYm9keS5uYW1lKXtcbiAgICAgIHJldHVybiByZXMuc3RhdHVzKDQwMCkuc2VuZCh7XG4gICAgICAgIFwic3RhdHVzXCI6IDQwMCxcbiAgICAgICAgXCJlcnJvclwiOiBcIklucHV0IGZpZWxkIGNhbid0IGJlIGxlZnQgZW1wdHlcIlxuICAgICAgfSlcbiAgICB9XG5cbiAgICBjb25zdCBmaW5kT25lUXVlcnkgPSAnU0VMRUNUICogRlJPTSBwYXJ0eSBXSEVSRSBpZD0kMSc7XG4gICAgY29uc3QgdXBkYXRlT25lUXVlcnkgPWBVUERBVEUgcGFydHlcbiAgICAgIFNFVCBuYW1lPSQxIFxuICAgICAgV0hFUkUgaWQ9JDIgcmV0dXJuaW5nICpgO1xuICAgICAgXG4gICAgdHJ5IHtcbiAgICAgIGNvbnN0IHsgcm93cyB9ID0gYXdhaXQgZGIucXVlcnkoZmluZE9uZVF1ZXJ5LCBbcmVxLnBhcmFtcy5pZF0pO1xuICAgICAgaWYoIXJvd3NbMF0pIHtcbiAgICAgICAgcmV0dXJuIHJlcy5zdGF0dXMoNDA0KS5zZW5kKHtcbiAgICAgICAgICBcInN0YXR1c1wiOiA0MDQsXG4gICAgICAgICAgXCJlcnJvclwiOiBcIlBhcnR5IG5vdCBmb3VuZFwiXG4gICAgICAgIH0pO1xuICAgICAgfVxuICAgICAgY29uc3QgdmFsdWVzID0gW1xuICAgICAgICByZXEuYm9keS5uYW1lIHx8IHJvd3NbMF0ubmFtZSxcbiAgICAgICAgcmVxLnBhcmFtcy5pZCxcbiAgICAgIF07XG4gICAgICBjb25zdCByZXNwb25zZSA9IGF3YWl0IGRiLnF1ZXJ5KHVwZGF0ZU9uZVF1ZXJ5LCB2YWx1ZXMpO1xuICAgICAgcmV0dXJuIHJlcy5zdGF0dXMoMjAwKS5zZW5kKHJlc3BvbnNlLnJvd3NbMF0pO1xuICAgIH0gY2F0Y2goZXJyKSB7XG4gICAgICByZXR1cm4gcmVzLnN0YXR1cyg0MDApLnNlbmQoe1xuICAgICAgICBcImVycm9yXCI6IFwiT29wcywgc29tZXRoaW5nIHdyb25nIGhhcHBlbmVkLiBDaGVjayBhbmQgdHJ5IGFnYWluXCJcbiAgICAgIH0pO1xuICAgIH1cbiAgfVxuICAvKipcbiAgICogRGVsZXRlIHBhcnR5KGFkbWluKVxuICAgKiBAcGFyYW0ge29iamVjdH0gcmVxIFxuICAgKiBAcGFyYW0ge29iamVjdH0gcmVzIFxuICAgKiBAcmV0dXJucyB7dm9pZH0gcmV0dXJuIGNvZGUgMjA0IFxuICAgKi9cbiAgc3RhdGljIGFzeW5jIGRlbGV0ZShyZXEsIHJlcykge1xuICAgIGNvbnN0IGRlbGV0ZVF1ZXJ5ID0gJ0RFTEVURSBGUk9NIHBhcnR5IFdIRVJFIGlkPSQxIHJldHVybmluZyAqJztcbiAgICB0cnkge1xuICAgICAgY29uc3QgeyByb3dzIH0gPSBhd2FpdCBkYi5xdWVyeShkZWxldGVRdWVyeSwgW3JlcS5wYXJhbXMuaWRdKTtcbiAgICAgIFxuICAgICAgaWYoIXJvd3NbMF0pIHtcbiAgICAgICAgcmV0dXJuIHJlcy5zdGF0dXMoNDA0KS5zZW5kKHtcbiAgICAgICAgICBcImVycm9yXCI6IDQwNCxcbiAgICAgICAgICBcIm1lc3NhZ2VcIjogXCJwYXJ0eSBub3QgZm91bmRcIlxuICAgICAgICB9KTtcbiAgICAgIH1cbiAgICAgIHJldHVybiByZXMuc3RhdHVzKDQxMCkuc2VuZCh7IFxuICAgICAgICBcImRhdGFcIjogXCJkZWxldGVkXCIgXG4gICAgICB9KTtcbiAgICB9IGNhdGNoKGVycm9yKSB7XG4gICAgICAvLyBjb25zb2xlLmxvZyhlcnJvcik7XG4gICAgICByZXR1cm4gcmVzLnN0YXR1cyg0MDApLnNlbmQoe1xuICAgICAgICBcImVycm9yXCI6IFwiT29wcywgc29tZXRoaW5nIHdyb25nIGhhcHBlbmVkLiBDaGVjayBhbmQgdHJ5IGFnYWluXCJcbiAgICAgIH0pO1xuICAgIH1cbiAgfVxuXG59IFxuZXhwb3J0IGRlZmF1bHQgUGFydHk7Il19
