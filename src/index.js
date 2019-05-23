@@ -2,6 +2,7 @@
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
+import bodyParser from 'body-parser';
 import Office from './controllers/officeCtr';
 import userCtr from './controllers/userCtr';
 import partyCtr from './controllers/partyCtr';
@@ -11,8 +12,6 @@ import token from './helper/tokenAuth';
 import verifyAdmin from './helper/verifyAdmin';
 import verifyId from './helper/userAuth';
 import allowCors from './helper/allowCors';
-
-import bodyParser from 'body-parser';
 
 
 const app = express();
@@ -27,10 +26,10 @@ app.use('*', (req, res, next) => {
 });
 
 app.use(express.static(path.join(__dirname)));
-app.use('/styles', express.static(`${__dirname  }../../UI/styles`));
-app.use('/images', express.static(`${__dirname  }../../UI/images`));
-app.use('/scripts', express.static(`${__dirname  }../../UI/scripts`));
-app.use('/views', express.static(`${__dirname  }../../UI/views`));
+app.use('/styles', express.static(`${__dirname}../../UI/styles`));
+app.use('/images', express.static(`${__dirname}../../UI/images`));
+app.use('/scripts', express.static(`${__dirname}../../UI/scripts`));
+app.use('/views', express.static(`${__dirname}../../UI/views`));
 
 
 app.use(bodyParser.json());
@@ -43,12 +42,12 @@ const port = process.env.PORT || 3000;
 
 // homepage
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname + '../../UI/views/index.html'));
+  res.sendFile(path.join(`${__dirname}../../UI/views/index.html`));
 });
 
 app.get('/api/v1', (req, res) => res.status(200).send({
   status: 200,
-  'message': 'Welcome to POLITICO',
+  message: 'Welcome to POLITICO',
 }));
 // admin: create, edit
 app.post(
@@ -160,7 +159,7 @@ app.post(
 );
 
 app.get('/', (req, res) => res.status(200).send({
-  'status': 200,
+  status: 200,
   message: 'Welcome to POLITICO',
 }));
 
@@ -176,8 +175,8 @@ app.get('/', (req, res) => res.status(200).send({
 
 app.all('*', (req, res) => {
   res.status(404).send({
-    'status': 404,
-    'error': 'Resource not found on the server',
+    status: 404,
+    error: 'Resource not found on the server',
   });
 });
 
