@@ -30,12 +30,12 @@ const User = {
         error: 'Please enter a valid email',
       });
     }
-    // if (!req.body.passportUrl) {
-    //   return res.status(400).send({
-    //     status: 400,
-    //     error: 'URL field is empty',
-    //   });
-    // }
+    if (!req.body.passportUrl) {
+      return res.status(400).send({
+        status: 400,
+        error: 'URL field is empty',
+      });
+    }
 
     if (!userAuthHelper.ispasswordValid(req.body.password)) {
       return res.status(400).send({
@@ -67,7 +67,6 @@ const User = {
 
 
     const hashPassword = userAuthHelper.hashPassword(req.body.password);
-    const passportUrl = 'https://res.cloudinary.com/dbyvxd3za/image/upload/v1558793768/avatar_whxnhd.png';
 
     const createQuery = `INSERT INTO
       users(id, firstname, lastname, 
@@ -83,7 +82,7 @@ const User = {
       req.body.othername,
       req.body.email,
       req.body.phonenumber,
-      passportUrl,
+      req.body.passportUrl,
       hashPassword,
       moment(new Date()),
     ];
@@ -103,6 +102,7 @@ const User = {
         }],
       });
     } catch (error) {
+      console.log(error);
       if (error.routine === '_bt_check_unique') {
         return res.status(409).send({
           data: 409,
