@@ -61,7 +61,7 @@ class Candidates {
   /**
    * Get all Candidates
    */
-  static async getAllCandidates(res) {
+  static async getAllCandidates(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     const findAllQuery = 'SELECT * FROM candidates';
     try {

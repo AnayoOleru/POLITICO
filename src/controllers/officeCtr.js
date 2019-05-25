@@ -101,11 +101,12 @@ class Office {
    * @param {Object} res - request object
    * @returns {array} - returns all key value pairs as object in array
    */
-  static async getAllOffices(res) {
+  static async getAllOffices(req, res) {
     const findAllQuery = 'SELECT * FROM office';
     try {
       const { rows, rowCount } = await db.query(findAllQuery);
-      return res.status(200).send({
+      // return rows;
+      return res.status(200).json({
         status: 200,
         data: rows,
         rowCount,

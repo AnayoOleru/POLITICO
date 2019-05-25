@@ -1,26 +1,27 @@
 import jwt from 'jsonwebtoken';
-import db from '../controllers/databaseTables/dbconnect';
 import dotenv from 'dotenv';
+import db from '../controllers/databaseTables/dbconnect';
 
 dotenv.config();
 
 const TokenAuth = {
 
- /**
+  /**
    * Verify Token
-   * @param {object} req 
-   * @param {object} res 
+   * @param {object} req
+   * @param {object} res
    * @param {object} next
-   * @returns {object|void} response object 
+   * @returns {object|void} response object
    */
   async verifyToken(req, res, next) {
+    console.log('I was here');
+  
     const token = req.headers['x-access-token'];
-    
-    if(!token) {
+    if (!token) {
       return res.status(400).send({
-        "status": 400, 
-        "error": "User not authorised!"  
-    });
+        status: 400,
+        error: 'User not authorised!',
+      });
     }
     try {
       // console.log(process.env.SECRET)
@@ -29,22 +30,24 @@ const TokenAuth = {
       const text = 'SELECT * FROM users WHERE id = $1';
       const { rows } = await db.query(text, [decoded.id]);
       // console.log(rows);
-      if(!rows) {
+      if (!rows) {
         return res.status(400).send({
-            "status": 400, 
-            "error": "User not authorised!" 
+          status: 400,
+          error: 'User not authorised!',
         });
       }
       req.user = { id: decoded.id, isAdmin: decoded.isAdmin };
       next();
-    } catch(error) {
-      // console.log(error)
+    } catch (error) {
+      console.log('here too');
+
+      console.log(error);
       return res.status(500).send({
-        "status": 500, 
-        "error": "sorry something went wrong, go back and check" 
-    });
+        status: 500,
+        error: 'sorry something went wrong, go back and check',
+      });
     }
-}
+  },
 };
 
 export default TokenAuth;

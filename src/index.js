@@ -15,6 +15,7 @@ import verifyId from './helper/userAuth';
 
 const app = express();
 
+
 app.use(cors());
 
 app.use('*', (req, res, next) => {
@@ -97,13 +98,11 @@ app.get(
 // user
 app.get(
   '/api/v1/parties',
-  token.verifyToken,
   partyCtr.getParties,
 );
 
 app.get(
   '/api/v1/parties/:id',
-  token.verifyToken,
   partyCtr.getAParty,
 );
 
@@ -133,7 +132,7 @@ app.get(
 
 app.get(
   '/api/v1/candidates',
-  token.verifyToken,
+  // token.verifyToken,
   candidateCtr.getAllCandidates,
 );
 

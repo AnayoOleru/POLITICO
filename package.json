@@ -6,10 +6,10 @@
   "scripts": {
     "start": "node ./build/src/index.js",
     "prestart": "npm run build",
-    "prebuild": "rm -rf ./src/build",
+    "prebuild": "rm -rf build",
     "test": " nyc ---reporter=html --reporter=text mocha --timeout 30000 --exit --require babel-register test/* && npm run coverage",
     "build": "babel ./ -d build --ignore node_modules/ --presets=env --source-maps inline --copy-files",
-    "dev-start": "babel-watch ./src/index.js",
+    "dev": "babel-watch ./src/index.js",
     "coverage": "nyc report ---reporter=text-lcov | coveralls",
     "db-usercreate": "node ./databaseTables/userTables createUserTables",
     "db-createadmin": "node ./databaseTables/userTables createAdmin",

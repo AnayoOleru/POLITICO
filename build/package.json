@@ -4,9 +4,9 @@
   "description": "> :ng: Politico is a web-app that enables both citizens give their mandate to politicians running for different government offices. POLITICO also enables politicians to express interest to run for an office, while building trust in the process through transparency. :slot_machine:",
   "main": "index.js",
   "scripts": {
-    "start": "node ./build/src/index.js",
+    "start": "babel-node src/index.js",
     "prestart": "npm run build",
-    "prebuild": "rm -rf ./src/build",
+    "prebuild": "rm -rf build",
     "test": " nyc ---reporter=html --reporter=text mocha --timeout 30000 --exit --require babel-register test/* && npm run coverage",
     "build": "babel ./ -d build --ignore node_modules/ --presets=env --source-maps inline --copy-files",
     "dev-start": "babel-watch ./src/index.js",
