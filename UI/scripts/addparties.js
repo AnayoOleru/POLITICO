@@ -105,7 +105,8 @@ function addParty(e) {
       }
     });
 }
-
+const username;
+const nameside;
 function getParties() {
   fetch('https://trustpolitico.herokuapp.com/api/v1/parties', {
     method: 'GET',
@@ -144,9 +145,9 @@ function getParties() {
                 </div>
             </div> `;
 
-        username =                `<li><a href="#" class="active">${payload.userName} ${payload.lastName}</a></li>`;
+        username = `<li><a href="#" class="active">${payload.userName} ${payload.lastName}</a></li>`;
 
-        nameside =                `<span>${payload.userName} ${payload.lastName}</span>`;
+        nameside = `<span>${payload.userName} ${payload.lastName}</span>`;
       });
       document.getElementById('partyResult').innerHTML = result;
       document.getElementById('username').innerHTML = username;
