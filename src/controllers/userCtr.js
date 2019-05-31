@@ -202,5 +202,33 @@ const User = {
       return res.status(400).send(error);
     }
   },
+  async getAUser(req, res) {
+    const { id } = req.params;
+    if (!userAuthHelper.isUUID(id)) {
+      return res.status(400).send({
+        status: 400,
+        error: 'The user ID is invalid',
+      });
+    }
+    const text = 'SELECT * FROM users WHERE id = $1';
+    try {
+      const { rows } = await db.query(text, [id]);
+      // console.log(party_id);
+      if (!rows[0]) {
+        return res.status(404).send({ error: 'User not found' });
+      }
+      // if(req.body.params !== rows[0].id){
+      //   return res.status(404).send({"error": "Your id is wrong"});
+      // }
+      return res.status(200).send({
+        status: 201,
+        data: [{
+          order: rows[0],
+        }],
+      });
+    } catch (error) {
+      return res.status(400).send(error);
+    }
+  },
 };
 export default User;

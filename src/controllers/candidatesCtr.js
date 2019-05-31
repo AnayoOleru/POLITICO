@@ -51,10 +51,11 @@ class Candidates {
         }],
       });
     } catch (error) {
-      return res.status(400).send({
-        status: 400,
-        error: "You can't register this user as a candidate twice",
+      return res.status(500).send({
+        status: 500,
+        error: 'An error occurred',
       });
+      // console.log(error);
     }
   }
 

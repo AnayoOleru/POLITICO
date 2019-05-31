@@ -94,6 +94,14 @@ app.get(
   userCtr.getAllUsers,
 );
 
+app.get(
+  '/api/v1/:id/users',
+  token.verifyToken,
+  verifyAdmin.verifyIsAdmin,
+  verifyId.validateUserId,
+  userCtr.getAUser,
+);
+
 
 // user
 app.get(
@@ -132,7 +140,7 @@ app.get(
 
 app.get(
   '/api/v1/candidates',
-  // token.verifyToken,
+  token.verifyToken,
   candidateCtr.getAllCandidates,
 );
 
