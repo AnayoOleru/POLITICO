@@ -17,7 +17,7 @@ const User = {
         error: 'Some values are missing',
       });
     }
-    if (!userAuthHelper.isWhiteSpace(req.body.email, req.body.password, req.body.othername, req.body.phonenumber)) {
+    if (!userAuthHelper.isWhiteSpace(req.body.firstname, req.body.lastname, req.body.email, req.body.password, req.body.othername, req.body.phonenumber)) {
       return res.status(400).send({
         status: 400,
         error: 'White Space are not allowed in input fields',
