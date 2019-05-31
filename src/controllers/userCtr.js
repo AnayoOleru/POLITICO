@@ -90,7 +90,7 @@ const User = {
     if (!userAuthHelper.isInt(req.body.phonenumber)) {
       return res.status(400).send({
         status: 400,
-        error: 'Invalid Nigerian phone-number',
+        error: 'Invalid Nigerian phone-number. Sorry, only Nigerians are allowed to vote',
       });
     }
 
