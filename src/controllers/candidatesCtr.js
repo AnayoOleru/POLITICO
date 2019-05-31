@@ -53,7 +53,7 @@ class Candidates {
     } catch (error) {
       return res.status(500).send({
         status: 500,
-        error: 'An error occurred',
+        error: 'Internal server error, please try again later',
       });
       // console.log(error);
     }
