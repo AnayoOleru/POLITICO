@@ -17,46 +17,10 @@ const User = {
         error: 'Some values are missing',
       });
     }
-
-    if (!userAuthHelper.isWhiteSpace(req.body.firstname)) {
+    if (!userAuthHelper.isWhiteSpace(req.body.firstname, req.body.lastname, req.body.email, req.body.password, req.body.othername, req.body.phonenumber)) {
       return res.status(400).send({
         status: 400,
-        error: 'White Space is not allowed inn firstname field',
-      });
-    }
-
-    if (!userAuthHelper.isWhiteSpace(req.body.lastname)) {
-      return res.status(400).send({
-        status: 400,
-        error: 'White Space is not allowed in lastname field',
-      });
-    }
-
-    if (!userAuthHelper.isWhiteSpace(req.body.othername)) {
-      return res.status(400).send({
-        status: 400,
-        error: 'White Space is not allowed in othername field',
-      });
-    }
-
-    if (!userAuthHelper.isWhiteSpace(req.body.password)) {
-      return res.status(400).send({
-        status: 400,
-        error: 'White Space is not allowed in password field',
-      });
-    }
-
-    if (!userAuthHelper.isWhiteSpace(req.body.email)) {
-      return res.status(400).send({
-        status: 400,
-        error: 'White Space is not allowed in email',
-      });
-    }
-
-    if (!userAuthHelper.isWhiteSpace(req.body.phonenumber)) {
-      return res.status(400).send({
-        status: 400,
-        error: 'White Space is not allowed in phonenumber field',
+        error: 'White Space are not allowed in input fields',
       });
     }
 
@@ -90,7 +54,7 @@ const User = {
     if (!userAuthHelper.isInt(req.body.phonenumber)) {
       return res.status(400).send({
         status: 400,
-        error: 'Invalid Nigerian phone-number. Sorry, only Nigerians are allowed to vote',
+        error: 'Invalid Nigerian phone-number',
       });
     }
 
