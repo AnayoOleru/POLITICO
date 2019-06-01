@@ -51,6 +51,7 @@ class Candidates {
         }],
       });
     } catch (error) {
+      console.log('Here is the', error, '>>>>>>');
       return res.status(500).send({
         status: 500,
         error: 'Internal server error, please try again later',
