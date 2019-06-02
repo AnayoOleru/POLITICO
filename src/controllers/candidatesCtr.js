@@ -56,7 +56,6 @@ class Candidates {
         status: 500,
         error: 'Internal server error, please try again later',
       });
-      // console.log(error);
     }
   }
 
