@@ -64,7 +64,7 @@ class Votes {
       return res.status(400).send({
         status: 400,
         error: [{
-          message: 'You have already voted for this office or there was an error with your inputs',
+          message: 'Sorry, you have already voted for this user',
           Created_by: 'should be your id',
           office: 'should be your office id',
           candidate: 'should be your candidate id',
