@@ -1,57 +1,57 @@
-let token = window.localStorage.getItem('token');
-let payload = JSON.parse(window.atob(token.split('.')[1]));
-function verifyToken(){
-    // check if no token
-    if(!token){
-        window.location.href = '/views/sign-in.html';
-    }
-    // only admin can access this page
-    if(payload.isAdmin == true){
-        window.location.href = '/views/sign-in.html';
-    }
-    // check if token has expired
-    // if(payload.exp >= payload.iat){
-    //     console.log("Token had expired!")
-    //     window.location.href = '/views/401.html';
-    //     setTimeout(function(){
-    //         window.location.href = '/views/sign-in.html'; 
-    //     }, 30000);
-    // }
+const token = window.localStorage.getItem('token');
+const payload = JSON.parse(window.atob(token.split('.')[1]));
+function verifyToken() {
+  // check if no token
+  if (!token) {
+    window.location.href = '/views/sign-in.html';
+  }
+  // only admin can access this page
+  if (payload.isAdmin == true) {
+    window.location.href = '/views/sign-in.html';
+  }
+  // check if token has expired
+  // if(payload.exp >= payload.iat){
+  //     console.log("Token had expired!")
+  //     window.location.href = '/views/401.html';
+  //     setTimeout(function(){
+  //         window.location.href = '/views/sign-in.html';
+  //     }, 30000);
+  // }
 }
 
 function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
+  document.getElementById('mySidenav').style.width = '250px';
 }
 
 function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
+  document.getElementById('mySidenav').style.width = '0';
 }
 
-let voted = document.getElementById("voted");
-function voteColor(){
-    voted.style.backgroundColor = "green";
-    voted.style.color = "#ffffff";
+const voted = document.getElementById('voted');
+function voteColor() {
+  voted.style.backgroundColor = 'green';
+  voted.style.color = '#ffffff';
 }
 
 
 // users get all candidates
-function getAllCandidates(){
-    fetch('https://trustpolitico.herokuapp.com/api/v1/candidates', {
-        method: 'GET',
-        headers: {
-            'Accept': 'application/json, text/plain, */*',
-            'Content-type': 'application/json',
-            'x-access-token': token
-        },
-    })
-        .then((res) => res.json())
-        .then((data) => {
-            console.log(data);
-            let result = '';
-            data.data.forEach((candidate) => {
-                result +=
+function getAllCandidates() {
+  fetch('https://trustpolitico.herokuapp.com/api/v1/candidates', {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json, text/plain, */*',
+      'Content-type': 'application/json',
+      'x-access-token': token,
+    },
+  })
+    .then(res => res.json())
+    .then((data) => {
+      console.log(data);
+      let result = '';
+      data.data.forEach((candidate) => {
+        result
                 
-            `
+            += `
             <div class="row">
             <div class="col-1-of-3">
                         <div class="card">
@@ -77,51 +77,49 @@ function getAllCandidates(){
                     </div>
                         </div>
                         </div>
-                `
+                `;
+      });
 
-            });
-            
-       document.getElementById('candidatescard').innerHTML = result;
-       document.getElementById('username').innerHTML = username;
-       document.getElementById('nameside').innerHTML = nameside;
-        
-    })        
+      document.getElementById('candidatescard').innerHTML = result;
+      document.getElementById('username').innerHTML = username;
+      document.getElementById('nameside').innerHTML = nameside;
+    });
 }
 
 getAllCandidates();
 
-function vote(office, officeName, candidateId, candidateName){
-    console.log(payload.lastName);
+function vote(office, officeName, candidateId, candidateName) {
+  console.log(payload.lastName);
 
-    fetch('https://trustpolitico.herokuapp.com/api/v1/votes', {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json, text/plain, */*',
-            'Content-type': 'application/json',
-            'x-access-token': token
-        },
-        body: JSON.stringify({
-            created_by: payload.id, 
-            userName: payload.lastName,
-            office: office,
-            officeName: officeName,
-            candidate: candidateId,
-            candidateName: candidateName
-        })
-        
-    })
+  fetch('https://trustpolitico.herokuapp.com/api/v1/votes', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json, text/plain, */*',
+      'Content-type': 'application/json',
+      'x-access-token': token,
+    },
+    body: JSON.stringify({
+      created_by: payload.id,
+      userName: payload.lastName,
+      office,
+      officeName,
+      candidate: candidateId,
+      candidateName,
+    }),
+
+  })
     .then((res) => {
-        if(res.ok){
-            responseStatus = true;
-            //  document.querySelectorAll('.btn').style.background-color : "red";
-        }
-       return res.json()
-    })
+      if (res.ok) {
+        responseStatus = true;
+        //  document.querySelectorAll('.btn').style.background-color : "red";
+      }
+      return res.json();
+    });
     // .then((res) => {
     //     console.log(res);
     //     if(!responseStatus){
-     
-    //     }else{
-    //     }
-    // })
+
+  //     }else{
+  //     }
+  // })
 }

@@ -14,20 +14,20 @@ pool.on('connect', () => {
 /**
  * Create user Tables
  */
-const createCand = () => {
+const createInterest = () => {
   const queryText =
-  `CREATE TABLE IF NOT EXISTS candidates(
-    candidateId UUID UNIQUE NOT NULL,
-    office UUID NOT NULL,
-    officeName VARCHAR(128) NOT NULL,
-    party UUID NOT NULL,
+  `CREATE TABLE IF NOT EXISTS interest(
+    interestId UUID UNIQUE NOT NULL,
+    userId UUID NOT NULL,
+    userName VARCHAR(128) NOT NULL,
+    partyId UUID NOT NULL,
     partyName VARCHAR(128) NOT NULL,
-    candidate UUID NOT NULL,
-    candidateName VARCHAR(128) NOT NULL,
-    FOREIGN KEY (office) REFERENCES office (id) ON DELETE CASCADE,
-    FOREIGN KEY (party) REFERENCES party (id) ON DELETE CASCADE,
-    FOREIGN KEY (candidate) REFERENCES users (id) ON DELETE CASCADE,
-    PRIMARY KEY (office, candidate)
+    officeId UUID NOT NULL,
+    officeName VARCHAR(128) NOT NULL,
+    FOREIGN KEY (officeId) REFERENCES office (id) ON DELETE CASCADE,
+    FOREIGN KEY (partyId) REFERENCES party (id) ON DELETE CASCADE,
+    FOREIGN KEY (userId) REFERENCES users (id) ON DELETE CASCADE,
+    PRIMARY KEY (officeId, userId)
   )`;
 
   pool.query(queryText)
@@ -39,14 +39,14 @@ const createCand = () => {
       console.log(err);
       pool.end();
     });
-}
+};
 
 
 /**
  * Drop Tables
  */
-const dropCand = () => {
-  const queryText = 'DROP TABLE IF EXISTS candidates';
+const dropInterest = () => {
+  const queryText = 'DROP TABLE IF EXISTS interest';
   pool.query(queryText)
     .then((res) => {
       console.log(res);
@@ -56,16 +56,15 @@ const dropCand = () => {
       console.log(err);
       pool.end();
     });
-}
+};
 
 pool.on('remove', () => {
   console.log('Table creation exited');
   process.exit(0);
 });
 module.exports = {
-  createCand,
-  dropCand
+  createInterest,
+  dropInterest,
 };
 
 require('make-runnable');
-

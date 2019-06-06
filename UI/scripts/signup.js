@@ -15,7 +15,6 @@ function addPost(e) {
   const password = document.getElementById('password').value;
   const result = document.getElementById('result');
   let responseStatus = false;
-  console.log('hhhhhh');
 
 
   fetch('https://trustpolitico.herokuapp.com/api/v1/auth/signup', {

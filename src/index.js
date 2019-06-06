@@ -7,6 +7,7 @@ import Office from './controllers/officeCtr';
 import userCtr from './controllers/userCtr';
 import partyCtr from './controllers/partyCtr';
 import candidateCtr from './controllers/candidatesCtr';
+import interestCtr from './controllers/interestCtr';
 import votesCtr from './controllers/votesCtr';
 import token from './helper/tokenAuth';
 import verifyAdmin from './helper/verifyAdmin';
@@ -84,6 +85,12 @@ app.post(
   verifyAdmin.verifyIsAdmin,
   verifyId.validateUserId,
   candidateCtr.register,
+);
+
+app.post(
+  '/api/v1/office/interest',
+  token.verifyToken,
+  interestCtr.userInterest,
 );
 
 app.get(
