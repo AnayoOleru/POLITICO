@@ -185,6 +185,9 @@ class Office {
       const singleResult = {
         office: officeid,
         candidate: row.rows[i].candidate,
+        username: row.rows[i].username,
+        candidatename: rows.rows[i].candidatename,
+        officename: rows.rows[i].officename,
         result: Number(row.rows[i].count),
       };
 
