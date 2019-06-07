@@ -72,6 +72,20 @@ app.delete(
   partyCtr.delete,
 );
 
+app.delete(
+  '/api/v1/offices/:id',
+  token.verifyToken,
+  verifyAdmin.verifyIsAdmin,
+  Office.delete,
+);
+
+app.delete(
+  '/api/v1/interest/:id',
+  token.verifyToken,
+  verifyAdmin.verifyIsAdmin,
+  interestCtr.delete,
+);
+
 app.post(
   '/api/v1/offices',
   token.verifyToken,

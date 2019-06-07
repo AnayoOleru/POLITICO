@@ -57,7 +57,7 @@ class Interest {
       console.log('Here is the', error, '>>>>>>');
       return res.status(500).send({
         status: 500,
-        error: 'Internal server error, please try again later',
+        error: 'Sorry you cannot indicate interest twice',
       });
     }
   }
@@ -74,6 +74,28 @@ class Interest {
     } catch (error) {
       console.log(error);
       return res.status(400).send(error);
+    }
+  }
+
+  static async delete(req, res) {
+    const deleteQuery = 'DELETE FROM interest WHERE id=$1 returning *';
+    try {
+      const { rows } = await db.query(deleteQuery, [req.params.id]);
+
+      if (!rows[0]) {
+        return res.status(404).send({
+          error: 404,
+          message: 'interest not found',
+        });
+      }
+      return res.status(410).send({
+        data: 'deleted',
+      });
+    } catch (error) {
+      // console.log(error);
+      return res.status(400).send({
+        error: 'Oops, something wrong happened. Check and try again',
+      });
     }
   }
 }

@@ -205,5 +205,27 @@ class Office {
       error,
     });
   }
+
+  static async delete(req, res) {
+    const deleteQuery = 'DELETE FROM office WHERE id=$1 returning *';
+    try {
+      const { rows } = await db.query(deleteQuery, [req.params.id]);
+
+      if (!rows[0]) {
+        return res.status(404).send({
+          error: 404,
+          message: 'office not found',
+        });
+      }
+      return res.status(410).send({
+        data: 'deleted',
+      });
+    } catch (error) {
+      // console.log(error);
+      return res.status(400).send({
+        error: 'Oops, something wrong happened. Check and try again',
+      });
+    }
+  }
 }
 export default Office;
