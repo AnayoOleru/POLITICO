@@ -178,16 +178,17 @@ class Office {
       });
     }
 
-    const text2 = 'SELECT candidate, COUNT(candidate) FROM votes WHERE office = $1 GROUP BY candidate';
+    const text2 = 'SELECT *, COUNT(candidate) FROM votes WHERE office = $1 GROUP BY id, created_on, created_by, officename, office, candidatename, username, candidate';
     const row = await db.query(text2, [officeid]);
+    console.log(row, '>>>>>>><<<<<<<<');
     const pollResult = [];
     for (let i = 0; i < row.rows.length; i += 1) {
       const singleResult = {
         office: officeid,
-        candidate: row.rows[i].candidate,
-        username: row.rows[i].username,
-        candidatename: rows.rows[i].candidatename,
-        officename: rows.rows[i].officename,
+        candidate: row.rows[0].candidate,
+        username: row.rows[0].username,
+        candidatename: row.rows[0].candidatename,
+        officename: row.rows[0].officename,
         result: Number(row.rows[i].count),
       };
 
