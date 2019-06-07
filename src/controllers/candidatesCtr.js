@@ -54,7 +54,7 @@ class Candidates {
       console.log('Here is the', error, '>>>>>>');
       return res.status(500).send({
         status: 500,
-        error: 'You have already registered this cr',
+        error: 'You have already registered this user',
       });
     }
   }
