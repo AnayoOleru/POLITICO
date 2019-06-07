@@ -94,6 +94,13 @@ app.post(
 );
 
 app.get(
+  '/api/v1/office/interest',
+  token.verifyToken,
+  verifyAdmin.verifyIsAdmin,
+  interestCtr.getAllInterestedCandidates,
+);
+
+app.get(
   '/api/v1/users',
   token.verifyToken,
   verifyAdmin.verifyIsAdmin,

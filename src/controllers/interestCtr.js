@@ -61,5 +61,20 @@ class Interest {
       });
     }
   }
+
+  static async getAllInterestedCandidates(req, res) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    const findAllQuery = 'SELECT * FROM interest';
+    try {
+      const { rows } = await db.query(findAllQuery);
+      return res.status(200).send({
+        status: 200,
+        data: rows,
+      });
+    } catch (error) {
+      console.log(error);
+      return res.status(400).send(error);
+    }
+  }
 }
 export default Interest;
