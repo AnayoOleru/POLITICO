@@ -18,7 +18,7 @@
     "db-partycreate": "node ./databaseTables/partyTables createPartyTables",
     "db-partydrop": "node ./databaseTables/partyTables dropPartyTables",
     "db-partyrefresh": "npm run db-partydrop && npm run db-partycreate",
-    "db-officecreate": "node ./databaseTables/officeTables createOfficeTables",
+    "db-officecreate": "node ./databaseTables/petitionTable createOfficeTables",
     "db-officedrop": "node ./databaseTables/officeTables dropPartyTables",
     "db-officerefresh": "npm run db-officedrop && npm run db-officecreate",
     "db-cancreate": "node ./src/databaseTables/candidatesTables createCand",
